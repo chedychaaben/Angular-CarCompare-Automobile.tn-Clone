@@ -1,0 +1,67 @@
+<p>comparedetails works!</p>
+checking the comparison of id 392K39EKD393
+BMW M4 VS AUDI A5 
+
+<!-- comparison.component.html -->
+<div *ngIf="isLoading">Loading...</div>
+<div *ngIf="!isLoading" class="comparison-container">
+  <div class="car">
+    <h2>{{ carOne.marque }} {{ carOne.model }}</h2>
+    <img [src]="carOne.image" alt="{{ carOne.model }}">
+    <ul>
+      <li><strong>Prix:</strong> {{ carOne.prix }} €</li>
+      <li><strong>Carrosserie:</strong> {{ carOne.carrosserie }}</li>
+      <li><strong>Transmission:</strong> {{ carOne.transmission }}</li>
+      <li><strong>Horsepower:</strong> {{ carOne.horsepower }} HP</li>
+      <li><strong>Top Speed:</strong> {{ carOne.topspeed }} km/h</li>
+      <li><strong>Acceleration:</strong> {{ carOne.acceleration }} s (0-100 km/h)</li>
+    </ul>
+  </div>
+  
+  <div class="car">
+    <h2>{{ carTwo.marque }} {{ carTwo.model }}</h2>
+    <img [src]="carTwo.image" alt="{{ carTwo.model }}">
+    <ul>
+      <li><strong>Prix:</strong> {{ carTwo.prix }} €</li>
+      <li><strong>Carrosserie:</strong> {{ carTwo.carrosserie }}</li>
+      <li><strong>Transmission:</strong> {{ carTwo.transmission }}</li>
+      <li><strong>Horsepower:</strong> {{ carTwo.horsepower }} HP</li>
+      <li><strong>Top Speed:</strong> {{ carTwo.topspeed }} km/h</li>
+      <li><strong>Acceleration:</strong> {{ carTwo.acceleration }} s (0-100 km/h)</li>
+    </ul>
+  </div>
+</div>
+<style>
+    .comparison-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.car {
+  border: 1px solid #ccc;
+  padding: 20px;
+  width: 45%;
+  text-align: center;
+  background: #f9f9f9;
+  border-radius: 8px;
+}
+
+.car img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 5px;
+}
+
+.car ul {
+  list-style: none;
+  padding: 0;
+}
+
+.car li {
+  text-align: left;
+  margin: 5px 0;
+}
+
+</style>

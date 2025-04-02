@@ -1,0 +1,119 @@
+<div>
+    <form [formGroup]="form" (ngSubmit)="onsub()">
+      <!-- Marque Input -->
+      <div>
+        <label for="marque">Marque:</label>
+        <select id="marque" formControlName="marque">
+          <option *ngFor="let marque of marques" [value]="marque.nom">{{ marque.nom }}</option>
+        </select>
+      </div>
+  
+      <!-- Model -->
+      <div>
+        <label for="model">Model:</label>
+        <input type="text" id="model" formControlName="model" placeholder="Model" />
+      </div>
+
+      <!-- Carrosserie -->
+      <div>
+        <label for="carrosserie">Carrosserie:</label>
+        <select id="carrosserie" formControlName="carrosserie">
+          <option *ngFor="let carrosserie of carrosseries" [value]="carrosserie.nom">{{ carrosserie.nom }}</option>
+        </select>
+      </div>
+
+      <!-- Moteur -->
+      <div>
+        <label for="moteur">Moteur:</label>
+        <input type="text" id="moteur" formControlName="moteur" placeholder="Moteur" />
+      </div>
+
+      <!-- Prix -->
+      <div>
+        <label for="prix">Prix:</label>
+        <input type="number" id="prix" formControlName="prix" placeholder="Prix" />
+      </div>
+  
+      <!-- Image Upload -->
+      <div>
+        <label for="image">Image:</label>
+        <input type="file" (change)="onFileChange($event)">
+      </div>
+      
+      <!-- Nombre de ports -->
+      <div>
+        <label for="nbports">Nombre de ports:</label>
+        <select id="nbports" formControlName="nbports">
+            <option value="2">2</option>
+            <option value="4">4</option>
+        </select>
+      </div>
+
+      <!-- Nombre de chaises -->
+      <div>
+        <label for="nbchaises">Nombre de chaises:</label>
+        <select id="nbchaises" formControlName="nbchaises">
+            <option value="2">2</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="7">7</option>
+        </select>
+      </div>
+
+      <!-- Year -->
+      <div>
+        <label for="year">Year:</label>
+        <input type="number" id="year" formControlName="year" placeholder="year" />
+      </div>
+      
+      <!-- Drivetrain -->
+      <div>
+        <label for="drivetrain">Drivetrain:</label>
+        <select id="drivetrain" formControlName="drivetrain">
+            <option value="FWD">Roues avant motrices</option>
+            <option value="BWD">Roues arrière motrices</option>
+            <option value="4WD">Quatre roues motrices</option>
+        </select>
+      </div>
+
+      <!-- Fuel -->
+      <div>
+        <label for="fuel">Carburant :</label>
+        <select id="fuel" formControlName="fuel">
+            <option value="essence">Essence</option>
+            <option value="diesel">Diesel</option>
+            <option value="electrique">Électrique</option>
+            <option value="hybride">Hybride</option>
+        </select>
+        </div>
+
+        <!-- Transmission -->
+        <div>
+        <label for="transmission">Transmission :</label>
+        <select id="transmission" formControlName="transmission">
+            <option value="manuelle">manuelle</option>
+            <option value="automatique">automatique</option>
+        </select>
+        </div>
+        
+        <!-- Horsepower -->
+        <div>
+            <label for="horsepower">Horsepower:</label>
+            <input type="number" id="horsepower" formControlName="horsepower" placeholder="horsepower" />
+        </div>
+        <!-- Topspeed -->
+        <div>
+            <label for="topspeed">Topspeed:</label>
+            <input type="number" id="topspeed" formControlName="topspeed" placeholder="topspeed" />
+        </div>
+        <!-- Acceleration 0-100 en secondes -->
+        <div>
+            <label for="acceleration">Acceleration:</label>
+            <input type="number" id="acceleration" formControlName="acceleration" placeholder="acceleration" />
+        </div>
+
+
+      <button type="submit" [disabled]="form.invalid">Submit</button>
+    </form>
+  </div>
+  

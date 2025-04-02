@@ -1,0 +1,34 @@
+<div>
+    <form [formGroup]="form" (ngSubmit)="onsub()">
+      <!-- Nom Input -->
+      <div>
+        <label for="nom">Nom:</label>
+        <input type="text" id="nom" formControlName="nom" placeholder="Nom" />
+      </div>
+  
+      <!-- Pays -->
+      <div>
+        <label for="pays">Pays:</label>
+        <select id="pays" formControlName="pays">
+          <option value="Etats-Unis">États-Unis (USA)</option>
+          <option value="Allemagne">Allemagne (Germany)</option>
+          <option value="Japon">Japon (Japan)</option>
+          <option value="CoreeDuSud">Corée du Sud (South Korea)</option>
+          <option value="Italie">Italie (Italy)</option>
+          <option value="France">France</option>
+          <option value="RoyaumeUni">Royaume-Uni (United Kingdom)</option>
+          <option value="Suede">Suède (Sweden)</option>
+          <option value="Chine">Chine (China)</option>
+        </select>
+      </div>
+  
+      <!-- Logo Upload -->
+      <div>
+        <label for="logo">Logo:</label>
+        <input type="file" (change)="onFileChange($event)">
+      </div>
+
+      <button type="submit" [disabled]="form.invalid">Submit</button>
+    </form>
+  </div>
+  

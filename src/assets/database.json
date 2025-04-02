@@ -1,0 +1,244 @@
+{
+  "roles": [
+    {
+      "id": "546b",
+      "uid": "nOZAQS4KDmUkwHdGaPHJFPvhsFJ2",
+      "role": "admin"
+    },
+    {
+      "id": "2197",
+      "uid": "d0Nfuv8zR2beC8YYhVG6JbdU4232",
+      "role": "user"
+    },
+    {
+      "id": "932e",
+      "uid": "IfBT6rGMYqZwrfdB7cUSSPldd673",
+      "role": "admin"
+    },
+    {
+      "id": "1377",
+      "uid": "Fhp01U4IAWSkPSIQ0g4X5uoHIEy1",
+      "role": "user"
+    }
+  ],
+  "marques": [
+    {
+      "id": "0020",
+      "nom": "chedy",
+      "pays": "Japon",
+      "logo": "https://res.cloudinary.com/dzd8v4iwt/image/upload/v1743116850/AngularIitProject/IT_PROS_f7voa2.png"
+    },
+    {
+      "id": "5c6d",
+      "nom": "Audi",
+      "pays": "Allemagne",
+      "logo": "https://res.cloudinary.com/dzd8v4iwt/image/upload/v1743117555/AngularIitProject/all_gvoyrr.png"
+    },
+    {
+      "id": "e6d4",
+      "nom": "BMW",
+      "pays": "Allemagne",
+      "logo": "https://res.cloudinary.com/dzd8v4iwt/image/upload/v1743341646/AngularIitProject/IT_PROS_zqr1vg.png"
+    }
+  ],
+  "voitures": [
+    {
+      "id": "c275",
+      "marque": "5c6d",
+      "model": "A5",
+      "carrosserie": "2f61",
+      "moteur": "TDI",
+      "prix": 50000,
+      "image": "https://res.cloudinary.com/dzd8v4iwt/image/upload/v1743161922/AngularIitProject/3458ddca-6653-4b99-a1d4-576e86d487ca_sxpfdn.png",
+      "nbports": "4",
+      "nbchaises": "4",
+      "year": 2000,
+      "drivetrain": "FWD",
+      "fuel": "diesel",
+      "transmission": "manuelle",
+      "horsepower": 265,
+      "topspeed": 300,
+      "acceleration": 6
+    },
+    {
+      "id": "4d74",
+      "marque": "e6d4",
+      "model": "M4",
+      "carrosserie": "2fX1",
+      "moteur": "6TD",
+      "prix": 55545,
+      "image": "https://res.cloudinary.com/dzd8v4iwt/image/upload/v1743341713/AngularIitProject/all_bjroh4.png",
+      "nbports": "4",
+      "nbchaises": "4",
+      "year": 2015,
+      "drivetrain": "BWD",
+      "fuel": "diesel",
+      "transmission": "manuelle",
+      "horsepower": 120,
+      "topspeed": 250,
+      "acceleration": 4
+    },
+    {
+      "id": "4dF4",
+      "marque": "e6d4",
+      "model": "M4",
+      "carrosserie": "2fX1",
+      "moteur": "6TD",
+      "prix": 55545,
+      "image": "https://res.cloudinary.com/dzd8v4iwt/image/upload/v1743341713/AngularIitProject/all_bjroh4.png",
+      "nbports": "4",
+      "nbchaises": "4",
+      "year": 2055,
+      "drivetrain": "BWD",
+      "fuel": "diesel",
+      "transmission": "manuelle",
+      "horsepower": 120,
+      "topspeed": 250,
+      "acceleration": 4
+    },
+    {
+      "id": "4d74",
+      "marque": "e6d4",
+      "model": "M4",
+      "carrosserie": "2fX1",
+      "moteur": "6TD",
+      "prix": 55545,
+      "image": "https://res.cloudinary.com/dzd8v4iwt/image/upload/v1743341713/AngularIitProject/all_bjroh4.png",
+      "nbports": "4",
+      "nbchaises": "4",
+      "year": 2023,
+      "drivetrain": "BWD",
+      "fuel": "diesel",
+      "transmission": "manuelle",
+      "horsepower": 120,
+      "topspeed": 250,
+      "acceleration": 4
+    },
+    {
+      "id": "4d74",
+      "marque": "e6d4",
+      "model": "M4",
+      "carrosserie": "2fX1",
+      "moteur": "6TD",
+      "prix": 55545,
+      "image": "https://res.cloudinary.com/dzd8v4iwt/image/upload/v1743341713/AngularIitProject/all_bjroh4.png",
+      "nbports": "4",
+      "nbchaises": "4",
+      "year": 2011,
+      "drivetrain": "BWD",
+      "fuel": "diesel",
+      "transmission": "manuelle",
+      "horsepower": 120,
+      "topspeed": 250,
+      "acceleration": 4
+    },
+    {
+      "id": "04d0",
+      "marque": "5c6d",
+      "model": "hhh",
+      "carrosserie": "2fX1",
+      "moteur": "6TDhhh",
+      "prix": 89,
+      "image": "https://res.cloudinary.com/dzd8v4iwt/image/upload/v1743549189/AngularIitProject/edit_cn6wsy.png",
+      "nbports": "4",
+      "nbchaises": "4",
+      "year": 2012,
+      "drivetrain": "FWD",
+      "fuel": "essence",
+      "transmission": "manuelle",
+      "horsepower": 3,
+      "topspeed": 5,
+      "acceleration": 9
+    }
+  ],
+  "comparisons": [
+    {
+      "id": "c62b",
+      "voitureuneid": "Audi-A5",
+      "voituredeuxid": "BMW-M4",
+      "userid": "",
+      "datetime": "2025-03-30T14:17:06.905Z"
+    },
+    {
+      "id": "f72b",
+      "voitureuneid": "BMW-M4",
+      "voituredeuxid": "Audi-A5",
+      "userid": "",
+      "datetime": "2025-03-30T14:17:20.075Z"
+    },
+    {
+      "id": "cd7f",
+      "voitureuneid": "Audi-A5",
+      "voituredeuxid": "BMW-M4",
+      "userid": "",
+      "datetime": "2025-03-30T14:47:30.948Z"
+    }
+  ],
+  "favoris": [],
+  "reviews": [],
+  "vus": [
+    {
+      "id": "",
+      "voitureid": "c275",
+      "userid": "",
+      "datetime": "2025-04-02T18:44:06.158Z"
+    },
+    {
+      "id": "",
+      "voitureid": "c275",
+      "userid": "",
+      "datetime": "2025-04-02T18:44:23.578Z"
+    },
+    {
+      "id": "",
+      "voitureid": "c275",
+      "userid": "",
+      "datetime": "2025-04-02T18:45:03.834Z"
+    },
+    {
+      "id": "d344",
+      "voitureid": "c275",
+      "userid": "",
+      "datetime": "2025-04-02T18:51:28.590Z"
+    },
+    {
+      "id": "65b6",
+      "voitureid": "c275",
+      "userid": "",
+      "datetime": "2025-04-02T18:51:34.469Z"
+    },
+    {
+      "id": "0662",
+      "voitureid": "c275",
+      "userid": "",
+      "datetime": "2025-04-02T18:52:54.198Z"
+    }
+  ],
+  "carrosseries": [
+    {
+      "id": "2517",
+      "nom": "Cghe",
+      "image": "https://res.cloudinary.com/dzd8v4iwt/image/upload/v1743461884/AngularIitProject/whats_is_dis_giye2n.png"
+    },
+    {
+      "id": "2f64",
+      "nom": "XXS",
+      "image": "https://res.cloudinary.com/dzd8v4iwt/image/upload/v1743461906/AngularIitProject/IT_PROS_dmjb6x.png"
+    },
+    {
+      "id": "2f61",
+      "nom": "SEDAN",
+      "image": "https://res.cloudinary.com/dzd8v4iwt/image/upload/v1743461906/AngularIitProject/IT_PROS_dmjb6x.png"
+    },
+    {
+      "id": "2fX1",
+      "nom": "SPORTCAR",
+      "image": "https://res.cloudinary.com/dzd8v4iwt/image/upload/v1743461906/AngularIitProject/IT_PROS_dmjb6x.png"
+    },
+    {
+      "id": "baf6",
+      "nom": "xxxxxxxxxxxxx",
+      "image": "https://res.cloudinary.com/dzd8v4iwt/image/upload/v1743613325/AngularIitProject/DesignPatterns2_z57ant.png"
+    }
+  ]
+}

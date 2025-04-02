@@ -1,0 +1,32 @@
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <!-- ID Column -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef> ID </th>
+      <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+    </ng-container>
+  
+    <!-- Nom Column -->
+    <ng-container matColumnDef="nom">
+      <th mat-header-cell *matHeaderCellDef> Nom </th>
+      <td mat-cell *matCellDef="let element"> {{element.nom}} </td>
+    </ng-container>
+  
+    <!-- Pays Column -->
+    <ng-container matColumnDef="pays">
+      <th mat-header-cell *matHeaderCellDef> Pays </th>
+      <td mat-cell *matCellDef="let element"> {{element.pays}} </td>
+    </ng-container>
+  
+    <!-- Logo Column -->
+    <ng-container matColumnDef="logo">
+      <th mat-header-cell *matHeaderCellDef> Logo </th>
+      <td mat-cell *matCellDef="let element">
+        <img [src]="element.logo" alt="Logo" width="50">
+      </td>
+    </ng-container>
+  
+    <!-- ✅ Add Header and Row Definitions -->
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  

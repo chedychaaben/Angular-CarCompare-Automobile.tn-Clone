@@ -1,0 +1,34 @@
+<p>homepage works!</p>
+<div>
+    <div>
+        <h2>Search for a Car</h2>
+        <form [formGroup]="searchForm" (ngSubmit)="onSearch()">
+            
+          <!-- Carrosserie Selection -->
+          <label for="carrosserie">Carrosserie:</label>
+          <select id="carrosserie" formControlName="carrosserie">
+            <option value="">All</option>
+            <option *ngFor="let carrosserie of carrosseries" [value]="carrosserie.id">
+              {{ carrosserie.nom }}
+            </option>
+          </select>
+          
+          <!-- Marque Selection -->
+          <label for="marque">Marque:</label>
+          <select id="marque" formControlName="marque">
+            <option value="">All</option>
+            <option *ngFor="let marque of marques" [value]="marque.id">{{ marque.nom }}</option>
+          </select>
+      
+      
+          <!-- Model Selection (Dynamic) -->
+          <label for="model">Model:</label>
+          <select id="model" formControlName="model">
+            <option value="">All</option>
+            <option *ngFor="let model of filteredModels" [value]="model">{{ model }}</option>
+          </select>
+      
+          <button [disabled]="!searchForm.get('model')?.value" type="submit">Go To Car</button>
+        </form>
+      </div>
+</div>

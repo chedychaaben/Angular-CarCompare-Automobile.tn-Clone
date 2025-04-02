@@ -1,0 +1,82 @@
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <ng-container matColumnDef="marque">
+      <th mat-header-cell *matHeaderCellDef> Marque </th>
+      <td mat-cell *matCellDef="let element"> {{ element.marque }} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="model">
+      <th mat-header-cell *matHeaderCellDef> Model </th>
+      <td mat-cell *matCellDef="let element"> {{ element.model }} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="carrosserie">
+      <th mat-header-cell *matHeaderCellDef> Carrosserie </th>
+      <td mat-cell *matCellDef="let element"> {{ element.carrosserie }} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="moteur">
+      <th mat-header-cell *matHeaderCellDef> Moteur </th>
+      <td mat-cell *matCellDef="let element"> {{ element.moteur }} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="prix">
+      <th mat-header-cell *matHeaderCellDef> Prix </th>
+      <td mat-cell *matCellDef="let element"> {{ element.prix | currency }} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="image">
+      <th mat-header-cell *matHeaderCellDef> Image </th>
+      <td mat-cell *matCellDef="let element">
+        <img [src]="element.image" alt="Voiture" width="50">
+      </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="nbports">
+      <th mat-header-cell *matHeaderCellDef> Nb Ports </th>
+      <td mat-cell *matCellDef="let element"> {{ element.nbports }} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="nbchaises">
+      <th mat-header-cell *matHeaderCellDef> Nb Chaises </th>
+      <td mat-cell *matCellDef="let element"> {{ element.nbchaises }} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="year">
+      <th mat-header-cell *matHeaderCellDef> Year </th>
+      <td mat-cell *matCellDef="let element"> {{ element.year }} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="drivetrain">
+      <th mat-header-cell *matHeaderCellDef> Drivetrain </th>
+      <td mat-cell *matCellDef="let element"> {{ element.drivetrain }} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="fuel">
+      <th mat-header-cell *matHeaderCellDef> Fuel </th>
+      <td mat-cell *matCellDef="let element"> {{ element.fuel }} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="transmission">
+      <th mat-header-cell *matHeaderCellDef> Transmission </th>
+      <td mat-cell *matCellDef="let element"> {{ element.transmission }} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="horsepower">
+      <th mat-header-cell *matHeaderCellDef> Horsepower </th>
+      <td mat-cell *matCellDef="let element"> {{ element.horsepower }} hp </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="topspeed">
+      <th mat-header-cell *matHeaderCellDef> Top Speed </th>
+      <td mat-cell *matCellDef="let element"> {{ element.topspeed }} km/h </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="acceleration">
+      <th mat-header-cell *matHeaderCellDef> 0-100 km/h </th>
+      <td mat-cell *matCellDef="let element"> {{ element.acceleration }} s </td>
+    </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  
