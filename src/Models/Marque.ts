@@ -1,6 +1,6 @@
 export interface Marque 
 {
-    id : string,
+    id? : string,
     nom : string,
     pays : string,
     logo : string

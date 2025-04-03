@@ -86,10 +86,9 @@ export class HomepageComponent implements OnInit {
     );
 
     if (selectedCar) {
-      // Navigate to the car details page with the car ID
-      this.router.navigate(['/car-details', selectedCar.id]);
+      this.router.navigate(['/comparer'], { queryParams: { voiture1: selectedCar.id } });
     } else {
       console.warn('No matching car found!');
     }
   }
-}
+};

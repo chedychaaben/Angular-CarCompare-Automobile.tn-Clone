@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { VuService } from 'src/app/services/vu.service';
 import { VoitureService } from 'src/app/services/voiture.service';
+import { FavoriService } from 'src/app/services/favori.service';
 import { Voiture } from 'src/Models/Voiture';
 import { Vu } from 'src/Models/Vu';
+import { Favori } from 'src/Models/Favori';
 
 @Component({
   selector: 'app-voituredetails',
@@ -16,8 +18,10 @@ export class VoituredetailsComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private voitureService: VoitureService,
-    private vuService: VuService
+    private vuService: VuService,
+    private favoriService: FavoriService,
   ) {}
 
   ngOnInit() {
@@ -49,10 +53,19 @@ export class VoituredetailsComponent implements OnInit {
   }
 
   
-  compare() {
-    
+  comparer() {
+    this.router.navigate(['/comparer'], { queryParams: { voiture1: this.voitureId } });
   }
 
+  ajouterFavori() {
+    if(this.voitureId)
+    {
+    this.favoriService.AddFavori(this.voitureId).subscribe(() => {
+      console.log('Favori added successfully');
+    });
+    }
+    
+  }
 
 
 }

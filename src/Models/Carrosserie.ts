@@ -1,6 +1,6 @@
 export interface Carrosserie 
 {
-    id : string,
+    id? : string,
     nom : string,
     image : string
 }

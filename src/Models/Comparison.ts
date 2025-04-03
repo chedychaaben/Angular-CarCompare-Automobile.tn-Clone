@@ -1,6 +1,6 @@
 export interface Comparison 
 {
-    id : string,
+    id? : string,
     voitureuneid : string,
     voituredeuxid : string,
     userid : string,

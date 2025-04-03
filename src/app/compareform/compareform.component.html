@@ -1,33 +1,28 @@
-<p>Choisissez 2 voitures a comparer</p>
-(get cars details before subbmitting)
-(Postrequest to compare 2 cars)
-(the post will (add to db) and show the page)
-
-<form [formGroup]="form" (ngSubmit)="onsub()">
-    <!-- Voiture 1 Input -->
-    <div>
-      <label for="voiture_1">Voiture 1:</label>
-      <select id="voiture_1" formControlName="voiture_1">
-        <option *ngFor="let voiture_1 of voitures" [value]="voiture_1.marque + '-' + voiture_1.model">{{ voiture_1.marque }} {{ voiture_1.model }}</option>
-      </select>
-    </div>
-
-    <!-- Voiture 2 Input -->
-    <div>
-      <label for="voiture_2">Voiture 2:</label>
-      <select id="voiture_2" formControlName="voiture_2">
-        <option *ngFor="let voiture_2 of voitures" [value]="voiture_2.marque + '-' + voiture_2.model">{{ voiture_2.marque }} {{ voiture_2.model }}</option>
-      </select>
-    </div>
-
-    <button type="submit" [disabled]="form.invalid">Submit</button>
-    
-    <!-- Display Selected Car Images -->
-    <div *ngIf="form.get('voiture_1')?.value">
-        <img [src]="getSelectedImage(form.get('voiture_1')?.value)" alt="Voiture 1 Image" />
-    </div>
-
-    <div *ngIf="form.get('voiture_2')?.value">
-        <img [src]="getSelectedImage(form.get('voiture_2')?.value)" alt="Voiture 2 Image" />
-    </div>
+Voiture 1 : {{ voitureOneId }}
+<form [formGroup]="searchForm" (ngSubmit)="onSearch()">
+     <!-- Carrosserie Selection -->
+     <label for="carrosserie">Carrosserie:</label>
+     <select id="carrosserie" formControlName="carrosserie">
+       <option value="">All</option>
+       <option *ngFor="let carrosserie of carrosseries" [value]="carrosserie.id">
+         {{ carrosserie.nom }}
+       </option>
+     </select>
+     
+     <!-- Marque Selection -->
+     <label for="marque">Marque:</label>
+     <select id="marque" formControlName="marque">
+       <option value="">All</option>
+       <option *ngFor="let marque of marques" [value]="marque.id">{{ marque.nom }}</option>
+     </select>
+ 
+ 
+     <!-- Model Selection (Dynamic) -->
+     <label for="model">Model:</label>
+     <select id="model" formControlName="model">
+       <option value="">All</option>
+       <option *ngFor="let model of filteredModels" [value]="model">{{ model }}</option>
+     </select>
+ 
+     <button [disabled]="!searchForm.get('model')?.value" type="submit">Go To Car</button>
 </form>

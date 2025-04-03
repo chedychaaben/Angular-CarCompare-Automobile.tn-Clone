@@ -19,9 +19,8 @@ export class ComparedetailsComponent implements OnInit {
   constructor(private route: ActivatedRoute, private http: HttpClient) {}
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe(params => {
-      //this.comparisonId = params.get('id')!;
-      this.comparisonId = "c62b";
+    this.route.queryParamMap.subscribe(params => {
+      this.comparisonId = params.get('id') || '';
       this.fetchComparison();
     });
   }
@@ -29,8 +28,7 @@ export class ComparedetailsComponent implements OnInit {
   fetchComparison(): void {
     this.http.get<Comparison>(`http://localhost:3000/comparisons/${this.comparisonId}`).subscribe(comparison => {
       this.comparison = comparison;
-      //this.fetchCars(comparison.voitureuneid, comparison.voituredeuxid);
-      this.fetchCars("c275", "4d74");
+      this.fetchCars(comparison.voitureuneid, comparison.voituredeuxid);
       
     });
   }
