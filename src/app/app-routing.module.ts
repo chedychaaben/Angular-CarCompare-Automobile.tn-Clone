@@ -12,10 +12,20 @@ import { CompareformComponent } from './compareform/compareform.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { CarrosserieComponent } from './carrosserie/carrosserie.component';
 import { CarrosserieformComponent } from './carrosserieform/carrosserieform.component';
+import { authGuard } from './auth.guard';
+
+// [() => authGuard()] // Anyone logged in can access
+// [() => authGuard('admin')]
+// [() => authGuard('user')]
 
 const routes: Routes = [
   {
     path:'',
+    redirectTo: '/home',
+    pathMatch: 'full'
+  },
+  {
+    path:'home',
     pathMatch: 'full',
     component: HomepageComponent
   },
@@ -31,47 +41,47 @@ const routes: Routes = [
   },
   {
     path:'ajouter-marque',
-    pathMatch: 'full',
+    canActivate:  [() => authGuard('admin')],
     component: MarqueformComponent
   },
   {
     path:'list-marques',
-    pathMatch: 'full',
+    canActivate:  [() => authGuard('admin')],
     component: MarqueComponent
   },
   {
     path:'list-voitures',
-    pathMatch: 'full',
+    canActivate:  [() => authGuard('admin')],
     component: VoitureComponent
   },
   {
     path:'ajouter-voiture',
-    pathMatch: 'full',
+    canActivate:  [() => authGuard('admin')],
     component: VoitureformComponent
   },
   {
     path:'voiture-details',
-    pathMatch: 'full',
+    canActivate:  [() => authGuard('user')],
     component: VoituredetailsComponent
   },
   {
     path:'comparer',
-    pathMatch: 'full',
+    canActivate:  [() => authGuard('user')],
     component: CompareformComponent
   },
   {
     path:'comparison-result',
-    pathMatch: 'full',
+    canActivate:  [() => authGuard('user')],
     component: ComparedetailsComponent
   },
   {
     path:'ajouter-carrosserie',
-    pathMatch: 'full',
+    canActivate:  [() => authGuard('admin')],
     component: CarrosserieformComponent
   },
   {
     path:'list-carrosseries',
-    pathMatch: 'full',
+    canActivate:  [() => authGuard('admin')],
     component: CarrosserieComponent
   }
 ];

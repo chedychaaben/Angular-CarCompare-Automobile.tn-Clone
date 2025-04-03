@@ -82,15 +82,25 @@ export class AuthService {
   }
 
 
-  login(){
-    //console.log("firebaseAuth" ,this.firebaseAuth);
-    //console.log("user$" ,this.user$);
-    this.getUserData().subscribe(userData => {
-      if (userData) {
-        console.log('User data:', userData);
-      } else {
-        console.log('No user data (user is not authenticated)');
-      }
+  login(email: string, password: string): Observable<any> {
+    return new Observable(observer => {
+      this.afAuth.signInWithEmailAndPassword(email, password)
+        .then(userCredential => {
+          const user = userCredential.user;
+          if (user) {
+            // Directly return the user data and role in one go
+            this.getRoleByUserId(user.uid).subscribe(role => {
+              observer.next({ uid: user.uid, email: user.email, role: role });
+              observer.complete();
+            });
+          } else {
+            observer.next(null);
+            observer.complete();
+          }
+        })
+        .catch(error => {
+          observer.error(error);
+        });
     });
   }
 

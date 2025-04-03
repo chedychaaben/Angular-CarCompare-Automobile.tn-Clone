@@ -1,5 +1,7 @@
 <div class="login-container">
     <p>login works!</p>
+    <input type="email" [(ngModel)]="email" placeholder="Email" required>
+    <input type="password" [(ngModel)]="password" placeholder="Password" required>
     <button (click)="login()">
         Click me
     </button>
