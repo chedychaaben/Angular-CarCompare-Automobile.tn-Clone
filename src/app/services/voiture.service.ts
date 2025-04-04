@@ -3,6 +3,8 @@ import { Observable } from 'rxjs';
 import { Voiture } from 'src/Models/Voiture';
 import { map } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
+import { of } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -52,6 +54,15 @@ export class VoitureService {
         }
   
         return similarVoitures.slice(0, 4);
+      })
+    );
+  }
+
+  getVoitureById(id: string) {
+    return this.http.get<Voiture>(`http://localhost:3000/voitures/${id}`).pipe(
+      catchError(err => {
+        console.error('Voiture not found or error occurred:', err);
+        return of(null); // Return null if not found or error occurs
       })
     );
   }

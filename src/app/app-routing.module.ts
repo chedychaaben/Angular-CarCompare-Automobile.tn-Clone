@@ -16,7 +16,7 @@ import { authGuard } from './auth.guard';
 
 // [() => authGuard()] // Anyone logged in can access
 // [() => authGuard('admin')]
-// [() => authGuard('user')]
+// [() => authGuard('user')] // USER AND IS NOT ADMIN
 
 const routes: Routes = [
   {
@@ -61,17 +61,17 @@ const routes: Routes = [
   },
   {
     path:'voiture-details',
-    canActivate:  [() => authGuard('user')],
+    canActivate:  [() => authGuard()],
     component: VoituredetailsComponent
   },
   {
     path:'comparer',
-    canActivate:  [() => authGuard('user')],
+    canActivate:  [() => authGuard()],
     component: CompareformComponent
   },
   {
     path:'comparison-result',
-    canActivate:  [() => authGuard('user')],
+    canActivate:  [() => authGuard()],
     component: ComparedetailsComponent
   },
   {

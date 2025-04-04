@@ -1,3 +1,7 @@
-<p>voituredetails works!</p>
+<p>Voituredetails works!</p>
+
 <button (click)="comparer()">Comparer</button>
-<button (click)="ajouterFavori()">J'aime</button>
+
+<button (click)="LikeDislike()">
+  {{ isLiked ? 'J\'aime pas' : 'J\'aime' }}
+</button>
