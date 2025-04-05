@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -15,7 +16,6 @@ import { provideFirebaseApp, initializeApp } from '@angular/fire/app'; // ✅ Mo
 import { provideAuth, getAuth } from '@angular/fire/auth'; // ✅ Modular Auth provider
 
 import { firebaseConfig } from './environment';
-import { LoginComponent } from './login/login.component';
 import { MarqueformComponent } from './marqueform/marqueform.component';
 
 import { MatTableModule } from '@angular/material/table';
@@ -33,6 +33,7 @@ import { CarrosserieComponent } from './carrosserie/carrosserie.component';
 import { CarrosserieformComponent } from './carrosserieform/carrosserieform.component';
 import { VoituredetailsComponent } from './voituredetails/voituredetails.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,7 +48,8 @@ import { VoituredetailsComponent } from './voituredetails/voituredetails.compone
     HomepageComponent,
     CarrosserieComponent,
     CarrosserieformComponent,
-    VoituredetailsComponent
+    VoituredetailsComponent,
+
   ],
   imports: [
     BrowserModule,
