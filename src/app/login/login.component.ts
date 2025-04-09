@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../services/auth.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 
 @Component({
@@ -8,12 +9,19 @@ import { AuthService } from '../services/auth.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
+  loginForm: FormGroup;
 
-  constructor(private authService: AuthService) {}
+  constructor(private fb: FormBuilder, private authService: AuthService) {
+    this.loginForm = this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', Validators.required],
+    });
+  }
+
   email = '';
   password = '';
 
-  login() {
+  onLogin() {
     this.authService.login(this.email, this.password).subscribe({
       next: (user) => {
         console.log('Login successful:', user);
