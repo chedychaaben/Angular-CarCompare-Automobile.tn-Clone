@@ -25,6 +25,10 @@ export class AuthService {
     return this.userSubject.value?.uid || null;
   }
 
+  getUserEmail(): string | null {
+    return this.userSubject.value?.email || null;
+  }
+
   // Add role to JSON Server
   AddRole(role: Role): Observable<void> {
     return this.http.post<void>('http://localhost:3000/roles', role);
@@ -60,23 +64,40 @@ export class AuthService {
     });
   }
 
-  // Register new user and add role
-  async register(email: string, password: string, role: string) {
-    try {
-      const userCredential = await this.afAuth.createUserWithEmailAndPassword(email, password);
-      const user = userCredential.user;
-
-      if (user) {
-        const roleData: Role = { uid: user.uid, role: role };
-        this.AddRole(roleData).subscribe({
-          next: () => console.log("User registered with role:", roleData),
-          error: (error) => console.error("Error adding role:", error)
+  // Register new user and return user + role
+  register(email: string, password: string, role: string): Observable<{ uid: string, email: string, role: string } | null> {
+    return new Observable(observer => {
+      this.afAuth.createUserWithEmailAndPassword(email, password)
+        .then(userCredential => {
+          const user = userCredential.user;
+          if (user) {
+            const roleData: Role = { uid: user.uid, role: role };
+            this.AddRole(roleData).subscribe({
+              next: () => {
+                observer.next({
+                  uid: user.uid,
+                  email: user.email || '',
+                  role: role
+                });
+                observer.complete();
+              },
+              error: error => {
+                console.error("Error adding role:", error);
+                observer.error(error);
+              }
+            });
+          } else {
+            observer.next(null);
+            observer.complete();
+          }
+        })
+        .catch(error => {
+          console.error("Registration error:", error);
+          observer.error(error);
         });
-      }
-    } catch (error) {
-      console.error("Registration error:", error);
-    }
+    });
   }
+
 
   // Login and return user + role
   login(email: string, password: string): Observable<{ uid: string, email: string, role: string } | null> {
@@ -107,5 +128,9 @@ export class AuthService {
   // Logout
   logout() {
     this.afAuth.signOut();
+  }
+
+  isLoggedIn(): boolean {
+    return this.userSubject.value !== null;
   }
 }

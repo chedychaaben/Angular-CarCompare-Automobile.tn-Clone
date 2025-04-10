@@ -1,3 +1,4 @@
+<app-navbar></app-navbar>
 Voiture 1 : {{ voitureOneId }}
 <form [formGroup]="searchForm" (ngSubmit)="onSearch()">
      <!-- Carrosserie Selection -->
@@ -26,3 +27,5 @@ Voiture 1 : {{ voitureOneId }}
  
      <button [disabled]="!searchForm.get('model')?.value" type="submit">Go To Car</button>
 </form>
+
+<app-footer></app-footer>

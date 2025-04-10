@@ -1,7 +1,52 @@
-<p>Voituredetails works!</p>
+<ng-container *ngIf="MyVoiture as voiture">
+  <div class="max-w-4xl mx-auto px-6 py-10 bg-white shadow-xl rounded-2xl">
+    <div class="flex flex-col md:flex-row gap-8">
+      <!-- Car Image -->
+      <div class="flex-shrink-0">
+        <img [src]="voiture.image" alt="Voiture" class="rounded-xl w-full max-w-xs object-cover shadow-md">
+      </div>
 
-<button (click)="comparer()">Comparer</button>
+      <!-- Car Details -->
+      <div class="flex-1 space-y-4 text-gray-700">
+        <h2 class="text-3xl font-bold text-gray-800">{{ voiture.marque }} {{ voiture.model }}</h2>
+        <p class="text-lg text-gray-500">{{ voiture.year }} · {{ voiture.carrosserie }}</p>
 
-<button (click)="LikeDislike()">
-  {{ isLiked ? 'J\'aime pas' : 'J\'aime' }}
-</button>
+        <div class="grid grid-cols-2 gap-4 text-sm md:text-base">
+          <p><strong>Prix:</strong> {{ voiture.prix | currency }}</p>
+          <p><strong>Moteur:</strong> {{ voiture.moteur }}</p>
+          <p><strong>Transmission:</strong> {{ voiture.transmission }}</p>
+          <p><strong>Fuel:</strong> {{ voiture.fuel }}</p>
+          <p><strong>Drivetrain:</strong> {{ voiture.drivetrain }}</p>
+          <p><strong>Nb Ports:</strong> {{ voiture.nbports }}</p>
+          <p><strong>Nb Chaises:</strong> {{ voiture.nbchaises }}</p>
+          <p><strong>Horsepower:</strong> {{ voiture.horsepower }} hp</p>
+          <p><strong>Top Speed:</strong> {{ voiture.topspeed }} km/h</p>
+          <p><strong>0-100 km/h:</strong> {{ voiture.acceleration }} s</p>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="flex gap-4 mt-6">
+          <button (click)="comparer()" class="flex items-center space-x-2 px-4 py-2 rounded-full border border-gray-300 hover:bg-green-100 text-gray-600 hover:text-green-600 active:bg-green-200 transition">
+            <span>Comparer</span>
+          </button>
+
+          <button *ngIf="!isLiked" (click)="LikeDislike()" class="flex items-center space-x-2 px-4 py-2 rounded-full border border-gray-300 hover:bg-green-100 text-gray-600 hover:text-green-600 active:bg-green-200 transition">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 9l-3 6h4l-1 6 5-12h-5z" />
+            </svg>
+            <span>Like</span>
+          </button>
+
+          <button *ngIf="isLiked" (click)="LikeDislike()" class="flex items-center space-x-2 px-4 py-2 rounded-full border border-gray-300 hover:bg-red-100 text-gray-600 hover:text-red-600 active:bg-red-200 transition">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 9l-3 6h4l-1 6 5-12h-5z" />
+            </svg>
+            <span>Dislike</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>
+
+<app-footer></app-footer>

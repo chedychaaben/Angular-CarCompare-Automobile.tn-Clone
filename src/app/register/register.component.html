@@ -1,14 +1,84 @@
-<div class="register-container">
-    <h2>Register</h2>
-    
-    <input type="email" [(ngModel)]="email" placeholder="Email" required>
-    <input type="password" [(ngModel)]="password" placeholder="Password" required>
-    
-    <select [(ngModel)]="role">
-      <option value="user">User</option>
-      <option value="admin">Admin</option>
-    </select>
-  
-    <button (click)="registerUser()">Register</button>
+<div class="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-black px-4">
+  <div class="w-full max-w-md bg-white dark:bg-neutral-900 p-8 rounded-2xl shadow-lg space-y-6">
+    <div class="text-center">
+      <h1 class="text-3xl font-bold text-gray-900 dark:text-white">Bienvenue</h1>
+      <p class="text-sm text-gray-600 dark:text-gray-400">Créer votre compte</p>
+    </div>
+
+    <!-- Error message -->
+    <div *ngIf="registerError" class="bg-red-100 border border-red-400 text-red-700 px-4 py-2 rounded-lg text-sm">
+      {{ registerError }}
+    </div>
+
+    <form [formGroup]="registerForm" (ngSubmit)="registerUser()" class="space-y-4">
+      <!-- Email -->
+      <div>
+        <label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+          Adresse e-mail
+        </label>
+        <input
+          id="email"
+          type="email"
+          formControlName="email"
+          placeholder="exemple@domaine.com"
+          class="w-full px-4 py-2 rounded-xl border border-gray-300 dark:border-neutral-700 bg-white dark:bg-neutral-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+        <div *ngIf="registerForm.get('email')?.touched && registerForm.get('email')?.invalid" class="mt-1 text-sm text-red-600">
+          <span *ngIf="registerForm.get('email')?.errors?.['required']">L'email est requis.</span>
+          <span *ngIf="registerForm.get('email')?.errors?.['email']">Format d'email invalide.</span>
+        </div>
+      </div>
+
+      <!-- Password -->
+      <div>
+        <label for="password" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+          Mot de passe
+        </label>
+        <input
+          id="password"
+          type="password"
+          formControlName="password"
+          placeholder="Votre mot de passe"
+          class="w-full px-4 py-2 rounded-xl border border-gray-300 dark:border-neutral-700 bg-white dark:bg-neutral-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+        <div *ngIf="registerForm.get('password')?.touched && registerForm.get('password')?.invalid" class="mt-1 text-sm text-red-600">
+          <span *ngIf="registerForm.get('password')?.errors?.['required']">Le mot de passe est requis.</span>
+          <span *ngIf="registerForm.get('password')?.errors?.['minlength']">
+            Le mot de passe doit contenir au moins {{ registerForm.get('password')?.errors?.['minlength'].requiredLength }} caractères.
+          </span>
+        </div>
+      </div>
+
+      <!-- Role -->
+      <div>
+        <label for="role" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+          Rôle
+        </label>
+        <select
+          id="role"
+          formControlName="role"
+          class="w-full px-4 py-2 rounded-xl border border-gray-300 dark:border-neutral-700 bg-white dark:bg-neutral-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+        >
+          <option value="" disabled selected>Choisir un rôle</option>
+          <option value="user">Utilisateur</option>
+          <option value="admin">Administrateur</option>
+        </select>
+      </div>
+
+      <!-- Submit -->
+      <button
+        type="submit"
+        [disabled]="registerForm.invalid"
+        class="w-full py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold transition disabled:opacity-50 disabled:cursor-not-allowed"
+      >
+        Créer un compte
+      </button>
+    </form>
+
+    <!-- Link to login -->
+    <p class="text-center text-sm text-gray-500 dark:text-gray-400">
+      Vous avez déjà un compte ?
+      <a routerLink="/login" class="text-blue-600 hover:underline">Se connecter</a>
+    </p>
+  </div>
 </div>
-  

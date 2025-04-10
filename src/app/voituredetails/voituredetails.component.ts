@@ -15,12 +15,29 @@ import { Vu } from 'src/Models/Vu';
 export class VoituredetailsComponent implements OnInit {
   voitureId: string = '';
   isLiked: boolean = false;
+  MyVoiture : Voiture ={
+    marque: '',
+    model: '',
+    carrosserie: '',
+    moteur: '',
+    prix: 0,
+    image: '',
+    nbports: 0,
+    nbchaises: 0,
+    year: 0,
+    drivetrain: '',
+    fuel: '',
+    transmission: '',
+    horsepower: 0,
+    topspeed: 0,
+    acceleration: 0
+  };
   similarVoitures: Voiture[] = [];
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private voitureService: VoitureService,
+    public voitureService: VoitureService,
     private vuService: VuService,
     private favoriService: FavoriService,
     private authService: AuthService,
@@ -42,9 +59,12 @@ export class VoituredetailsComponent implements OnInit {
             // Check if the voiture exists
             this.voitureService.getVoitureById(this.voitureId).subscribe(voiture => {
               if (!voiture) {
+                
                 // If the voiture is not found, redirect to another page (e.g., 404 or home)
                 this.router.navigate(['/not-found']); // or any other route you want
               } else {
+                this.MyVoiture=voiture;
+                console.log(this.MyVoiture);
                 const vuData: Vu = {
                   voitureid: this.voitureId,
                   userid: user.uid,
