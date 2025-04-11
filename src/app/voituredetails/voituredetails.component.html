@@ -1,3 +1,4 @@
+<app-navbar></app-navbar>
 <ng-container *ngIf="MyVoiture as voiture">
   <div class="max-w-4xl mx-auto px-6 py-10 bg-white shadow-xl rounded-2xl">
     <div class="flex flex-col md:flex-row gap-8">
@@ -48,5 +49,166 @@
     </div>
   </div>
 </ng-container>
+<div class="container mx-auto px-4" id="content_container">
+  <div class="hidden">
+      <div class="wpn wpn-subscription">
+          <div class="wpn-status">unsubscribed</div>
+          <button class="wpn-subscribe">Subscribe</button>
+          <button class="wpn-unsubscribe">Unsubscribe</button>
+      </div>
+  </div>
+  <div class="alert alert-info wpn-alert hidden">
+      <div class="wpn-subscribed hidden">
+          <p>Vous êtes inscrits pour recevoir les notifications Automobile.tn</p>
+          <button class="wpn-unsubscribe btn btn-primary">Se désinscrire</button>
+      </div>
+      <div class="wpn-unsubscribed hidden">
+          <p>Inscrivez-vous à l'alerte Automobile.tn</p>
+          <button class="wpn-subscribe btn btn-primary">S'inscrire</button>
+      </div>
+  </div>
+
+  <div class="breadcrumbs-wrapper">
+      <ul class="breadcrumbs flex space-x-2">
+          <li><a href="/fr/neuf" class="text-blue-500 hover:text-blue-700">Prix du neuf</a></li>
+          <li class="text-gray-500">BMW</li>
+          <li><a href="/fr/neuf/bmw/i5" class="text-blue-500 hover:text-blue-700">i5</a></li>
+          <li class="text-gray-500">eDrive40 Pack M</li>
+      </ul>
+  </div>
+
+  <div class="social-icons-widget flex items-center space-x-4 mt-4">
+      <div class="disqus-container flex items-center">
+          <div class="square bg-gray-300 p-2 rounded-full">
+              <i class="fa fa-comment text-gray-700"></i>
+          </div>
+          <a href="#comments-container" class="text-blue-500">4</a>
+      </div>
+      <div class="addthis_sharing_toolbox"></div>
+  </div>
+
+  <div class="clearer"></div>
+
+  <div class="bloc-title mt-8">
+      <h3 class="text-2xl font-semibold">BMW i5 <span class="text-xl">eDrive40 Pack M</span></h3>
+      <a href="/fr/neuf/bmw">
+          <img class="brand-badge lazyloaded mt-2" src="https://catalogue.automobile.tn/marques/3_resized.png" alt="BMW" />
+      </a>
+  </div>
+
+  <div id="detail_content" class="mt-8">
+      <div class="version-details">
+          <div class="version-img relative">
+              <picture>
+                  <source type="image/webp" srcset="https://catalogue.automobile.tn/big/2024/10/47239.webp?t=1738879871">
+                  <source type="image/jpeg" srcset="https://catalogue.automobile.tn/big/2024/10/47239.jpg?t=1738879871">
+                  <img class="img-fluid rounded-md" src="https://catalogue.automobile.tn/big/2024/10/47239.jpg?t=1738879871" alt="BMW i5 eDrive40 Pack M">
+              </picture>
+          </div>
+
+          <div class="buttons mt-4">
+              <div class="text-xl font-bold">A partir de
+                  <span class="text-2xl">333 200 <span class="suffix">DT</span> <sup>TTC</sup></span>
+              </div>
+              <a href="/fr/neuf/comparateur?mode=add&amp;version=47239" class="compare bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-md mt-4 inline-block">
+                  <span><b>Ajouter</b><br>au comparateur</span>
+              </a>
+          </div>
+
+          <div class="clearer"></div>
+
+          <div class="description mt-6"></div>
+
+          <div class="rv rv-43" data-zoneid="43">
+              <ins data-revive-zoneid="43" data-revive-id="1c8b73176b58d185abbdd669b4779021" data-revive-seq="0" id="revive-0-0" data-revive-loaded="1" style="text-decoration: none;"></ins>
+              <script async="" src="https://display.automobile.tn/www/delivery/asyncjs.php"></script>
+          </div>
+
+          <div class="technical-details mt-8" id="specs">
+              <div class="bloc-title">
+                  <h3 class="text-xl font-semibold">Fiche technique
+                      <span>BMW i5 eDrive40 Pack M</span>
+                  </h3>
+              </div>
+
+              <table class="table-auto w-full mt-4">
+                  <thead>
+                      <tr>
+                          <th colspan="2" class="border-b-2 border-gray-200 p-2 text-left">Equipements fonctionnels</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr>
+                          <th class="p-2">Alimentation électrique</th>
+                          <td class="p-2">1 prise 12 V</td>
+                      </tr>
+                      <tr>
+                          <th class="p-2">Bouton Start &amp; Stop</th>
+                          <td class="p-2">Démarrage mains libres</td>
+                      </tr>
+                      <tr>
+                          <th class="p-2">Clé intelligente</th>
+                          <td class="p-2">Accès mains libres</td>
+                      </tr>
+                      <tr>
+                          <th class="p-2">Coffre à bagages</th>
+                          <td class="p-2">Ouverture et fermeture motorisée</td>
+                      </tr>
+                      <tr>
+                          <th class="p-2">Climatisation</th>
+                          <td class="p-2">Automatique | 4 zones</td>
+                      </tr>
+                      <tr>
+                          <th class="p-2">Détecteur de pluie</th>
+                          <td class="p-2"></td>
+                      </tr>
+                      <tr>
+                          <th class="p-2">Fermeture centralisée</th>
+                          <td class="p-2">À distance</td>
+                      </tr>
+                      <tr>
+                          <th class="p-2">Frein de stationnement</th>
+                          <td class="p-2">Éléctrique</td>
+                      </tr>
+                      <tr>
+                          <th class="p-2">Ordinateur de bord</th>
+                          <td class="p-2"></td>
+                      </tr>
+                      <tr>
+                          <th class="p-2">Rétroviseurs extérieurs</th>
+                          <td class="p-2">Électriques | Rabattables | Photosensibles | Avec clignotants intégrés</td>
+                      </tr>
+                      <tr>
+                          <th class="p-2">Rétroviseur intérieur</th>
+                          <td class="p-2">Anti-éblouissement</td>
+                      </tr>
+                      <tr>
+                          <th class="p-2">Système Start &amp; Stop</th>
+                          <td class="p-2"></td>
+                      </tr>
+                      <tr>
+                          <th class="p-2">Train roulant</th>
+                          <td class="p-2">Sport M</td>
+                      </tr>
+                      <tr>
+                          <th class="p-2">Instrumentation digitale</th>
+                          <td class="p-2">12.3'' | Live Cockpit Professional</td>
+                      </tr>
+                      <tr>
+                          <th class="p-2">Version pays chauds</th>
+                          <td class="p-2"></td>
+                      </tr>
+                      <tr>
+                          <th class="p-2">Vitres électriques</th>
+                          <td class="p-2">Avant/Arrière</td>
+                      </tr>
+                  </tbody>
+              </table>
+
+              <div class="clearer"></div>
+          </div>
+      </div>
+  </div>
+</div>
 
 <app-footer></app-footer>

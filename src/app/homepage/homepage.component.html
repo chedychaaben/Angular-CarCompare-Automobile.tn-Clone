@@ -51,4 +51,151 @@
   </div>
 </div>
 
+<div class="p-4 bg-white rounded-xl shadow-md">
+
+  <!-- Tabs -->
+  <div class="flex space-x-4 border-b mb-4">
+    <a href="#" class="px-4 py-2 font-semibold text-blue-600 border-b-2 border-blue-600">Neuf</a>
+    <a href="#" class="px-4 py-2 text-gray-600 hover:text-blue-600">Occasion</a>
+  </div>
+
+  <!-- Tabs Content -->
+  <div class="space-y-6">
+
+    <!-- Versions -->
+    <form id="w1" action="versions/search" method="get">
+      <input type="hidden" name="expand" value="1" />
+
+      <!-- Carrosserie options -->
+      <div class="flex flex-wrap gap-4 mb-6">
+        <label class="flex flex-col items-center w-24 text-center">
+          <input type="checkbox" id="cb_1_19" name="carrosserie[]" value="19" class="mb-2">
+          <span class="block w-12 h-12 bg-no-repeat bg-center bg-contain" style="background-image:url('https://catalogue.automobile.tn/valeur/19.svg');"></span>
+          <span class="mt-1 text-sm">Citadine</span>
+        </label>
+        <!-- Repeat for other options -->
+      </div>
+
+      <!-- Brand & Model Selects -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+        <div>
+          <select class="form-select w-full border-gray-300 rounded-md shadow-sm" name="brand[]">
+            <option value="">Marque</option>
+            <option value="audi">Audi</option>
+            <option value="bmw">BMW</option>
+            <!-- Add other options -->
+          </select>
+        </div>
+        <div>
+          <select class="form-select w-full border-gray-300 rounded-md shadow-sm" name="model[]">
+            <option value="">Modèle</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Buttons -->
+      <div class="flex justify-end gap-4">
+        <a href="/fr/neuf#moteur" class="btn px-4 py-2 text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-md shadow-sm">Recherche avancée</a>
+        <input type="submit" value="Lancer la recherche" class="px-4 py-2 text-white bg-blue-600 hover:bg-blue-700 rounded-md shadow-sm">
+      </div>
+    </form>
+
+    <!-- Occasion content (initially hidden) -->
+    <div class="hidden">
+      <!-- Repeat similar structure for occasion form -->
+    </div>
+
+  </div>
+</div>
+
+<div class="container mx-auto px-4 py-10">
+  <!-- Section Title -->
+  <div class="mb-8">
+    <h3 class="text-3xl font-bold text-gray-800">
+      Prix du neuf <span class="text-gray-500 font-medium">Derniers modèles</span>
+    </h3>
+  </div>
+
+  <!-- Carousel Wrapper -->
+  <div class="flex gap-6 overflow-x-auto pb-4 scrollbar-hide">
+    
+    <!-- Item -->
+    <div class="flex-shrink-0 w-72">
+      <a href="/fr/neuf/land-rover/range-rover-evoque" class="block bg-white rounded-2xl shadow-md hover:shadow-xl transition-shadow duration-300">
+        
+        <!-- Badge -->
+        <span class="absolute top-3 left-3 bg-black text-white text-xs uppercase font-semibold px-2 py-1 rounded">
+          Promo
+        </span>
+
+        <!-- Image -->
+        <picture>
+          <source type="image/webp" srcset="https://catalogue.automobile.tn/max/2024/01/47080.webp?t=1741608674">
+          <source type="image/png" srcset="https://catalogue.automobile.tn/max/2024/01/47080.png?t=1741608674">
+          <img src="https://catalogue.automobile.tn/max/2024/01/47080.png?t=1741608674" alt="Land Rover Range Rover Evoque"
+               class="w-full h-48 object-cover rounded-t-2xl">
+        </picture>
+
+        <!-- Info -->
+        <div class="p-4">
+          <h2 class="text-lg font-semibold text-gray-800 leading-snug">
+            Land Rover Range Rover Evoque
+          </h2>
+          <div class="mt-2 text-gray-700 text-sm">
+            à partir de 
+            <span class="text-indigo-600 font-bold">
+              349 777 <span class="text-xs">DT</span>
+            </span>
+          </div>
+        </div>
+      </a>
+    </div>
+    <!-- End Item -->
+
+    <!-- Repeat items here... -->
+
+  </div>
+
+  <!-- Carousel Controls (optional) -->
+  <div class="flex justify-between mt-6">
+    <button class="text-gray-500 hover:text-gray-900 transition">
+      <i class="fa fa-caret-left text-2xl"></i>
+    </button>
+    <button class="text-gray-500 hover:text-gray-900 transition">
+      <i class="fa fa-caret-right text-2xl"></i>
+    </button>
+  </div>
+</div>
+
+<div class="brands-showroom">
+  <div class="container">
+
+    <div class="section-header">
+      <h3>Showroom Automobile <span>Découvrez toutes les marques disponibles</span></h3>
+    </div>
+
+    <div class="brand-logos">
+      <a href="/fr/neuf/alfa-romeo">
+        <picture>
+          <source type="image/webp" srcset="https://catalogue.automobile.tn/marques/1.webp?t=18">
+          <source type="image/png" srcset="https://catalogue.automobile.tn/marques/1.png?t=18">
+          <img src="https://catalogue.automobile.tn/marques/1.png?t=18" alt="Alfa Romeo">
+        </picture>
+      </a>
+      
+      <a href="/fr/neuf/audi">
+        <picture>
+          <source type="image/webp" srcset="https://catalogue.automobile.tn/marques/2.webp?t=18">
+          <source type="image/png" srcset="https://catalogue.automobile.tn/marques/2.png?t=18">
+          <img src="https://catalogue.automobile.tn/marques/2.png?t=18" alt="Audi">
+        </picture>
+      </a>
+      
+      <!-- Continue with the rest of the logos in the same format -->
+      
+    </div>
+
+  </div>
+</div>
+
 <app-footer></app-footer>

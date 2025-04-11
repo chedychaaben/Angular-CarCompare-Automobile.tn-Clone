@@ -1,4 +1,4 @@
-<app-navbar></app-navbar>
+<app-adminsidebar>
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
     <ng-container matColumnDef="marque">
       <th mat-header-cell *matHeaderCellDef> Marque </th>
@@ -80,4 +80,227 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
-<app-footer></app-footer>
+
+  <div class="w-full rounded-lg border shadow-sm overflow-hidden bg-white border-stone-200 shadow-stone-950/5">
+    <div class="h-max w-full m-0 items-start rounded-none flex flex-wrap gap-4 justify-between p-4">
+      <div>
+        <p class="font-sans antialiased text-base md:text-lg text-stone-800 dark:text-white font-semibold mb-1">
+          Cryptocurrency Market Overview</p>
+        <small class="font-sans antialiased text-sm text-stone-600 block">Compare different cryptocurrencies, and make
+          informed investment.</small>
+      </div>
+      <div class="flex items-center w-full shrink-0 gap-3 md:w-max">
+        <div class="w-72">
+          <div class="relative w-full">
+            <input placeholder="Search here..." type="text" class="w-full aria-disabled:cursor-not-allowed outline-none focus:outline-none text-stone-800 dark:text-white placeholder:text-stone-600/60 ring-transparent border border-stone-200 transition-all ease-in disabled:opacity-50 disabled:pointer-events-none select-none text-sm py-2 pr-8 pl-2.5 ring shadow-sm bg-white rounded-lg duration-100 hover:border-stone-300 hover:ring-none focus:border-stone-400 focus:ring-none peer" />
+            <span class="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 text-stone-600/70 peer-hover:text-stone-800 peer-focus:text-stone-800 dark:peer-hover:text-white dark:peer-focus:text-white transition-all duration-300 ease-in overflow-hidden w-5 h-5">
+              <svg width="1.5em" height="1.5em" viewBox="0 0 24 24" stroke-width="1.5" fill="none" xmlns="http://www.w3.org/2000/svg" color="currentColor" class="h-full w-full">
+                <path d="M17 17L21 21" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M3 11C3 15.4183 6.58172 19 11 19C13.213 19 15.2161 18.1015 16.6644 16.6493C18.1077 15.2022 19 13.2053 19 11C19 6.58172 15.4183 3 11 3C6.58172 3 3 6.58172 3 11Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
+              </svg>
+            </span>
+          </div>
+        </div>
+        <div class="dropdown" data-dui-placement="bottom-start">
+          <button data-dui-toggle="dropdown" aria-expanded="false" class="inline-flex items-center justify-center border align-middle select-none font-sans font-medium text-center duration-300 ease-in disabled:opacity-50 disabled:shadow-none disabled:cursor-not-allowed focus:shadow-none text-sm py-2 px-4 shadow-sm hover:shadow-md bg-transparent relative text-stone-700 hover:text-stone-700 border-stone-500 hover:bg-transparent duration-150 hover:border-stone-600 rounded-lg hover:opacity-60 hover:shadow-none">
+            24h
+          </button>
+          <div data-dui-role="menu" class="hidden mt-2 bg-white border border-stone-200 rounded-lg shadow-sm p-1 z-10">
+            <a href="#" class="block px-4 py-2 text-sm text-stone-800 hover:bg-stone-100 rounded-md">All</a>
+            <a href="#" class="block px-4 py-2 text-sm text-stone-800 hover:bg-stone-100 rounded-md">24h</a>
+            <a href="#" class="block px-4 py-2 text-sm text-stone-800 hover:bg-stone-100 rounded-md">1 week</a>
+            <a href="#" class="block px-4 py-2 text-sm text-stone-800 hover:bg-stone-100 rounded-md">1 month</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="w-full h-max overflow-scroll mt-4 p-0 rounded-none">
+      <table class="w-full min-w-max table-auto">
+        <thead>
+          <tr>
+            <th class="border-b text-start border-stone-200 p-4">
+              <small class="font-sans antialiased text-sm text-stone-800 dark:text-white block font-medium">Digital Asset</small>
+            </th>
+            <th class="border-b text-start border-stone-200 p-4">
+              <small class="font-sans antialiased text-sm text-stone-800 dark:text-white block font-medium">Price</small>
+            </th>
+            <th class="border-b text-start border-stone-200 p-4">
+              <small class="font-sans antialiased text-sm text-stone-800 dark:text-white block font-medium">Change</small>
+            </th>
+            <th class="border-b text-start border-stone-200 p-4">
+              <small class="font-sans antialiased text-sm text-stone-800 dark:text-white block font-medium">Volume</small>
+            </th>
+            <th class="border-b text-start border-stone-200 p-4">
+              <small class="font-sans antialiased text-sm text-stone-800 dark:text-white block font-medium">Market Cap</small>
+            </th>
+            <th class="border-b text-start border-stone-200 p-4">
+              <small class="font-sans antialiased text-sm text-stone-800 dark:text-white block font-medium">Trend</small>
+            </th>
+            <th class="border-b text-start border-stone-200 p-4">
+              <small class="font-sans antialiased text-sm text-stone-800 dark:text-white block font-medium"></small>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="group">
+            <td class="p-4 border-b border-stone-200 group-last:border-0">
+              <div class="flex items-center gap-3">
+                <img src="https://raw.githubusercontent.com/creativetimofficial/public-assets/refs/heads/master/david-ui/img/logo-bitcoin.jpg" alt="Bitcoin" class="w-11 h-11 rounded-md border border-stone-200 p-2" />
+                <div class="space-y-0.5">
+                  <small class="font-sans antialiased text-sm text-stone-800 dark:text-white font-semibold block">BTC</small>
+                  <small class="font-sans antialiased text-sm block text-stone-600">Bitcoin</small>
+                </div>
+              </div>
+            </td>
+            <td class="p-4 border-b border-stone-200 group-last:border-0">
+              <small class="font-sans antialiased text-sm block text-stone-600">$46,727.30</small>
+            </td>
+            <td class="p-4 border-b border-stone-200 group-last:border-0">
+              <small class="font-sans antialiased text-sm text-green-500 block font-semibold">+2.92%</small>
+            </td>
+            <td class="p-4 border-b border-stone-200 group-last:border-0">
+              <small class="font-sans antialiased text-sm block text-stone-600">$45.31B</small>
+            </td>
+            <td class="p-4 border-b border-stone-200 group-last:border-0">
+              <small class="font-sans antialiased text-sm block text-stone-600">$915.61B</small>
+            </td>
+            <td class="p-4 border-b border-stone-200 group-last:border-0">
+              <div class="h-10 max-w-40 relative">
+                <svg viewBox="0 0 100 30" preserveAspectRatio="none" class="w-full h-full">
+                  <path d="M0,15 L10,10 L20,20 L30,5 L40,15 L50,10 L60,5 L70,15 L80,10 L90,20 L100,10" fill="none" stroke="#22c55e" stroke-width="2" vector-effect="non-scaling-stroke" />
+                  <path d="M0,15 L10,10 L20,20 L30,5 L40,15 L50,10 L60,5 L70,15 L80,10 L90,20 L100,10 L100,30 L0,30" fill="rgba(34, 197, 94, 0.1)" stroke="none" />
+                </svg>
+                <div class="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-white/20 dark:to-stone-900/20"></div>
+              </div>
+            </td>
+            <td class="p-4 border-b border-stone-200 group-last:border-0 text-end">
+              <div class="flex justify-center gap-2">
+                <button class="inline-grid place-items-center border align-middle select-none font-sans font-medium text-center transition-all duration-300 ease-in disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-sm min-w-[34px] min-h-[34px] rounded-md shadow-sm hover:shadow-md bg-transparent border-stone-500 text-stone-800 hover:bg-stone-800 hover:text-stone-50 hover:border-stone-800">
+                  <svg width="1.5em" height="1.5em" viewBox="0 0 24 24" stroke-width="1.5" fill="none" xmlns="http://www.w3.org/2000/svg" color="currentColor" class="h-5 w-5">
+                    <path d="M7 18H10.5H14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <path d="M7 14H7.5H8" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <path d="M7 10H8.5H10" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <path d="M7 2L16.5 2L21 6.5V19" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <path d="M3 20.5V6.5C3 5.67157 3.67157 5 4.5 5H14.2515C14.4106 5 14.5632 5.06321 14.6757 5.17574L17.8243 8.32426C17.9368 8.43679 18 8.5894 18 8.74853V20.5C18 21.3284 17.3284 22 16.5 22H4.5C3.67157 22 3 21.3284 3 20.5Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <path d="M14 5V8.4C14 8.73137 14.2686 9 14.6 9H18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
+                  </svg>
+                </button>
+                <button class="inline-grid place-items-center border align-middle select-none font-sans font-medium text-center transition-all duration-300 ease-in disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-sm min-w-[34px] min-h-[34px] rounded-md shadow-sm hover:shadow-md bg-transparent border-stone-500 text-stone-800 hover:bg-stone-800 hover:text-stone-50 hover:border-stone-800">
+                  <svg width="1.5em" height="1.5em" viewBox="0 0 24 24" stroke-width="1.5" fill="none" xmlns="http://www.w3.org/2000/svg" color="currentColor" class="h-5 w-5">
+                    <path d="M17 17L21 21" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <path d="M3 11C3 15.4183 6.58172 19 11 19C13.213 19 15.2161 18.1015 16.6644 16.6493C18.1077 15.2022 19 13.2053 19 11C19 6.58172 15.4183 3 11 3C6.58172 3 3 6.58172 3 11Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
+                  </svg>
+                </button>
+              </div>
+            </td>
+          </tr>
+          <tr class="group">
+            <td class="p-4 border-b border-stone-200 group-last:border-0">
+              <div class="flex items-center gap-3">
+                <img src="https://raw.githubusercontent.com/creativetimofficial/public-assets/refs/heads/master/david-ui/img/logo-ethereum.jpg" alt="Ethereum" class="w-11 h-11 rounded-md border border-stone-200 p-2" />
+                <div class="space-y-0.5">
+                  <small class="font-sans antialiased text-sm text-stone-800 dark:text-white font-semibold block">ETH</small>
+                  <small class="font-sans antialiased text-sm block text-stone-600">Ethereum</small>
+                </div>
+              </div>
+            </td>
+            <td class="p-4 border-b border-stone-200 group-last:border-0">
+              <small class="font-sans antialiased text-sm block text-stone-600">$2,609.30</small>
+            </td>
+            <td class="p-4 border-b border-stone-200 group-last:border-0">
+              <small class="font-sans antialiased text-sm text-green-500 block font-semibold">+6.80%</small>
+            </td>
+            <td class="p-4 border-b border-stone-200 group-last:border-0">
+              <small class="font-sans antialiased text-sm block text-stone-600">$23.42B</small>
+            </td>
+            <td class="p-4 border-b border-stone-200 group-last:border-0">
+              <small class="font-sans antialiased text-sm block text-stone-600">$313.58B</small>
+            </td>
+            <td class="p-4 border-b border-stone-200 group-last:border-0">
+              <div class="h-10 max-w-40 relative">
+                <canvas id="trendChart1" style="width:100%;height:100%;min-width:0"></canvas>
+                <svg class="absolute inset-0 w-full h-full" viewBox="0 0 100 20" preserveAspectRatio="none">
+                  <path d="M0,10 L5,8 L10,12 L15,10 L20,14 L25,12 L30,15 L35,10 L40,12 L45,15 L50,13 L55,15 L60,12 L65,10 L70,14 L75,12 L80,15 L85,13 L90,15 L95,10 L100,12" stroke="rgba(34, 197, 94, 1)" stroke-width="1.5" fill="none" />
+                  <path d="M0,10 L5,8 L10,12 L15,10 L20,14 L25,12 L30,15 L35,10 L40,12 L45,15 L50,13 L55,15 L60,12 L65,10 L70,14 L75,12 L80,15 L85,13 L90,15 L95,10 L100,12 L100,20 L0,20 Z" fill="rgba(34, 197, 94, 0.1)" stroke="none" />
+                </svg>
+                <div class="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-white/20 dark:to-stone-900/20"></div>
+              </div>
+            </td>
+            <td class="p-4 border-b border-stone-200 group-last:border-0 text-end">
+              <div class="flex justify-center gap-2">
+                <button class="inline-grid place-items-center border align-middle select-none font-sans font-medium text-center transition-all duration-300 ease-in disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-sm min-w-[34px] min-h-[34px] rounded-md shadow-sm hover:shadow-md bg-transparent border-stone-500 text-stone-800 hover:bg-stone-800 hover:text-stone-50 hover:border-stone-800">
+                  <svg width="1.5em" height="1.5em" viewBox="0 0 24 24" stroke-width="1.5" fill="none" xmlns="http://www.w3.org/2000/svg" color="currentColor" class="h-5 w-5">
+                    <path d="M7 18H10.5H14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <path d="M7 14H7.5H8" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <path d="M7 10H8.5H10" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <path d="M7 2L16.5 2L21 6.5V19" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <path d="M3 20.5V6.5C3 5.67157 3.67157 5 4.5 5H14.2515C14.4106 5 14.5632 5.06321 14.6757 5.17574L17.8243 8.32426C17.9368 8.43679 18 8.5894 18 8.74853V20.5C18 21.3284 17.3284 22 16.5 22H4.5C3.67157 22 3 21.3284 3 20.5Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <path d="M14 5V8.4C14 8.73137 14.2686 9 14.6 9H18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
+                  </svg>
+                </button>
+                <button class="inline-grid place-items-center border align-middle select-none font-sans font-medium text-center transition-all duration-300 ease-in disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-sm min-w-[34px] min-h-[34px] rounded-md shadow-sm hover:shadow-md bg-transparent border-stone-500 text-stone-800 hover:bg-stone-800 hover:text-stone-50 hover:border-stone-800">
+                  <svg width="1.5em" height="1.5em" viewBox="0 0 24 24" stroke-width="1.5" fill="none" xmlns="http://www.w3.org/2000/svg" color="currentColor" class="h-5 w-5">
+                    <path d="M17 17L21 21" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <path d="M3 11C3 15.4183 6.58172 19 11 19C13.213 19 15.2161 18.1015 16.6644 16.6493C18.1077 15.2022 19 13.2053 19 11C19 6.58172 15.4183 3 11 3C6.58172 3 3 6.58172 3 11Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
+                  </svg>
+                </button>
+              </div>
+            </td>
+          </tr>
+          <tr class="group">
+            <td class="p-4 border-b border-stone-200 group-last:border-0">
+              <div class="flex items-center gap-3">
+                <img src="https://raw.githubusercontent.com/creativetimofficial/public-assets/refs/heads/master/david-ui/img/logo-usdt.jpg" alt="TetherUS" class="w-11 h-11 rounded-md border border-stone-200 p-2" />
+                <div class="space-y-0.5">
+                  <small class="font-sans antialiased text-sm text-stone-800 dark:text-white font-semibold block">USDT</small>
+                  <small class="font-sans antialiased text-sm block text-stone-600">TetherUS</small>
+                </div>
+              </div>
+            </td>
+            <td class="p-4 border-b border-stone-200 group-last:border-0">
+              <small class="font-sans antialiased text-sm block text-stone-600">$1.00</small>
+            </td>
+            <td class="p-4 border-b border-stone-200 group-last:border-0">
+              <small class="font-sans antialiased text-sm text-red-500 block font-semibold">-0.01%</small>
+            </td>
+            <td class="p-4 border-b border-stone-200 group-last:border-0">
+              <small class="font-sans antialiased text-sm block text-stone-600">$94.37B</small>
+            </td>
+            <td class="p-4 border-b border-stone-200 group-last:border-0">
+              <small class="font-sans antialiased text-sm block text-stone-600">$40,600</small>
+            </td>
+            <td class="p-4 border-b border-stone-200 group-last:border-0">
+              <div class="h-10 max-w-40 relative">
+                <svg viewBox="0 0 100 20" class="w-full h-full">
+                  <path d="M0,10 L10,8 L20,12 L30,7 L40,9 L50,6 L60,4 L70,8 L80,3 L90,5 L100,2" fill="none" stroke="#ef4444" stroke-width="1.5" />
+                  <path d="M0,10 L10,8 L20,12 L30,7 L40,9 L50,6 L60,4 L70,8 L80,3 L90,5 L100,2 L100,20 L0,20 Z" fill="rgba(239, 68, 68, 0.1)" stroke="none" />
+                </svg>
+                <div class="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-white/20 dark:to-stone-900/20"></div>
+              </div>
+            </td>
+            <td class="p-4 border-b border-stone-200 group-last:border-0 text-end">
+              <div class="flex justify-center gap-2">
+                <button class="inline-grid place-items-center border align-middle select-none font-sans font-medium text-center transition-all duration-300 ease-in disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-sm min-w-[34px] min-h-[34px] rounded-md shadow-sm hover:shadow-md bg-transparent border-stone-500 text-stone-800 hover:bg-stone-800 hover:text-stone-50 hover:border-stone-800">
+                  <svg width="1.5em" height="1.5em" viewBox="0 0 24 24" stroke-width="1.5" fill="none" xmlns="http://www.w3.org/2000/svg" color="currentColor" class="h-5 w-5">
+                    <path d="M7 18H10.5H14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <path d="M7 14H7.5H8" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <path d="M7 10H8.5H10" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <path d="M7 2L16.5 2L21 6.5V19" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <path d="M3 20.5V6.5C3 5.67157 3.67157 5 4.5 5H14.2515C14.4106 5 14.5632 5.06321 14.6757 5.17574L17.8243 8.32426C17.9368 8.43679 18 8.5894 18 8.74853V20.5C18 21.3284 17.3284 22 16.5 22H4.5C3.67157 22 3 21.3284 3 20.5Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <path d="M14 5V8.4C14 8.73137 14.2686 9 14.6 9H18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
+                  </svg>
+                </button>
+                <button class="inline-grid place-items-center border align-middle select-none font-sans font-medium text-center transition-all duration-300 ease-in disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-sm min-w-[34px] min-h-[34px] rounded-md shadow-sm hover:shadow-md bg-transparent border-stone-500 text-stone-800 hover:bg-stone-800 hover:text-stone-50 hover:border-stone-800">
+                  <svg width="1.5em" height="1.5em" viewBox="0 0 24 24" stroke-width="1.5" fill="none" xmlns="http://www.w3.org/2000/svg" color="currentColor" class="h-5 w-5">
+                    <path d="M17 17L21 21" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <path d="M3 11C3 15.4183 6.58172 19 11 19C13.213 19 15.2161 18.1015 16.6644 16.6493C18.1077 15.2022 19 13.2053 19 11C19 6.58172 15.4183 3 11 3C6.58172 3 3 6.58172 3 11Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
+                  </svg>
+                </button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</app-adminsidebar>

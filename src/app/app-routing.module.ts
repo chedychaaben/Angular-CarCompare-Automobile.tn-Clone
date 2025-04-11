@@ -40,26 +40,6 @@ const routes: Routes = [
     component: RegisterComponent
   },
   {
-    path:'ajouter-marque',
-    canActivate:  [() => authGuard('admin')],
-    component: MarqueformComponent
-  },
-  {
-    path:'list-marques',
-    canActivate:  [() => authGuard('admin')],
-    component: MarqueComponent
-  },
-  {
-    path:'list-voitures',
-    canActivate:  [() => authGuard('admin')],
-    component: VoitureComponent
-  },
-  {
-    path:'ajouter-voiture',
-    canActivate:  [() => authGuard('admin')],
-    component: VoitureformComponent
-  },
-  {
     path:'voiture-details',
     canActivate:  [() => authGuard()],
     component: VoituredetailsComponent
@@ -75,15 +55,35 @@ const routes: Routes = [
     component: ComparedetailsComponent
   },
   {
-    path:'ajouter-carrosserie',
+    path:'admin/ajouter-marque',
+    canActivate:  [() => authGuard('admin')],
+    component: MarqueformComponent
+  },
+  {
+    path:'admin/list-marques',
+    canActivate:  [() => authGuard('admin')],
+    component: MarqueComponent
+  },
+  {
+    path:'admin/list-voitures',
+    canActivate:  [() => authGuard('admin')],
+    component: VoitureComponent
+  },
+  {
+    path:'admin/ajouter-voiture',
+    canActivate:  [() => authGuard('admin')],
+    component: VoitureformComponent
+  },
+  {
+    path:'admin/ajouter-carrosserie',
     canActivate:  [() => authGuard('admin')],
     component: CarrosserieformComponent
   },
   {
-    path:'list-carrosseries',
+    path:'admin/list-carrosseries',
     canActivate:  [() => authGuard('admin')],
     component: CarrosserieComponent
-  }
+  },
 ];
 
 @NgModule({

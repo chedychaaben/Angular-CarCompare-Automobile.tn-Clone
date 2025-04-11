@@ -34,6 +34,7 @@ import { CarrosserieformComponent } from './carrosserieform/carrosserieform.comp
 import { VoituredetailsComponent } from './voituredetails/voituredetails.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
+import { AdminsidebarComponent } from './adminsidebar/adminsidebar.component';
 
 
 @NgModule({
@@ -53,6 +54,7 @@ import { FooterComponent } from './footer/footer.component';
     VoituredetailsComponent,
     NavbarComponent,
     FooterComponent,
+    AdminsidebarComponent,
 
   ],
   imports: [
