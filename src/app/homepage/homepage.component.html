@@ -21,7 +21,7 @@
       <!-- Carrosserie options -->
       <div class="flex flex-wrap gap-4 mb-6">
         <label *ngFor="let carrosserie of carrosseries" class="flex flex-col items-center w-24 text-center">
-          <input type="checkbox" [value]="carrosserie.id" class="peer hidden" formControlName="carrosserie" />
+          <input type="radio" [value]="carrosserie.id" class="peer hidden" formControlName="carrosserie" name="carrosserie" />
           <span class="block w-12 h-12 bg-no-repeat bg-center bg-contain peer-checked:ring-2 peer-checked:ring-blue-500 peer-checked:bg-blue-100" 
                   [style.backgroundImage]="'url(' + carrosserie.image + ')'"></span>
           <span class="mt-1 text-sm">{{ carrosserie.nom }}</span>
