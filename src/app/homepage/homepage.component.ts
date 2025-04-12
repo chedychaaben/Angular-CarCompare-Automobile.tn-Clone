@@ -54,6 +54,9 @@ export class HomepageComponent implements OnInit {
 
     
     this.voitureService.getLatestVoitures().subscribe(data => this.latestVoitures = data);
+
+
+    console.log(this.carrosseries);
   }
 
   /**
