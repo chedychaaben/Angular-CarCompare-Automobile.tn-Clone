@@ -7,6 +7,7 @@ import { CompareService } from '../services/compare.service';
 import { MarqueService } from '../services/marque.service';
 import { Voiture } from 'src/Models/Voiture';
 import { Comparison } from 'src/Models/Comparison';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-compareform',
@@ -14,6 +15,7 @@ import { Comparison } from 'src/Models/Comparison';
   styleUrls: ['./compareform.component.css']
 })
 export class CompareformComponent implements OnInit {
+  isLoading = true;
   searchForm!: FormGroup;
   filteredModels: string[] = [];
   voitureOneId: string | null = null;
@@ -21,6 +23,7 @@ export class CompareformComponent implements OnInit {
   carrosseries: any[] = [];
   voitures: Voiture[] = [];
   latestVoitures: Voiture[] = [];
+  carOne!: Voiture;
 
   constructor(
     private route: ActivatedRoute,
@@ -29,7 +32,8 @@ export class CompareformComponent implements OnInit {
     private voitureService: VoitureService,
     private carrosserieService: CarrosserieService,
     private marqueService: MarqueService,
-    private compareService: CompareService
+    private compareService: CompareService,
+    private http: HttpClient
   ) {}
 
   ngOnInit() {
@@ -38,6 +42,7 @@ export class CompareformComponent implements OnInit {
       if (!this.voitureOneId) {
         this.route.queryParamMap.subscribe(queryParams => {
           this.voitureOneId = queryParams.get('voiture1');
+          this.fetchCar(this.voitureOneId ?? "");
         });
       }
     });
@@ -117,5 +122,13 @@ export class CompareformComponent implements OnInit {
     } else {
       console.warn('No matching car found!');
     }
+  }
+
+  
+  fetchCar(id: string): void {
+    this.http.get<Voiture>(`http://localhost:3000/voitures/${id}`).subscribe(car1 => {
+      this.carOne = car1;
+      this.isLoading = false;
+    });
   }
 }

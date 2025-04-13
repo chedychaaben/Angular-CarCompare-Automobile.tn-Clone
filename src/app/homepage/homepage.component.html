@@ -3,153 +3,152 @@
 
 
 
-<div class="p-4 bg-white rounded-xl shadow-md">
+<div class="grid place-items-center min-w-screen min-h-screen p-4 bg-gray-50 dark:bg-black">
 
-  <!-- Tabs -->
-  <div class="flex space-x-4 border-b mb-4">
-    <a href="#" class="px-4 py-2 font-semibold text-blue-600 border-b-2 border-blue-600">Neuf</a>
-    <a href="#" class="px-4 py-2 text-gray-600 hover:text-blue-600">Occasion</a>
-  </div>
+  <div class="w-full max-w-lg lg:max-w-md mx-auto p-6 sm:p-16 lg:p-0">
+    <h2 class="font-sans antialiased text-stone-800 font-bold text-xl md:text-2xl lg:text-3xl text-current mb-6 text-center">
+      Rechercher un véhicule neuf
+    </h2>
 
-  <!-- Tabs Content -->
-  <div class="space-y-6">
-
-    <!-- Versions -->
-      <form [formGroup]="searchForm" (ngSubmit)="onSearch()" class="space-y-6">
+    <form [formGroup]="searchForm" (ngSubmit)="onSearch()" class="space-y-6">
       <input type="hidden" name="expand" value="1" />
 
-      <!-- Carrosserie options -->
-      <div class="flex flex-wrap gap-4 mb-6">
-        <label *ngFor="let carrosserie of carrosseries" class="flex flex-col items-center w-24 text-center">
-          <input type="radio" [value]="carrosserie.id" class="peer hidden" formControlName="carrosserie" name="carrosserie" />
-          <span class="block w-12 h-12 bg-no-repeat bg-center bg-contain peer-checked:ring-2 peer-checked:ring-blue-500 peer-checked:bg-blue-100" 
-                  [style.backgroundImage]="'url(' + carrosserie.image + ')'"></span>
-          <span class="mt-1 text-sm">{{ carrosserie.nom }}</span>
+      <!-- Carrosserie -->
+      <div class="grid grid-cols-3 gap-4">
+        <label *ngFor="let carrosserie of carrosseries" class="flex flex-col items-center text-center cursor-pointer">
+          <input type="radio" [value]="carrosserie.id" formControlName="carrosserie" name="carrosserie"
+            class="peer hidden" />
+          <span class="block w-14 h-14 bg-no-repeat bg-center bg-contain rounded-lg peer-checked:ring-2 peer-checked:ring-stone-600 peer-checked:bg-stone-100"
+            [style.backgroundImage]="'url(' + carrosserie.image + ')'"></span>
+          <span class="mt-1 text-sm text-stone-700">{{ carrosserie.nom }}</span>
         </label>
       </div>
-           
 
-      <!-- Marque Selection -->
-      <div class="flex flex-col space-y-2">
-        <label for="marque" class="font-medium text-gray-600">Marque:</label>
-        <select id="marque" formControlName="marque" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
-          <option value="">All</option>
+      <!-- Marque -->
+      <div *ngIf="searchForm.get('carrosserie')?.value" class="space-y-1.5">
+        <label for="marque" class="block text-sm font-semibold text-stone-800">Marque</label>
+        <select id="marque" formControlName="marque"
+          class="w-full text-sm py-2 px-2.5 border border-stone-200 rounded-lg bg-white dark:bg-neutral-800 text-stone-800 dark:text-white placeholder:text-stone-600/60 focus:border-stone-400 focus:outline-none focus:ring transition duration-100">
+          <option value="">Toutes</option>
           <option *ngFor="let marque of marques" [value]="marque.id">{{ marque.nom }}</option>
         </select>
       </div>
 
-      <!-- Model Selection (Dynamic) -->
-      <div class="flex flex-col space-y-2">
-        <label for="model" class="font-medium text-gray-600">Model:</label>
-        <select id="model" formControlName="model" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
-          <option value="">All</option>
+      <!-- Modèle -->
+      <div *ngIf="searchForm.get('marque')?.value" class="space-y-1.5">
+        <label for="model" class="block text-sm font-semibold text-stone-800">Modèle</label>
+        <select id="model" formControlName="model"
+          class="w-full text-sm py-2 px-2.5 border border-stone-200 rounded-lg bg-white dark:bg-neutral-800 text-stone-800 dark:text-white placeholder:text-stone-600/60 focus:border-stone-400 focus:outline-none focus:ring transition duration-100">
+          <option value="">Tous</option>
           <option *ngFor="let model of filteredModels" [value]="model">{{ model }}</option>
         </select>
       </div>
 
-      <!-- Buttons -->
-      <div class="flex justify-end gap-4">
-        <a href="/fr/neuf#moteur" class="btn px-4 py-2 text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-md shadow-sm">Recherche avancée</a>
-        <input type="submit" value="Lancer la recherche" class="px-4 py-2 text-white bg-blue-600 hover:bg-blue-700 rounded-md shadow-sm">
+      <!-- Submit -->
+      <div class="pt-2">
+        <button type="submit"
+          class="inline-flex items-center justify-center w-full py-2 px-4 text-sm font-medium text-white bg-stone-800 hover:bg-stone-700 rounded-lg shadow-sm transition duration-300">
+          Lancer la recherche
+        </button>
       </div>
     </form>
-
-    <!-- Occasion content (initially hidden) -->
-    <div class="hidden">
-      <!-- Repeat similar structure for occasion form -->
-    </div>
-
   </div>
 </div>
-
-<div class="container mx-auto px-4 py-10">
+<div class="relative container mx-auto px-4 py-10">
   <!-- Section Title -->
-  <div class="mb-8">
+  <div class="mb-8 ml-8">
     <h3 class="text-3xl font-bold text-gray-800">
-      Prix du neuf <span class="text-gray-500 font-medium">Derniers modèles</span>
+      Derniers modèles
     </h3>
   </div>
 
+  <!-- Left Scroll Button -->
+  <button (click)="scrollLeft()"
+          class="absolute left-2 top-1/2 -translate-y-1/2 z-10 hidden md:flex items-center justify-center w-10 h-10 bg-white shadow rounded-full hover:bg-gray-100 transition">
+    ◀
+  </button>
+
+  <!-- Right Scroll Button -->
+  <button (click)="scrollRight()"
+          class="absolute right-2 top-1/2 -translate-y-1/2 z-10 hidden md:flex items-center justify-center w-10 h-10 bg-white shadow rounded-full hover:bg-gray-100 transition">
+    ▶
+  </button>
+
+  <!-- Gradient Fade Left -->
+  <div class="pointer-events-none absolute left-0 top-0 h-full w-16 bg-gradient-to-r from-white to-transparent z-5 hidden md:block"></div>
+
+  <!-- Gradient Fade Right -->
+  <div class="pointer-events-none absolute right-0 top-0 h-full w-16 bg-gradient-to-l from-white to-transparent z-5 hidden md:block"></div>
+
   <!-- Carousel Wrapper -->
-  <div class="flex gap-6 overflow-x-auto pb-4 scrollbar-hide">
-    
-    <!-- Item -->
-    <div class="flex-shrink-0 w-72">
-      <a href="/fr/neuf/land-rover/range-rover-evoque" class="block bg-white rounded-2xl shadow-md hover:shadow-xl transition-shadow duration-300">
-        
+   <div #carousel class="flex gap-6 overflow-x-auto scroll-smooth px-2 md:px-10 hide-scrollbar">
+    <div *ngFor="let voiture of latestVoitures" class="flex-shrink-0 w-72 relative">
+      <a [routerLink]="['/voiture-details']"
+          [queryParams]="{ id: voiture.id }"
+          class="block bg-white rounded-2xl shadow-md hover:shadow-lg transition duration-300 overflow-hidden">
         <!-- Badge -->
-        <span class="absolute top-3 left-3 bg-black text-white text-xs uppercase font-semibold px-2 py-1 rounded">
+        <span *ngIf="voiture.promo"
+              class="absolute top-3 left-3 bg-red-600 text-white text-xs uppercase font-semibold px-2 py-1 rounded">
           Promo
         </span>
 
         <!-- Image -->
         <picture>
-          <source type="image/webp" srcset="https://catalogue.automobile.tn/max/2024/01/47080.webp?t=1741608674">
-          <source type="image/png" srcset="https://catalogue.automobile.tn/max/2024/01/47080.png?t=1741608674">
-          <img src="https://catalogue.automobile.tn/max/2024/01/47080.png?t=1741608674" alt="Land Rover Range Rover Evoque"
+          <source type="image/webp" [srcset]="voiture.image?.replace('.png', '.webp')">
+          <source type="image/png" [srcset]="voiture.image">
+          <img [src]="voiture.image"
+               [alt]="voiture.marque + ' ' + voiture.model"
                class="w-full h-48 object-cover rounded-t-2xl">
         </picture>
 
         <!-- Info -->
         <div class="p-4">
-          <h2 class="text-lg font-semibold text-gray-800 leading-snug">
-            Land Rover Range Rover Evoque
+          <h2 class="text-lg font-semibold text-gray-800 leading-snug truncate">
+            {{ voiture.marque }} {{ voiture.model }}
           </h2>
           <div class="mt-2 text-gray-700 text-sm">
             à partir de 
             <span class="text-indigo-600 font-bold">
-              349 777 <span class="text-xs">DT</span>
+              {{ voiture.prix | number:'1.0-0' }} <span class="text-xs">DT</span>
             </span>
           </div>
         </div>
       </a>
     </div>
-    <!-- End Item -->
 
-    <!-- Repeat items here... -->
-
-  </div>
-
-  <!-- Carousel Controls (optional) -->
-  <div class="flex justify-between mt-6">
-    <button class="text-gray-500 hover:text-gray-900 transition">
-      <i class="fa fa-caret-left text-2xl"></i>
-    </button>
-    <button class="text-gray-500 hover:text-gray-900 transition">
-      <i class="fa fa-caret-right text-2xl"></i>
-    </button>
   </div>
 </div>
 
-<div class="brands-showroom">
-  <div class="container">
+<!-- Brand Showroom Section -->
+<div class="brands-showroom bg-gray-50 pt-12">
+  <div class="container mx-auto px-4">
 
-    <div class="section-header">
-      <h3>Showroom Automobile <span>Découvrez toutes les marques disponibles</span></h3>
+    <!-- Section Header -->
+    <div class="text-center mb-10">
+      <h3 class="text-3xl font-bold text-gray-800 mb-2">Showroom Automobile</h3>
+      <p class="text-gray-500 text-sm">Découvrez toutes les marques disponibles</p>
     </div>
 
-    <div class="brand-logos">
-      <a href="/fr/neuf/alfa-romeo">
+    <!-- Brand Logos Grid -->
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-6 gap-6 items-center justify-center">
+      <a *ngFor="let marque of marques"
+         [routerLink]="['/searchbymarque']"
+         [queryParams]="{ marque: marque.nom }"
+         class="flex items-center justify-center hover:scale-105 transition-transform duration-300">
+
         <picture>
-          <source type="image/webp" srcset="https://catalogue.automobile.tn/marques/1.webp?t=18">
-          <source type="image/png" srcset="https://catalogue.automobile.tn/marques/1.png?t=18">
-          <img src="https://catalogue.automobile.tn/marques/1.png?t=18" alt="Alfa Romeo">
+          <source type="image/webp" [srcset]="marque.logo.replace('.png', '.webp')">
+          <source type="image/png" [srcset]="marque.logo">
+          <img [src]="marque.logo"
+               [alt]="marque.nom"
+               class="h-12 object-contain grayscale hover:grayscale-0 transition duration-300">
         </picture>
       </a>
-      
-      <a href="/fr/neuf/audi">
-        <picture>
-          <source type="image/webp" srcset="https://catalogue.automobile.tn/marques/2.webp?t=18">
-          <source type="image/png" srcset="https://catalogue.automobile.tn/marques/2.png?t=18">
-          <img src="https://catalogue.automobile.tn/marques/2.png?t=18" alt="Audi">
-        </picture>
-      </a>
-      
-      <!-- Continue with the rest of the logos in the same format -->
-      
     </div>
 
   </div>
 </div>
+
+
 
 <app-footer></app-footer>

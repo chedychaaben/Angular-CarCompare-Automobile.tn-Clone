@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef} from '@angular/core';
 import { CarrosserieService } from 'src/app/services/carrosserie.service';
 import { VoitureService } from 'src/app/services/voiture.service';
 import { MarqueService } from 'src/app/services/marque.service';
@@ -11,6 +11,15 @@ import { Router } from '@angular/router';
   styleUrls: ['./homepage.component.css']
 })
 export class HomepageComponent implements OnInit {
+  @ViewChild('carousel', { static: false }) carousel!: ElementRef;
+
+  scrollLeft() {
+    this.carousel.nativeElement.scrollBy({ left: -300, behavior: 'smooth' });
+  }
+
+  scrollRight() {
+    this.carousel.nativeElement.scrollBy({ left: 300, behavior: 'smooth' });
+  }
   marques: any[] = [];
   carrosseries: any[] = [];
   voitures: any[] = [];
