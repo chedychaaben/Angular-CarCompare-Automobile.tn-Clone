@@ -1,45 +1,27 @@
-<div class="w-full rounded-lg border shadow-sm overflow-hidden bg-white border-stone-200 shadow-stone-950/5 max-w-xs flex flex-col h-screen overflow-y-scroll">
+<div class="w-full rounded-lg border shadow-sm overflow-hidden bg-white border-stone-200 shadow-stone-950/5 max-w-xs flex flex-col h-screen">
     <div class="rounded m-0 px-6 pt-6 h-max w-full">
       <div class="flex items-center gap-3 pb-4 mb-4 border-b border-stone-200">
-        <img src="https://raw.githubusercontent.com/creativetimofficial/public-assets/c3a62123201785d642cb2d3875fa4ea74b3bcaf7/david-ui/logo-davidui.svg" alt="Carcompare logo" class="ml-2 inline-block object-cover object-center w-8 h-8" />
-        <p class="font-sans antialiased text-base md:text-lg text-stone-800 font-semibold">CarCompare Administration</p>
+        <p class="font-sans antialiased text-base md:text-lg text-stone-800 font-semibold">Car Compare Administration</p>
       </div>
     </div>
 
     <div class="w-full h-max rounded py-2.5 px-6 pb-6 pt-0">
       <ul class="flex flex-col gap-0.5 min-w-60 border-b border-stone-200 mb-4 pb-4">
         <li class="flex items-center py-1.5 px-2.5 rounded-md align-middle select-none font-sans text-sm transition-all duration-300 ease-in aria-disabled:opacity-50 aria-disabled:pointer-events-none bg-transparent text-stone-600 hover:text-stone-800 dark:hover:text-white hover:bg-stone-200 focus:bg-stone-200 focus:text-stone-800 dark:focus:text-white">
-          <a routerLink="/admin/list-voitures">admin/list-voitures</a>
+          <a routerLink="/admin/list-carrosseries">Gestion des carrosseries</a>
         </li>
         <li class="flex items-center py-1.5 px-2.5 rounded-md align-middle select-none font-sans text-sm transition-all duration-300 ease-in aria-disabled:opacity-50 aria-disabled:pointer-events-none bg-transparent text-stone-600 hover:text-stone-800 dark:hover:text-white hover:bg-stone-200 focus:bg-stone-200 focus:text-stone-800 dark:focus:text-white">
-          <a routerLink="/admin/list-marques">admin/list-marques</a>
+          <a routerLink="/admin/list-marques">Gestion des marques</a>
         </li>
         <li class="flex items-center py-1.5 px-2.5 rounded-md align-middle select-none font-sans text-sm transition-all duration-300 ease-in aria-disabled:opacity-50 aria-disabled:pointer-events-none bg-transparent text-stone-600 hover:text-stone-800 dark:hover:text-white hover:bg-stone-200 focus:bg-stone-200 focus:text-stone-800 dark:focus:text-white">
-          <a routerLink="/admin/list-carrosseries">admin/list-carrosseries</a>
-        </li>
-        <li class="flex items-center py-1.5 px-2.5 rounded-md align-middle select-none font-sans text-sm transition-all duration-300 ease-in aria-disabled:opacity-50 aria-disabled:pointer-events-none bg-transparent text-stone-600 hover:text-stone-800 dark:hover:text-white hover:bg-stone-200 focus:bg-stone-200 focus:text-stone-800 dark:focus:text-white">
-          <a routerLink="/admin/ajouter-voiture">admin/ajouter-voiture</a>
-        </li>
-        <li class="flex items-center py-1.5 px-2.5 rounded-md align-middle select-none font-sans text-sm transition-all duration-300 ease-in aria-disabled:opacity-50 aria-disabled:pointer-events-none bg-transparent text-stone-600 hover:text-stone-800 dark:hover:text-white hover:bg-stone-200 focus:bg-stone-200 focus:text-stone-800 dark:focus:text-white">
-          <a routerLink="/admin/ajouter-marque">admin/ajouter-marque</a>
-        </li>
-        <li class="flex items-center py-1.5 px-2.5 rounded-md align-middle select-none font-sans text-sm transition-all duration-300 ease-in aria-disabled:opacity-50 aria-disabled:pointer-events-none bg-transparent text-stone-600 hover:text-stone-800 dark:hover:text-white hover:bg-stone-200 focus:bg-stone-200 focus:text-stone-800 dark:focus:text-white">
-          <a routerLink="/admin/ajouter-carrosserie">admin/ajouter-carrosserie</a>
+          <a routerLink="/admin/list-voitures">Gestion des voitures</a>
         </li>
       </ul>
     </div>
     
     <div class="w-full rounded p-6 mt-auto">
-      <div class="relative flex items-start w-full border rounded-md p-2 bg-green-500/10 border-transparent text-green-500">
-        <div class="w-full text-sm font-sans leading-none m-1.5">
-          <small class="font-sans antialiased text-sm text-green-500 font-semibold block mb-2">New Version Available</small>
-          <small class="font-sans antialiased text-sm text-green-500 block mb-4">Update your app and enjoy the new features and improvements.</small>
-          <div class="flex items-center gap-4">
-            <a href="#" class="inline-flex items-center justify-center border align-middle select-none font-sans font-medium text-center duration-300 ease-in disabled:opacity-50 disabled:shadow-none disabled:cursor-not-allowed focus:shadow-none text-sm py-1 px-2 shadow-sm hover:shadow bg-green-500 relative bg-gradient-to-b from-green-500 to-green-600 border-green-600 text-stone-50 rounded-lg hover:bg-gradient-to-b hover:from-green-600 hover:to-green-600 hover:border-green-600 after:absolute after:inset-0 after:rounded-[inherit] after:box-shadow after:shadow-[inset_0_1px_0px_rgba(255,255,255,0.35),inset_0_-2px_0px_rgba(0,0,0,0.18)] after:pointer-events-none transition antialiased">Upgrade Now</a>
-            <button class="font-sans antialiased text-sm text-green-500 font-semibold block">Dismiss</button>
-          </div>
-        </div>
-      </div>
-      <small class="font-sans antialiased text-sm text-center block mt-6 text-stone-600">David UI v3.0.0</small>
+      <button (click)="logout()" class="inline-flex items-center justify-center border align-middle select-none font-sans font-medium text-center transition-all ease-in disabled:opacity-50 disabled:shadow-none disabled:cursor-not-allowed focus:shadow-none text-sm py-2 px-4 shadow-sm bg-transparent relative text-stone-700 hover:text-stone-700 border-stone-500 hover:bg-transparent duration-150 hover:border-stone-600 rounded-lg hover:opacity-60 hover:shadow-none hidden lg:ml-auto lg:inline-block">
+        Logout
+      </button>
     </div>
   </div>

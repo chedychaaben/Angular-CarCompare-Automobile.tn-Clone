@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { CarrosserieService } from '../services/carrosserie.service';
 import { Carrosserie } from 'src/Models/Carrosserie';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-carrosserieform',
@@ -15,7 +16,8 @@ export class CarrosserieformComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private http: HttpClient,
-    private carrosserieService: CarrosserieService
+    private carrosserieService: CarrosserieService,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -58,6 +60,7 @@ export class CarrosserieformComponent implements OnInit {
           this.carrosserieService.AddCarrosserie(carrosserieData).subscribe(() => {
             console.log('Carrosserie added successfully');
             this.form.reset();
+            this.router.navigate(['/admin/list-carrosseries']);
           });
         });
       } else {

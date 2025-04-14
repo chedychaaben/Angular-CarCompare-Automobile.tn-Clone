@@ -11,7 +11,7 @@ export class VoitureComponent implements OnInit {
   displayedColumns: string[] = [
     'marque', 'model', 'carrosserie', 'moteur', 'prix', 'image',
     'nbports', 'nbchaises', 'year', 'drivetrain', 'fuel',
-    'transmission', 'horsepower', 'topspeed', 'acceleration'
+    'transmission', 'horsepower', 'topspeed', 'acceleration', 'actions'
   ];
   dataSource: Voiture[] = [];
 
@@ -20,6 +20,20 @@ export class VoitureComponent implements OnInit {
   ngOnInit() {
     this.voitureService.GetAllVoitures().subscribe((data) => {
       console.log(data);
+      this.dataSource = data;
+    });
+  }
+
+  deleteVoiture(id: string) {
+    if (confirm("Voulez-vous vraiment supprimer cette Voiture ?")) {
+      this.voitureService.deleteVoiture(id).subscribe(() => {
+        this.getVoitures();
+      });
+    }
+  }
+  
+  getVoitures() {
+    this.voitureService.GetAllVoitures().subscribe(data => {
       this.dataSource = data;
     });
   }

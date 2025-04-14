@@ -7,6 +7,13 @@ import { FavoriService } from 'src/app/services/favori.service';
 import { Voiture } from 'src/Models/Voiture';
 import { Vu } from 'src/Models/Vu';
 
+
+type VoitureWithExtras = Voiture & {
+  marque_nom?: string;
+  carrosserie_nom?: string;
+};
+
+
 @Component({
   selector: 'app-voituredetails',
   templateUrl: './voituredetails.component.html',
@@ -15,24 +22,8 @@ import { Vu } from 'src/Models/Vu';
 export class VoituredetailsComponent implements OnInit {
   voitureId: string = '';
   isLiked: boolean = false;
-  MyVoiture : Voiture ={
-    marque: '',
-    model: '',
-    carrosserie: '',
-    moteur: '',
-    prix: 0,
-    image: '',
-    nbports: 0,
-    nbchaises: 0,
-    year: 0,
-    drivetrain: '',
-    fuel: '',
-    transmission: '',
-    horsepower: 0,
-    topspeed: 0,
-    acceleration: 0
-  };
-  similarVoitures: Voiture[] = [];
+  MyVoiture!: VoitureWithExtras;
+  similarVoitures: VoitureWithExtras[] = [];
 
   constructor(
     private route: ActivatedRoute,
@@ -59,12 +50,9 @@ export class VoituredetailsComponent implements OnInit {
             // Check if the voiture exists
             this.voitureService.getVoitureById(this.voitureId).subscribe(voiture => {
               if (!voiture) {
-                
-                // If the voiture is not found, redirect to another page (e.g., 404 or home)
-                this.router.navigate(['/not-found']); // or any other route you want
+                this.router.navigate(['/not-found']);
               } else {
                 this.MyVoiture=voiture;
-                console.log(this.MyVoiture);
                 const vuData: Vu = {
                   voitureid: this.voitureId,
                   userid: user.uid,

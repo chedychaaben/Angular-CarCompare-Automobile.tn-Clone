@@ -3,6 +3,12 @@ import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Comparison } from 'src/Models/Comparison';
 import { Voiture } from 'src/Models/Voiture';
+import { VoitureService } from 'src/app/services/voiture.service';
+
+type VoitureWithExtras = Voiture & {
+  marque_nom?: string;
+  carrosserie_nom?: string;
+};
 
 @Component({
   selector: 'app-comparedetails',
@@ -12,11 +18,13 @@ import { Voiture } from 'src/Models/Voiture';
 export class ComparedetailsComponent implements OnInit {
   comparisonId!: string;
   comparison!: Comparison;
-  carOne!: Voiture;
-  carTwo!: Voiture;
+  carOne: VoitureWithExtras | null = null;
+  carTwo: VoitureWithExtras | null = null;
   isLoading = true;
 
-  constructor(private route: ActivatedRoute, private http: HttpClient) {}
+  constructor(private route: ActivatedRoute, 
+              private http: HttpClient,
+              public voitureService: VoitureService,) {}
 
   ngOnInit(): void {
     this.route.queryParamMap.subscribe(params => {
@@ -32,13 +40,13 @@ export class ComparedetailsComponent implements OnInit {
       
     });
   }
-
+  
   fetchCars(id1: string, id2: string): void {
-    this.http.get<Voiture>(`http://localhost:3000/voitures/${id1}`).subscribe(car1 => {
+    this.voitureService.getVoitureById(id1).subscribe(car1 => {
       this.carOne = car1;
       if (this.carTwo) this.isLoading = false;
     });
-    this.http.get<Voiture>(`http://localhost:3000/voitures/${id2}`).subscribe(car2 => {
+    this.voitureService.getVoitureById(id2).subscribe(car2 => {
       this.carTwo = car2;
       if (this.carOne) this.isLoading = false;
     });

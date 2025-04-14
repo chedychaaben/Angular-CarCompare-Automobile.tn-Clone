@@ -1,35 +1,68 @@
-<app-navbar></app-navbar>
-<div>
-    <form [formGroup]="form" (ngSubmit)="onsub()">
-      <!-- Nom Input -->
-      <div>
-        <label for="nom">Nom:</label>
-        <input type="text" id="nom" formControlName="nom" placeholder="Nom" />
-      </div>
-  
-      <!-- Pays -->
-      <div>
-        <label for="pays">Pays:</label>
-        <select id="pays" formControlName="pays">
-          <option value="Etats-Unis">États-Unis (USA)</option>
-          <option value="Allemagne">Allemagne (Germany)</option>
-          <option value="Japon">Japon (Japan)</option>
-          <option value="CoreeDuSud">Corée du Sud (South Korea)</option>
-          <option value="Italie">Italie (Italy)</option>
-          <option value="France">France</option>
-          <option value="RoyaumeUni">Royaume-Uni (United Kingdom)</option>
-          <option value="Suede">Suède (Sweden)</option>
-          <option value="Chine">Chine (China)</option>
-        </select>
-      </div>
-  
-      <!-- Logo Upload -->
-      <div>
-        <label for="logo">Logo:</label>
-        <input type="file" (change)="onFileChange($event)">
-      </div>
+<div class="flex min-h-screen bg-gray-100">
+  <app-adminsidebar></app-adminsidebar>
 
-      <button type="submit" [disabled]="form.invalid">Submit</button>
-    </form>
+  <div class="flex-1 p-6">
+    <div class="max-w-xl mx-auto bg-white shadow-xl rounded-2xl p-8">
+      <h2 class="text-2xl font-semibold text-gray-800 mb-6">Ajouter une marque</h2>
+
+      <form [formGroup]="form" (ngSubmit)="onsub()" class="space-y-6">
+        
+        <!-- Nom -->
+        <div>
+          <label for="nom" class="block text-sm font-medium text-gray-700 mb-1">Nom</label>
+          <input 
+            type="text" 
+            id="nom" 
+            formControlName="nom" 
+            placeholder="Entrez le nom"
+            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-black"
+          />
+        </div>
+
+        <!-- Pays -->
+        <div>
+          <label for="pays" class="block text-sm font-medium text-gray-700 mb-1">Pays</label>
+          <select 
+            id="pays" 
+            formControlName="pays"
+            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-black bg-white text-gray-700"
+          >
+            <option value="" disabled selected>-- Sélectionnez un pays --</option>
+            <option value="Etats-Unis">États-Unis (USA)</option>
+            <option value="Allemagne">Allemagne (Germany)</option>
+            <option value="Japon">Japon (Japan)</option>
+            <option value="CoreeDuSud">Corée du Sud (South Korea)</option>
+            <option value="Italie">Italie (Italy)</option>
+            <option value="France">France</option>
+            <option value="RoyaumeUni">Royaume-Uni (United Kingdom)</option>
+            <option value="Suede">Suède (Sweden)</option>
+            <option value="Chine">Chine (China)</option>
+          </select>
+        </div>
+
+        <!-- Logo Upload -->
+        <div>
+          <label for="logo" class="block text-sm font-medium text-gray-700 mb-1">Logo</label>
+          <input 
+            type="file" 
+            id="logo"
+            (change)="onFileChange($event)"
+            class="block w-full text-sm text-gray-700 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-black/10 file:text-black hover:file:bg-black/20"
+          />
+        </div>
+
+        <!-- Submit Button -->
+        <div class="pt-4">
+          <button 
+            type="submit" 
+            [disabled]="form.invalid"
+            class="w-full bg-black hover:bg-black/90 text-white font-bold py-2 px-4 rounded-lg transition duration-200 disabled:opacity-50"
+          >
+            Soumettre
+          </button>
+        </div>
+
+      </form>
+    </div>
   </div>
-<app-footer></app-footer>
+</div>

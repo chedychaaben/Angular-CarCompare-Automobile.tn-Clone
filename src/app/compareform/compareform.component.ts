@@ -9,6 +9,11 @@ import { Voiture } from 'src/Models/Voiture';
 import { Comparison } from 'src/Models/Comparison';
 import { HttpClient } from '@angular/common/http';
 
+type VoitureWithExtras = Voiture & {
+  marque_nom?: string;
+  carrosserie_nom?: string;
+};
+
 @Component({
   selector: 'app-compareform',
   templateUrl: './compareform.component.html',
@@ -21,9 +26,9 @@ export class CompareformComponent implements OnInit {
   voitureOneId: string | null = null;
   marques: any[] = [];
   carrosseries: any[] = [];
-  voitures: Voiture[] = [];
-  latestVoitures: Voiture[] = [];
-  carOne!: Voiture;
+  voitures: VoitureWithExtras[] = [];
+  latestVoitures: VoitureWithExtras[] = [];
+  carOne: VoitureWithExtras | null = null;
 
   constructor(
     private route: ActivatedRoute,
@@ -126,7 +131,7 @@ export class CompareformComponent implements OnInit {
 
   
   fetchCar(id: string): void {
-    this.http.get<Voiture>(`http://localhost:3000/voitures/${id}`).subscribe(car1 => {
+    this.voitureService.getVoitureById(id).subscribe(car1 => {
       this.carOne = car1;
       this.isLoading = false;
     });

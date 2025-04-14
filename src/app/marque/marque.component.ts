@@ -8,7 +8,7 @@ import { MarqueService } from '../services/marque.service';
   styleUrls: ['./marque.component.css']
 })
 export class MarqueComponent implements OnInit{
-  displayedColumns: string[] = ['id', 'nom', 'pays', 'logo'];
+  displayedColumns: string[] = ['nom', 'pays', 'logo', 'actions'];
   dataSource: Marque[] = [];
   
   constructor(private marqueService:MarqueService){}
@@ -19,5 +19,18 @@ export class MarqueComponent implements OnInit{
         this.dataSource = data
       })
     }
-
+  
+  deleteMarque(id: string) {
+    if (confirm("Voulez-vous vraiment supprimer cette Marque ?")) {
+      this.marqueService.deleteMarque(id).subscribe(() => {
+        this.getMarques();
+      });
+    }
+  }
+  
+  getMarques() {
+    this.marqueService.GetAllMarques().subscribe(data => {
+      this.dataSource = data;
+    });
+  }
 }

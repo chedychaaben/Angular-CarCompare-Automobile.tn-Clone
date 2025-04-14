@@ -1,121 +1,134 @@
-<app-navbar></app-navbar>
-<div>
-    <form [formGroup]="form" (ngSubmit)="onsub()">
-      <!-- Marque Input -->
+<div class="flex h-screen bg-gray-100">
+  <app-adminsidebar></app-adminsidebar>
+
+  <div class="flex-1 p-8 overflow-y-auto">
+    <form [formGroup]="form" (ngSubmit)="onsub()" class="grid grid-cols-1 md:grid-cols-2 gap-6 bg-white p-6 rounded-lg shadow-md">
+
+      <!-- Marque -->
       <div>
-        <label for="marque">Marque:</label>
-        <select id="marque" formControlName="marque">
+        <label for="marque" class="block text-sm font-medium text-gray-700">Marque</label>
+        <select id="marque" formControlName="marque" class="mt-1 block w-full border border-gray-300 rounded-md p-2">
           <option *ngFor="let marque of marques" [value]="marque.nom">{{ marque.nom }}</option>
         </select>
       </div>
-  
+
       <!-- Model -->
       <div>
-        <label for="model">Model:</label>
-        <input type="text" id="model" formControlName="model" placeholder="Model" />
+        <label for="model" class="block text-sm font-medium text-gray-700">Modèle</label>
+        <input id="model" type="text" placeholder="ex: Clio 5"
+          class="mt-1 block w-full border border-gray-300 rounded-md p-2" formControlName="model" />
       </div>
 
       <!-- Carrosserie -->
       <div>
-        <label for="carrosserie">Carrosserie:</label>
-        <select id="carrosserie" formControlName="carrosserie">
+        <label for="carrosserie" class="block text-sm font-medium text-gray-700">Carrosserie</label>
+        <select id="carrosserie" formControlName="carrosserie" class="mt-1 block w-full border border-gray-300 rounded-md p-2">
           <option *ngFor="let carrosserie of carrosseries" [value]="carrosserie.nom">{{ carrosserie.nom }}</option>
         </select>
       </div>
 
       <!-- Moteur -->
       <div>
-        <label for="moteur">Moteur:</label>
-        <input type="text" id="moteur" formControlName="moteur" placeholder="Moteur" />
+        <label for="moteur" class="block text-sm font-medium text-gray-700">Moteur</label>
+        <input id="moteur" type="text" placeholder="1.5L Turbo"
+          class="mt-1 block w-full border border-gray-300 rounded-md p-2" formControlName="moteur" />
       </div>
 
       <!-- Prix -->
       <div>
-        <label for="prix">Prix:</label>
-        <input type="number" id="prix" formControlName="prix" placeholder="Prix" />
+        <label for="prix" class="block text-sm font-medium text-gray-700">Prix</label>
+        <input id="prix" type="number" placeholder="ex: 20000"
+          class="mt-1 block w-full border border-gray-300 rounded-md p-2" formControlName="prix" />
       </div>
-  
+
       <!-- Image Upload -->
       <div>
-        <label for="image">Image:</label>
-        <input type="file" (change)="onFileChange($event)">
+        <label for="image" class="block text-sm font-medium text-gray-700">Image</label>
+        <input type="file" (change)="onFileChange($event)" class="mt-1 block w-full" />
       </div>
-      
-      <!-- Nombre de ports -->
+
+      <!-- Nb ports -->
       <div>
-        <label for="nbports">Nombre de ports:</label>
-        <select id="nbports" formControlName="nbports">
-            <option value="2">2</option>
-            <option value="4">4</option>
+        <label for="nbports" class="block text-sm font-medium text-gray-700">Nombre de ports</label>
+        <select id="nbports" formControlName="nbports" class="mt-1 block w-full border border-gray-300 rounded-md p-2">
+          <option value="2">2</option>
+          <option value="4">4</option>
         </select>
       </div>
 
-      <!-- Nombre de chaises -->
+      <!-- Nb chaises -->
       <div>
-        <label for="nbchaises">Nombre de chaises:</label>
-        <select id="nbchaises" formControlName="nbchaises">
-            <option value="2">2</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="7">7</option>
+        <label for="nbchaises" class="block text-sm font-medium text-gray-700">Nombre de chaises</label>
+        <select id="nbchaises" formControlName="nbchaises" class="mt-1 block w-full border border-gray-300 rounded-md p-2">
+          <option *ngFor="let n of [2,4,5,7]" [value]="n">{{n}}</option>
         </select>
       </div>
 
       <!-- Year -->
       <div>
-        <label for="year">Year:</label>
-        <input type="number" id="year" formControlName="year" placeholder="year" />
+        <label for="year" class="block text-sm font-medium text-gray-700">Année</label>
+        <input id="year" type="number" placeholder="ex: 2022"
+          class="mt-1 block w-full border border-gray-300 rounded-md p-2" formControlName="year" />
       </div>
-      
+
       <!-- Drivetrain -->
       <div>
-        <label for="drivetrain">Drivetrain:</label>
-        <select id="drivetrain" formControlName="drivetrain">
-            <option value="FWD">Roues avant motrices</option>
-            <option value="BWD">Roues arrière motrices</option>
-            <option value="4WD">Quatre roues motrices</option>
+        <label for="drivetrain" class="block text-sm font-medium text-gray-700">Transmission</label>
+        <select id="drivetrain" formControlName="drivetrain" class="mt-1 block w-full border border-gray-300 rounded-md p-2">
+          <option value="FWD">Roues avant motrices</option>
+          <option value="BWD">Roues arrière motrices</option>
+          <option value="4WD">4 roues motrices</option>
         </select>
       </div>
 
-      <!-- Fuel -->
+      <!-- Carburant -->
       <div>
-        <label for="fuel">Carburant :</label>
-        <select id="fuel" formControlName="fuel">
-            <option value="essence">Essence</option>
-            <option value="diesel">Diesel</option>
-            <option value="electrique">Électrique</option>
-            <option value="hybride">Hybride</option>
+        <label for="fuel" class="block text-sm font-medium text-gray-700">Carburant</label>
+        <select id="fuel" formControlName="fuel" class="mt-1 block w-full border border-gray-300 rounded-md p-2">
+          <option value="essence">Essence</option>
+          <option value="diesel">Diesel</option>
+          <option value="electrique">Électrique</option>
+          <option value="hybride">Hybride</option>
         </select>
-        </div>
+      </div>
 
-        <!-- Transmission -->
-        <div>
-        <label for="transmission">Transmission :</label>
-        <select id="transmission" formControlName="transmission">
-            <option value="manuelle">manuelle</option>
-            <option value="automatique">automatique</option>
+      <!-- Transmission -->
+      <div>
+        <label for="transmission" class="block text-sm font-medium text-gray-700">Boîte</label>
+        <select id="transmission" formControlName="transmission" class="mt-1 block w-full border border-gray-300 rounded-md p-2">
+          <option value="manuelle">Manuelle</option>
+          <option value="automatique">Automatique</option>
         </select>
-        </div>
-        
-        <!-- Horsepower -->
-        <div>
-            <label for="horsepower">Horsepower:</label>
-            <input type="number" id="horsepower" formControlName="horsepower" placeholder="horsepower" />
-        </div>
-        <!-- Topspeed -->
-        <div>
-            <label for="topspeed">Topspeed:</label>
-            <input type="number" id="topspeed" formControlName="topspeed" placeholder="topspeed" />
-        </div>
-        <!-- Acceleration 0-100 en secondes -->
-        <div>
-            <label for="acceleration">Acceleration:</label>
-            <input type="number" id="acceleration" formControlName="acceleration" placeholder="acceleration" />
-        </div>
+      </div>
 
+      <!-- Horsepower -->
+      <div>
+        <label for="horsepower" class="block text-sm font-medium text-gray-700">Puissance (ch)</label>
+        <input id="horsepower" type="number" placeholder="ex: 120"
+          class="mt-1 block w-full border border-gray-300 rounded-md p-2" formControlName="horsepower" />
+      </div>
 
-      <button type="submit" [disabled]="form.invalid">Submit</button>
+      <!-- Vitesse max -->
+      <div>
+        <label for="topspeed" class="block text-sm font-medium text-gray-700">Vitesse max (km/h)</label>
+        <input id="topspeed" type="number" placeholder="ex: 220"
+          class="mt-1 block w-full border border-gray-300 rounded-md p-2" formControlName="topspeed" />
+      </div>
+
+      <!-- Accélération -->
+      <div>
+        <label for="acceleration" class="block text-sm font-medium text-gray-700">0-100 km/h (s)</label>
+        <input id="acceleration" type="number" placeholder="ex: 8.5"
+          class="mt-1 block w-full border border-gray-300 rounded-md p-2" formControlName="acceleration" />
+      </div>
+
+      <!-- Submit -->
+      <div class="md:col-span-2 flex justify-end">
+        <button type="submit" [disabled]="form.invalid"
+          class="bg-blue-600 text-white px-6 py-2 rounded-md hover:bg-blue-700 disabled:opacity-50">
+          Enregistrer
+        </button>
+      </div>
     </form>
   </div>
-  
-<app-footer></app-footer>
+</div>

@@ -73,18 +73,6 @@
   ],
   "marques": [
     {
-      "id": "0020",
-      "nom": "chedy",
-      "pays": "Japon",
-      "logo": "https://res.cloudinary.com/dzd8v4iwt/image/upload/v1743116850/AngularIitProject/IT_PROS_f7voa2.png"
-    },
-    {
-      "id": "5c6d",
-      "nom": "Audi",
-      "pays": "Allemagne",
-      "logo": "https://res.cloudinary.com/dzd8v4iwt/image/upload/v1743117555/AngularIitProject/all_gvoyrr.png"
-    },
-    {
       "id": "e6d4",
       "nom": "BMW",
       "pays": "Allemagne",
@@ -143,12 +131,6 @@
       "nom": "Chevrolet",
       "pays": "United States",
       "logo": "https://catalogue.automobile.tn/marques/4.png?t=18"
-    },
-    {
-      "id": "3960",
-      "nom": "Citroën",
-      "pays": "France",
-      "logo": "https://catalogue.automobile.tn/marques/5.png?t=18"
     },
     {
       "id": "2107",
@@ -375,22 +357,22 @@
       "acceleration": 4
     },
     {
-      "id": "04d0",
-      "marque": "5c6d",
-      "model": "hhh",
-      "carrosserie": "2fX1",
-      "moteur": "6TDhhh",
-      "prix": 89,
-      "image": "https://catalogue.automobile.tn/big/2024/10/47239.webp?t=1738879871",
+      "id": "71e4",
+      "marque": "Citroën",
+      "model": "C5",
+      "carrosserie": "SPORTCAR",
+      "moteur": "1.6 HDI",
+      "prix": 44444444,
+      "image": "https://res.cloudinary.com/dzd8v4iwt/image/upload/v1744674184/AngularIitProject/profile_vjmhqm.png",
       "nbports": "4",
-      "nbchaises": "4",
+      "nbchaises": "5",
       "year": 2012,
-      "drivetrain": "FWD",
-      "fuel": "essence",
-      "transmission": "manuelle",
-      "horsepower": 3,
-      "topspeed": 5,
-      "acceleration": 9
+      "drivetrain": "4WD",
+      "fuel": "diesel",
+      "transmission": "automatique",
+      "horsepower": 232,
+      "topspeed": 220,
+      "acceleration": 2
     }
   ],
   "comparisons": [
@@ -631,6 +613,34 @@
       "voituredeuxid": "04d0",
       "userid": "",
       "datetime": "2025-04-13T03:48:12.414Z"
+    },
+    {
+      "id": "ec8a",
+      "voitureuneid": "4d74",
+      "voituredeuxid": "04d0",
+      "userid": "",
+      "datetime": "2025-04-14T19:33:17.176Z"
+    },
+    {
+      "id": "2fe8",
+      "voitureuneid": "4dF4",
+      "voituredeuxid": "04d0",
+      "userid": "",
+      "datetime": "2025-04-14T21:02:43.658Z"
+    },
+    {
+      "id": "04f6",
+      "voitureuneid": "4dF4",
+      "voituredeuxid": "04d0",
+      "userid": "",
+      "datetime": "2025-04-14T21:27:27.739Z"
+    },
+    {
+      "id": "151b",
+      "voitureuneid": "04d0",
+      "voituredeuxid": "4d74",
+      "userid": "",
+      "datetime": "2025-04-14T21:39:50.163Z"
     }
   ],
   "favoris": [
@@ -2285,6 +2295,132 @@
       "voitureid": "04d0",
       "userid": "xUVEIMsaP2ZEe3FYjZeozK75VxH3",
       "datetime": "2025-04-13T04:22:46.155Z"
+    },
+    {
+      "id": "cefd",
+      "voitureid": "4d74",
+      "userid": "xUVEIMsaP2ZEe3FYjZeozK75VxH3",
+      "datetime": "2025-04-14T19:31:09.778Z"
+    },
+    {
+      "id": "a543",
+      "voitureid": "4d74",
+      "userid": "xUVEIMsaP2ZEe3FYjZeozK75VxH3",
+      "datetime": "2025-04-14T19:31:12.770Z"
+    },
+    {
+      "id": "d1c4",
+      "voitureid": "4dF4",
+      "userid": "xUVEIMsaP2ZEe3FYjZeozK75VxH3",
+      "datetime": "2025-04-14T21:00:11.150Z"
+    },
+    {
+      "id": "3ea9",
+      "voitureid": "4dF4",
+      "userid": "xUVEIMsaP2ZEe3FYjZeozK75VxH3",
+      "datetime": "2025-04-14T21:00:38.769Z"
+    },
+    {
+      "id": "4e0a",
+      "voitureid": "4dF4",
+      "userid": "xUVEIMsaP2ZEe3FYjZeozK75VxH3",
+      "datetime": "2025-04-14T21:09:34.720Z"
+    },
+    {
+      "id": "4004",
+      "voitureid": "4dF4",
+      "userid": "xUVEIMsaP2ZEe3FYjZeozK75VxH3",
+      "datetime": "2025-04-14T21:18:46.181Z"
+    },
+    {
+      "id": "8c54",
+      "voitureid": "4dF4",
+      "userid": "xUVEIMsaP2ZEe3FYjZeozK75VxH3",
+      "datetime": "2025-04-14T21:22:43.297Z"
+    },
+    {
+      "id": "58e3",
+      "voitureid": "4dF4",
+      "userid": "xUVEIMsaP2ZEe3FYjZeozK75VxH3",
+      "datetime": "2025-04-14T21:22:54.149Z"
+    },
+    {
+      "id": "0b08",
+      "voitureid": "4dF4",
+      "userid": "xUVEIMsaP2ZEe3FYjZeozK75VxH3",
+      "datetime": "2025-04-14T21:23:02.677Z"
+    },
+    {
+      "id": "a82d",
+      "voitureid": "4dF4",
+      "userid": "xUVEIMsaP2ZEe3FYjZeozK75VxH3",
+      "datetime": "2025-04-14T21:23:37.993Z"
+    },
+    {
+      "id": "6bb3",
+      "voitureid": "4dF4",
+      "userid": "xUVEIMsaP2ZEe3FYjZeozK75VxH3",
+      "datetime": "2025-04-14T21:23:40.030Z"
+    },
+    {
+      "id": "def3",
+      "voitureid": "4dF4",
+      "userid": "xUVEIMsaP2ZEe3FYjZeozK75VxH3",
+      "datetime": "2025-04-14T21:23:51.287Z"
+    },
+    {
+      "id": "4a29",
+      "voitureid": "4dF4",
+      "userid": "xUVEIMsaP2ZEe3FYjZeozK75VxH3",
+      "datetime": "2025-04-14T21:24:15.032Z"
+    },
+    {
+      "id": "ecb4",
+      "voitureid": "4dF4",
+      "userid": "xUVEIMsaP2ZEe3FYjZeozK75VxH3",
+      "datetime": "2025-04-14T21:24:54.128Z"
+    },
+    {
+      "id": "6acf",
+      "voitureid": "4dF4",
+      "userid": "xUVEIMsaP2ZEe3FYjZeozK75VxH3",
+      "datetime": "2025-04-14T21:28:05.696Z"
+    },
+    {
+      "id": "41e3",
+      "voitureid": "04d0",
+      "userid": "xUVEIMsaP2ZEe3FYjZeozK75VxH3",
+      "datetime": "2025-04-14T21:38:03.792Z"
+    },
+    {
+      "id": "70e7",
+      "voitureid": "04d0",
+      "userid": "xUVEIMsaP2ZEe3FYjZeozK75VxH3",
+      "datetime": "2025-04-14T21:38:12.144Z"
+    },
+    {
+      "id": "31c2",
+      "voitureid": "04d0",
+      "userid": "xUVEIMsaP2ZEe3FYjZeozK75VxH3",
+      "datetime": "2025-04-14T21:40:01.654Z"
+    },
+    {
+      "id": "ec8f",
+      "voitureid": "04d0",
+      "userid": "xUVEIMsaP2ZEe3FYjZeozK75VxH3",
+      "datetime": "2025-04-14T23:01:18.110Z"
+    },
+    {
+      "id": "34c6",
+      "voitureid": "04d0",
+      "userid": "xUVEIMsaP2ZEe3FYjZeozK75VxH3",
+      "datetime": "2025-04-14T23:01:20.580Z"
+    },
+    {
+      "id": "44a0",
+      "voitureid": "04d0",
+      "userid": "xUVEIMsaP2ZEe3FYjZeozK75VxH3",
+      "datetime": "2025-04-14T23:10:32.542Z"
     }
   ],
   "carrosseries": [

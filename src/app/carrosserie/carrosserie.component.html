@@ -1,19 +1,70 @@
-<app-navbar></app-navbar>
-<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-    <ng-container matColumnDef="nom">
-      <th mat-header-cell *matHeaderCellDef> Nom </th>
-      <td mat-cell *matCellDef="let element"> {{ element.nom }} </td>
-    </ng-container>
+<div class="flex h-screen bg-gray-100">
+  <app-adminsidebar></app-adminsidebar>
 
-    <ng-container matColumnDef="image">
-      <th mat-header-cell *matHeaderCellDef> Image </th>
-      <td mat-cell *matCellDef="let element">
-        <img [src]="element.image" alt="Carrosserie" width="50">
-      </td>
-    </ng-container>
+  <div class="w-full rounded-lg border shadow-sm overflow-hidden bg-white border-stone-200 shadow-stone-950/5 m-6">
+    <!-- Header -->
+    <div class="flex flex-wrap justify-between items-start gap-4 p-4">
+      <div>
+        <p class="font-sans antialiased text-base md:text-lg text-stone-800 dark:text-white font-semibold mb-1">
+          Gestion des carrosseries
+        </p>
+      </div>
 
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-</table>
+      <div class="flex items-center gap-3 w-full md:w-auto">
+        <div class="dropdown" data-dui-placement="bottom-start">
+          <a 
+            routerLink="/admin/ajouter-carrosserie"
+            class="inline-flex items-center justify-center border align-middle select-none font-sans font-medium text-center transition duration-150 ease-in-out disabled:opacity-50 disabled:shadow-none disabled:cursor-not-allowed text-sm py-2 px-4 shadow-sm hover:shadow-md bg-transparent text-stone-700 hover:text-stone-700 border-stone-500 hover:border-stone-600 rounded-lg hover:opacity-60 hover:shadow-none"
+          >
+            Ajouter une Carrosserie
+          </a>
+        </div>
+      </div>
+    </div>
 
-<app-footer></app-footer>
+    <!-- Table -->
+    <div class="w-full overflow-auto mt-4">
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 w-full min-w-max">
+        
+        <!-- Nom Column -->
+        <ng-container matColumnDef="nom">
+          <th mat-header-cell *matHeaderCellDef class="border-b text-start border-stone-200 p-4">
+            <small class="font-sans antialiased text-sm text-stone-800 dark:text-white font-medium">Nom</small>
+          </th>
+          <td mat-cell *matCellDef="let element" class="p-4 border-b border-stone-200">
+            <small class="font-sans antialiased text-sm text-stone-800 dark:text-white font-semibold block">{{element.nom}}</small>
+          </td>
+        </ng-container>
+
+        <!-- Image Column -->
+        <ng-container matColumnDef="image">
+          <th mat-header-cell *matHeaderCellDef class="border-b text-start border-stone-200 p-4">
+            <small class="font-sans antialiased text-sm text-stone-800 dark:text-white font-medium">Image</small>
+          </th>
+          <td mat-cell *matCellDef="let element" class="p-4 border-b border-stone-200">
+            <img [src]="element.image" alt="Carrosserie" class="w-11 h-11 rounded-md border border-stone-200 p-2 object-cover" />
+          </td>
+        </ng-container>
+
+        <!-- Action Column -->
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef class="border-b text-start border-stone-200 p-4">
+            <small class="font-sans antialiased text-sm text-stone-800 dark:text-white font-medium">Actions</small>
+          </th>
+          <td mat-cell *matCellDef="let element" class="p-4 border-b border-stone-200">
+            <button 
+              (click)="deleteCarrosserie(element.id)" 
+              class="text-red-600 hover:text-red-800 font-semibold text-sm"
+            >
+              Supprimer
+            </button>
+          </td>
+        </ng-container>
+        
+        <!-- Rows -->
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="hover:bg-stone-50 group"></tr>
+      </table>
+    </div>
+  </div>
+</div>

@@ -1,34 +1,63 @@
-<app-navbar></app-navbar>
-<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-    <!-- ID Column -->
-    <ng-container matColumnDef="id">
-      <th mat-header-cell *matHeaderCellDef> ID </th>
-      <td mat-cell *matCellDef="let element"> {{element.id}} </td>
-    </ng-container>
-  
-    <!-- Nom Column -->
-    <ng-container matColumnDef="nom">
-      <th mat-header-cell *matHeaderCellDef> Nom </th>
-      <td mat-cell *matCellDef="let element"> {{element.nom}} </td>
-    </ng-container>
-  
-    <!-- Pays Column -->
-    <ng-container matColumnDef="pays">
-      <th mat-header-cell *matHeaderCellDef> Pays </th>
-      <td mat-cell *matCellDef="let element"> {{element.pays}} </td>
-    </ng-container>
-  
-    <!-- Logo Column -->
-    <ng-container matColumnDef="logo">
-      <th mat-header-cell *matHeaderCellDef> Logo </th>
-      <td mat-cell *matCellDef="let element">
-        <img [src]="element.logo" alt="Logo" width="50">
-      </td>
-    </ng-container>
-  
-    <!-- ✅ Add Header and Row Definitions -->
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-  </table>
-  
-<app-footer></app-footer>
+<div class="flex min-h-screen bg-gray-100">
+  <app-adminsidebar></app-adminsidebar>
+
+  <div class="flex-1 p-6">
+    <div class="max-w-7xl mx-auto bg-white shadow-xl rounded-2xl p-8">
+      <div class="flex flex-wrap justify-between items-center mb-6">
+        <h2 class="text-2xl font-semibold text-gray-800">Gestion des Marques</h2>
+        <a routerLink="/admin/ajouter-marque"
+           class="inline-flex items-center justify-center border border-stone-500 text-stone-700 font-semibold text-sm py-2 px-4 rounded-lg hover:bg-black/10 hover:border-stone-600 hover:text-stone-900 transition duration-150">
+          Ajouter une Marque
+        </a>
+      </div>
+
+      <div class="overflow-x-auto mt-4">
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 w-full min-w-max border rounded-lg overflow-hidden">
+
+          <!-- Nom Column -->
+          <ng-container matColumnDef="nom">
+            <th mat-header-cell *matHeaderCellDef class="border-b text-left p-4 text-sm font-medium text-gray-700">Nom</th>
+            <td mat-cell *matCellDef="let element" class="p-4 border-b text-sm font-semibold text-gray-800">
+              {{element.nom}}
+            </td>
+          </ng-container>
+
+          <!-- Pays Column -->
+          <ng-container matColumnDef="pays">
+            <th mat-header-cell *matHeaderCellDef class="border-b text-left p-4 text-sm font-medium text-gray-700">Pays</th>
+            <td mat-cell *matCellDef="let element" class="p-4 border-b text-sm text-gray-600">
+              {{element.pays}}
+            </td>
+          </ng-container>
+
+          <!-- Logo Column -->
+          <ng-container matColumnDef="logo">
+            <th mat-header-cell *matHeaderCellDef class="border-b text-left p-4 text-sm font-medium text-gray-700">Logo</th>
+            <td mat-cell *matCellDef="let element" class="p-4 border-b">
+              <img [src]="element.logo" alt="Logo" class="w-11 h-11 rounded-md border border-gray-200 p-2">
+            </td>
+          </ng-container>
+
+          
+          <!-- Action Column -->
+          <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef class="border-b text-start border-stone-200 p-4">
+              <small class="font-sans antialiased text-sm text-stone-800 dark:text-white font-medium">Actions</small>
+            </th>
+            <td mat-cell *matCellDef="let element" class="p-4 border-b border-stone-200">
+              <button 
+                (click)="deleteMarque(element.id)" 
+                class="text-red-600 hover:text-red-800 font-semibold text-sm"
+              >
+                Supprimer
+              </button>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

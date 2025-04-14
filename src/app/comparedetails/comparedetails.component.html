@@ -1,37 +1,36 @@
 <app-navbar></app-navbar>
 <div *ngIf="isLoading">Loading...</div>
 
-
 <div *ngIf="!isLoading" class="flex justify-center items-center min-h-screen">
   <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-2 max-w-6xl w-full text-xl p-6">
 
     <!-- Car Card -->
     <div class="w-full rounded-lg border shadow-sm overflow-hidden bg-white border-stone-200 shadow-stone-950/5 p-6">
-      <h2>{{ carOne.marque }} {{ carOne.model }}</h2>
-      <img [src]="carOne.image" alt="{{ carOne.model }}">
+      <h2>{{ carOne?.marque_nom }} {{ carOne?.model }}</h2>
+      <img [src]="carOne?.image" alt="{{ carOne?.model }}">
       <ul>
-        <li><strong>Prix:</strong> {{ carOne.prix }} €</li>
-        <li><strong>Carrosserie:</strong> {{ carOne.carrosserie }}</li>
-        <li><strong>Transmission:</strong> {{ carOne.transmission }}</li>
-        <li><strong>Horsepower:</strong> {{ carOne.horsepower }} HP</li>
-        <li><strong>Top Speed:</strong> {{ carOne.topspeed }} km/h</li>
-        <li><strong>Acceleration:</strong> {{ carOne.acceleration }} s (0-100 km/h)</li>
+        <li><strong>Prix:</strong> {{ carOne?.prix }} TND</li>
+        <li><strong>Carrosserie:</strong> {{ carOne?.carrosserie_nom }}</li>
+        <li><strong>Transmission:</strong> {{ carOne?.transmission }}</li>
+        <li><strong>Horsepower:</strong> {{ carOne?.horsepower }} HP</li>
+        <li><strong>Top Speed:</strong> {{ carOne?.topspeed }} km/h</li>
+        <li><strong>Acceleration:</strong> {{ carOne?.acceleration }} s (0-100 km/h)</li>
       </ul>
     </div>
 
-      <!-- Car Card -->
-      <div class="w-full rounded-lg border shadow-sm overflow-hidden bg-white border-stone-200 shadow-stone-950/5 p-6">
-        <h2>{{ carTwo.marque }} {{ carTwo.model }}</h2>
-        <img [src]="carTwo.image" alt="{{ carTwo.model }}">
-        <ul>
-          <li><strong>Prix:</strong> {{ carTwo.prix }} €</li>
-          <li><strong>Carrosserie:</strong> {{ carTwo.carrosserie }}</li>
-          <li><strong>Transmission:</strong> {{ carTwo.transmission }}</li>
-          <li><strong>Horsepower:</strong> {{ carTwo.horsepower }} HP</li>
-          <li><strong>Top Speed:</strong> {{ carTwo.topspeed }} km/h</li>
-          <li><strong>Acceleration:</strong> {{ carTwo.acceleration }} s (0-100 km/h)</li>
-        </ul>
-      </div>
+    <!-- Car Card -->
+    <div class="w-full rounded-lg border shadow-sm overflow-hidden bg-white border-stone-200 shadow-stone-950/5 p-6">
+      <h2>{{ carTwo?.marque_nom }} {{ carTwo?.model }}</h2>
+      <img [src]="carTwo?.image" alt="{{ carTwo?.model }}">
+      <ul>
+        <li><strong>Prix:</strong> {{ carTwo?.prix }} TND</li>
+        <li><strong>Carrosserie:</strong> {{ carTwo?.carrosserie_nom }}</li>
+        <li><strong>Transmission:</strong> {{ carTwo?.transmission }}</li>
+        <li><strong>Horsepower:</strong> {{ carTwo?.horsepower }} HP</li>
+        <li><strong>Top Speed:</strong> {{ carTwo?.topspeed }} km/h</li>
+        <li><strong>Acceleration:</strong> {{ carTwo?.acceleration }} s (0-100 km/h)</li>
+      </ul>
+    </div>
   </div>
 </div>
 <app-footer></app-footer>

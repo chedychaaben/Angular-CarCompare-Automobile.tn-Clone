@@ -5,7 +5,7 @@
     
     <div class="bloc-title mt-8 flex items-center justify-center space-x-4">
         <h3 class="text-2xl font-semibold">
-            {{ voiture.marque }} <span class="text-xl font-normal">{{ voiture.model }}</span>
+            {{ voiture.marque_nom }} <span class="text-xl font-normal">{{ voiture.model }}</span>
         </h3>
         <img class="brand-badge lazyloaded mt-2 w-12 h-auto" src="https://catalogue.automobile.tn/marques/3_resized.png" alt="BMW" />
     </div>
@@ -21,8 +21,8 @@
             </div>
   
             
-        <h2 class="text-3xl font-bold text-gray-800">{{ voiture.marque }} {{ voiture.model }}</h2>
-        <p class="text-lg text-gray-500">{{ voiture.year }} · {{ voiture.carrosserie }}</p>
+        <h2 class="text-3xl font-bold text-gray-800">{{ voiture.marque_nom }} {{ voiture.model }}</h2>
+        <p class="text-lg text-gray-500">{{ voiture.year }} · {{ voiture.carrosserie_nom }}</p>
         
             <div class="text-xl font-bold">A partir de
                 <span class="text-2xl">{{ voiture.prix }}<span class="suffix">DT</span> <sup>TTC</sup></span>

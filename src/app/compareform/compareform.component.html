@@ -14,7 +14,7 @@
     <div class="w-full rounded-lg border shadow-sm overflow-hidden bg-white border-stone-200 shadow-stone-950/5 p-6">
       <div class="bloc-title flex flex-col items-center justify-center space-y-2 text-center">
         <h3 class="text-2xl font-semibold">
-          {{ carOne?.marque }} <span class="text-xl font-normal">{{ carOne?.model }}</span>
+          {{ carOne?.marque_nom }} <span class="text-xl font-normal">{{ carOne?.model }}</span>
         </h3>
         <img
           class="w-12 h-auto mt-2"
@@ -27,7 +27,7 @@
           <div class="version-img relative">
             <img class="img-fluid rounded-md w-full max-h-64 object-contain" [src]="carOne?.image" alt="image">
           </div>
-          <p class="text-lg text-gray-500 mt-4">{{ carOne?.year }} · {{ carOne?.carrosserie }}</p>
+          <p class="text-lg text-gray-500 mt-4">{{ carOne?.year }} · {{ carOne?.carrosserie_nom }}</p>
         </div>
       </div>
     </div>
