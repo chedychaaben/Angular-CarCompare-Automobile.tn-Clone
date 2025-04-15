@@ -35,6 +35,9 @@ import { VoituredetailsComponent } from './voituredetails/voituredetails.compone
 import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
 import { AdminsidebarComponent } from './adminsidebar/adminsidebar.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { NgChartsModule } from 'ng2-charts';
+
 
 
 @NgModule({
@@ -55,6 +58,7 @@ import { AdminsidebarComponent } from './adminsidebar/adminsidebar.component';
     NavbarComponent,
     FooterComponent,
     AdminsidebarComponent,
+    DashboardComponent,
 
   ],
   imports: [
@@ -72,7 +76,8 @@ import { AdminsidebarComponent } from './adminsidebar/adminsidebar.component';
     provideFirebaseApp(() => initializeApp(firebaseConfig)),
     provideAuth(() => getAuth()),
 
-    MatTableModule
+    MatTableModule,
+    NgChartsModule
   ],
   providers: [
     {

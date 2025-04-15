@@ -13,6 +13,7 @@ import { HomepageComponent } from './homepage/homepage.component';
 import { CarrosserieComponent } from './carrosserie/carrosserie.component';
 import { CarrosserieformComponent } from './carrosserieform/carrosserieform.component';
 import { authGuard } from './auth.guard';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 // [() => authGuard()] // Anyone logged in can access
 // [() => authGuard('admin')]
@@ -22,6 +23,11 @@ const routes: Routes = [
   {
     path:'',
     redirectTo: '/home',
+    pathMatch: 'full'
+  },
+  {
+    path:'admin',
+    redirectTo: '/admin/list-voitures',
     pathMatch: 'full'
   },
   {
@@ -41,17 +47,17 @@ const routes: Routes = [
   },
   {
     path:'voiture-details',
-    canActivate:  [() => authGuard()],
+    canActivate:  [() => authGuard('user')],
     component: VoituredetailsComponent
   },
   {
     path:'comparer',
-    canActivate:  [() => authGuard()],
+    canActivate:  [() => authGuard('user')],
     component: CompareformComponent
   },
   {
     path:'comparison-result',
-    canActivate:  [() => authGuard()],
+    canActivate:  [() => authGuard('user')],
     component: ComparedetailsComponent
   },
   {
@@ -84,6 +90,11 @@ const routes: Routes = [
     canActivate:  [() => authGuard('admin')],
     component: CarrosserieComponent
   },
+  {
+    path:'dashboard',
+    canActivate:  [() => authGuard('user')],
+    component: DashboardComponent
+  }
 ];
 
 @NgModule({
