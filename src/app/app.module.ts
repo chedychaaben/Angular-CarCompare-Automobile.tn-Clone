@@ -36,7 +36,6 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
 import { AdminsidebarComponent } from './adminsidebar/adminsidebar.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { NgChartsModule } from 'ng2-charts';
 
 
 
@@ -77,7 +76,6 @@ import { NgChartsModule } from 'ng2-charts';
     provideAuth(() => getAuth()),
 
     MatTableModule,
-    NgChartsModule
   ],
   providers: [
     {
