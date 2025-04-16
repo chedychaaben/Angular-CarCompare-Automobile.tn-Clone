@@ -37,6 +37,9 @@ import { FooterComponent } from './footer/footer.component';
 import { AdminsidebarComponent } from './adminsidebar/adminsidebar.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 
+import { provideCharts } from 'ng2-charts';
+import { BaseChartDirective } from 'ng2-charts';
+
 
 
 @NgModule({
@@ -76,12 +79,15 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     provideAuth(() => getAuth()),
 
     MatTableModule,
+
+    BaseChartDirective,
   ],
   providers: [
     {
       provide: Cloudinary,
       useFactory: () => new Cloudinary({ cloud: { cloudName: 'dzd8v4iwt' } })
-    }
+    },
+    provideCharts()
   ],
   bootstrap: [AppComponent]
 })
