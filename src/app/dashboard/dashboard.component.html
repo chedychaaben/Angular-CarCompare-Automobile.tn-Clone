@@ -1,12 +1,20 @@
 <app-navbar></app-navbar>
-x
-<div style="width: 600px; margin: auto; padding-top: 2rem;">
-  <canvas baseChart
-          [data]="chartData"
-          [options]="chartOptions"
-          [type]="chartType">
-  </canvas>
+
+
+<div class="flex-grow p-6">
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div class="bg-white p-4 rounded-lg shadow-lg">
+      <h2 class="text-xl font-semibold mb-4">X</h2>
+      <div class="chart-container">
+        <canvas baseChart
+              [data]="chartData"
+              [options]="chartOptions"
+              [type]="chartType">
+        </canvas>
+      </div>
+    </div>
+  </div>
 </div>
-y
+
 
 <app-footer></app-footer>

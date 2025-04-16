@@ -35,6 +35,7 @@ export class VoitureComponent implements OnInit {
   getVoitures() {
     this.voitureService.GetAllVoitures().subscribe(data => {
       this.dataSource = data;
+      console.log(data);
     });
   }
 }

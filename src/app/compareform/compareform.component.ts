@@ -5,6 +5,7 @@ import { VoitureService } from '../services/voiture.service';
 import { CarrosserieService } from 'src/app/services/carrosserie.service';
 import { CompareService } from '../services/compare.service';
 import { MarqueService } from '../services/marque.service';
+import { AuthService } from 'src/app/services/auth.service';
 import { Voiture } from 'src/Models/Voiture';
 import { Comparison } from 'src/Models/Comparison';
 import { HttpClient } from '@angular/common/http';
@@ -29,6 +30,7 @@ export class CompareformComponent implements OnInit {
   voitures: VoitureWithExtras[] = [];
   latestVoitures: VoitureWithExtras[] = [];
   carOne: VoitureWithExtras | null = null;
+  userId!: string;
 
   constructor(
     private route: ActivatedRoute,
@@ -38,10 +40,14 @@ export class CompareformComponent implements OnInit {
     private carrosserieService: CarrosserieService,
     private marqueService: MarqueService,
     private compareService: CompareService,
+    private authService: AuthService,
     private http: HttpClient
   ) {}
 
   ngOnInit() {
+
+    this.userId = this.authService.getUserId()!;
+
     this.route.paramMap.subscribe(params => {
       this.voitureOneId = params.get('voiture1');
       if (!this.voitureOneId) {
@@ -53,6 +59,7 @@ export class CompareformComponent implements OnInit {
     });
   
     this.searchForm = this.fb.group({
+      id: '',
       marque: '',
       carrosserie: '',
       model: ''
@@ -100,30 +107,31 @@ export class CompareformComponent implements OnInit {
   }
 
   onSearch() {
-    const { marque, carrosserie, model } = this.searchForm.value;
-
+    const { id, marque, carrosserie, model } = this.searchForm.value;
+  
+    // Find the selected car from the voitures array based on marque, carrosserie, and model
     const selectedCar = this.voitures.find(
       v => v.marque === marque && v.carrosserie === carrosserie && v.model === model
     );
-
-    if (selectedCar?.id) {
+  
+    if (selectedCar) {
       const compareData: Comparison = {
         voitureuneid: this.voitureOneId as string,
         voituredeuxid: selectedCar.id as string,
-        userid: '',
+        userid: this.userId,
         datetime: new Date()
       };
       
+      // Add the comparison to the database
       this.compareService.AddComparison(compareData).subscribe((response: any) => {
         console.log('Comparison added successfully');
         if (response?.id) {
+          // Navigate to the comparison result page with the comparison ID as query parameter
           this.router.navigate(['/comparison-result'], { queryParams: { id: response.id } });
         } else {
           console.warn('No ID returned from the server');
         }
       });
-      
-      
     } else {
       console.warn('No matching car found!');
     }
