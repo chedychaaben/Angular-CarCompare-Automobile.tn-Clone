@@ -19,7 +19,7 @@
     </div>
 
     <!-- Table -->
-    <div class="w-full overflow-auto mt-4">
+    <div class="w-full overflow-auto mt-4" *ngIf="dataSource.length > 0">
       <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 w-full min-w-[1200px]">
 
         <!-- Marque -->
@@ -134,5 +134,13 @@
         <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="hover:bg-stone-50 group"></tr>
       </table>
     </div>
+
+
+      
+    <div class="w-full text-center text-stone-500 font-medium p-6" *ngIf="dataSource.length === 0">
+      Aucune Voiture trouvée.
+    </div>
+
+
   </div>
 </div>

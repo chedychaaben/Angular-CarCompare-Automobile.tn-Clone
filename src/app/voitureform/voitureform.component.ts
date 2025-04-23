@@ -7,6 +7,7 @@ import { CarrosserieService } from '../services/carrosserie.service';
 import { Marque } from 'src/Models/Marque';
 import { Voiture } from 'src/Models/Voiture';
 import { Carrosserie } from 'src/Models/Carrosserie';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-voitureform',
@@ -23,7 +24,8 @@ export class VoitureformComponent implements OnInit {
     private http: HttpClient,
     private marqueService: MarqueService,
     private voitureService: VoitureService,
-    private carrosserieService: CarrosserieService
+    private carrosserieService: CarrosserieService,
+    private location: Location
   ) {}
 
   ngOnInit() {
@@ -31,18 +33,20 @@ export class VoitureformComponent implements OnInit {
     this.loadMarques();
     this.loadCarrosseries();
   }
-
+  goBack(): void {
+    this.location.back();
+  }
   initializeForm() {
     this.form = this.fb.group({
-      marque: ['', Validators.required],  // Must select a marque
+      marque: ['', Validators.required],
       model: ['', Validators.required],
       carrosserie: ['', Validators.required],
       moteur: ['', Validators.required],
       prix: ['', [Validators.required, Validators.min(0)]],
-      image: [null, Validators.required], // File required
+      image: [null, Validators.required],
       nbports: ['', Validators.required],
       nbchaises: ['', Validators.required],
-      year: ['', [Validators.required, Validators.min(1886)]], // Cars exist since 1886
+      year: ['', [Validators.required, Validators.min(1886)]],
       drivetrain: ['', Validators.required],
       fuel: ['', Validators.required],
       transmission: ['', Validators.required],

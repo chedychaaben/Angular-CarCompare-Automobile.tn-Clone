@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { MarqueService } from '../services/marque.service';
 import { Marque } from 'src/Models/Marque';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-marqueform',
@@ -14,18 +15,22 @@ export class MarqueformComponent implements OnInit {
 
   constructor(private fb: FormBuilder, 
     private http: HttpClient,
-    private marqueService: MarqueService) {}
+    private marqueService: MarqueService,
+    private location: Location
+  ) {}
 
   ngOnInit() {
     // Initialize the form with form controls and validation
     this.form = this.fb.group({
-      nom: ['', Validators.required],  // Nom is required
-      pays: ['', Validators.required], // Pays is required
-      logo: [null, Validators.required] // Logo is required (must upload a file)
+      nom: ['', Validators.required],
+      pays: ['', Validators.required],
+      logo: [null, Validators.required]
     });
   }
-
-  // This method will handle file changes
+  goBack(): void {
+    this.location.back();
+  }
+  
   onFileChange(event: any): void {
     const file = event.target.files[0];
     if (file) {

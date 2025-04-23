@@ -11,7 +11,7 @@
         </a>
       </div>
 
-      <div class="overflow-x-auto mt-4">
+      <div class="overflow-x-auto mt-4" *ngIf="dataSource.length > 0">
         <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 w-full min-w-max border rounded-lg overflow-hidden">
 
           <!-- Nom Column -->
@@ -54,10 +54,24 @@
             </td>
           </ng-container>
 
+          <!-- data -->
           <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
           <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          <!-- aucune data ? -->
+          <tr class="text-center" *matNoDataRow>
+            <td colspan="3" class="p-6 text-stone-500 font-medium">
+              Aucune marque trouvée.
+            </td>
+          </tr>
         </table>
       </div>
+
+      
+      <div class="w-full text-center text-stone-500 font-medium p-6" *ngIf="dataSource.length === 0">
+        Aucune Marque trouvée.
+      </div>
+
+
     </div>
   </div>
 </div>

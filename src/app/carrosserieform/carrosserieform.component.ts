@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { CarrosserieService } from '../services/carrosserie.service';
 import { Carrosserie } from 'src/Models/Carrosserie';
 import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-carrosserieform',
@@ -17,7 +18,8 @@ export class CarrosserieformComponent implements OnInit {
     private fb: FormBuilder,
     private http: HttpClient,
     private carrosserieService: CarrosserieService,
-    private router: Router
+    private router: Router,
+    private location: Location
   ) {}
 
   ngOnInit() {
@@ -29,6 +31,10 @@ export class CarrosserieformComponent implements OnInit {
       nom: ['', Validators.required],
       image: [null, Validators.required] // File required
     });
+  }
+
+  goBack(): void {
+    this.location.back(); // Goes to the previous route
   }
 
   onFileChange(event: any): void {

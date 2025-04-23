@@ -2,6 +2,12 @@
   <app-adminsidebar></app-adminsidebar>
 
   <div class="flex-1 p-8 overflow-y-auto">
+    <button 
+    (click)="goBack()"
+    class="inline-flex items-center px-4 py-2 bg-stone-200 hover:bg-stone-300 text-sm font-medium text-stone-700 rounded-lg"
+    >
+    ← Retour
+    </button>
     <form [formGroup]="form" (ngSubmit)="onsub()" class="grid grid-cols-1 md:grid-cols-2 gap-6 bg-white p-6 rounded-lg shadow-md">
 
       <!-- Marque -->

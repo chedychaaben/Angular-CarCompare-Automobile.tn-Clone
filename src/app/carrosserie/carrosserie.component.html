@@ -23,7 +23,7 @@
     </div>
 
     <!-- Table -->
-    <div class="w-full overflow-auto mt-4">
+    <div class="w-full overflow-auto mt-4" *ngIf="dataSource.length > 0">
       <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 w-full min-w-max">
         
         <!-- Nom Column -->
@@ -61,10 +61,18 @@
           </td>
         </ng-container>
         
-        <!-- Rows -->
+        <!-- data -->
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="hover:bg-stone-50 group"></tr>
+
       </table>
     </div>
+
+    
+    <div class="w-full text-center text-stone-500 font-medium p-6" *ngIf="dataSource.length === 0">
+      Aucune carrosserie trouvée.
+    </div>
+
+
   </div>
 </div>

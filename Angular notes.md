@@ -1,3 +1,22 @@
+
+redirect after creation !! marque problem
+table weird in list carrosrie list voitures
+hompage when empty then what ? 
+dashboard :) 
+
+
+EDITTTTTTTTTTTTTTTTTTTTTT FEL ADMIN 3LIHA NOTE :)
+
+
+
+
+
+REDIRECT LEL CREATE VOITURE W LO5RA ?/ Retour BTN / s
+
+
+
+
+
 Almost finished with admin tasks but still needs (edit, delete, userchecklogin, template)
 
 fel page compare form, lezem namlou if car1==car2 don't create compare and don't allow them to compare (matejemch t9aren audi b audi lol)
