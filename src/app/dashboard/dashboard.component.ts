@@ -1,37 +1,50 @@
-import { Component } from '@angular/core';
-import { ChartType, ChartOptions, registerables } from 'chart.js';  // <-- Registerables import
+import { Component, OnInit } from '@angular/core';
+import { Chart, ChartDataset, ChartOptions, registerables } from 'chart.js';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 
-// Register all the required Chart.js components
-import { Chart } from 'chart.js';
-Chart.register(...registerables);  // <-- Register all components, including "bar"
+import { Vu } from 'src/Models/Vu';
+import { VuService } from '../services/vu.service';
+
+Chart.register(...registerables);
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
-export class DashboardComponent {
-  public chartData = {
-    labels: ['Car A', 'Car B', 'Car C'],
-    datasets: [
-      {
-        label: 'Horsepower',
-        data: [150, 200, 180],
-        backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56']
-      }
-    ]
-  };
+export class DashboardComponent implements OnInit{
+  vus : Vu[] = [];
+  
+  constructor(
+    private afAuth: AngularFireAuth,
+    private vuService: VuService,
+  ) {}
 
-  // Correct type for options using Chart.js v4.x.x
-  public chartOptions: ChartOptions = {
+  ngOnInit() {
+    // getting user id
+    this.afAuth.authState.subscribe(user => {
+      if (user) {
+        this.vuService.GetVusByUserId(user.uid).subscribe((data) => {
+          this.vus = data;
+        });
+      }
+    });
+  }
+
+  chartData: ChartDataset[] = [
+    {
+      label: 'Your viewing history per day (last 7 days)',
+      data: [3,2,2,2,5,7,10]
+    }
+  ];
+
+  chartLabels: string[] = ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche"];
+  chartOptions: ChartOptions = {
     responsive: true,
     plugins: {
       legend: {
-        display: true,
-        position: 'top'
+        display: true
       }
     }
   };
-
-  public chartType: ChartType = 'bar';
 }
