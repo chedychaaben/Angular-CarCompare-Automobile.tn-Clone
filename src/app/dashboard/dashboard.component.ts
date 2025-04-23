@@ -52,7 +52,8 @@ export class DashboardComponent implements OnInit{
   }
 
   getLastNDaysLabels(n: number): string[] {
-    const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    const days = ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'];
+
     const result: string[] = [];
     const today = new Date();
   
@@ -85,15 +86,25 @@ export class DashboardComponent implements OnInit{
   LikeRateData: ChartDataset[] = [
     {
       label: 'Doughnut Chart',
+      backgroundColor: ['#ff6384', '#36a2eb'],
+      hoverBackgroundColor: ['#ff4384', '#36a2eb'],
       data: []
     }
   ];
-  LikeRateLabels: string[] = ["Likes","Viewed"];
+  LikeRateLabels: string[] = ["Likes","Viewes"];
   LikeRateOptions: ChartOptions = {
     responsive: true,
     plugins: {
       legend: {
-        display: true
+        display: true,
+        position: 'top', // Legend at the top
+      },
+      tooltip: {
+        callbacks: {
+          label: (tooltipItem) => {
+            return `${tooltipItem.label} ${tooltipItem.raw}`; // Show percentage in tooltip
+          }
+        }
       }
     }
   };
@@ -101,8 +112,8 @@ export class DashboardComponent implements OnInit{
   updateLikeRateChart() {
     this.LikeRateData = [
       {
-        label: 'Llied vs View',
-        data: [this.favoris.length, this.vus.length]
+        label: 'Liked vs Viewed',
+        data: [this.favoris?.length || 0, this.vus?.length || 0]
       }
     ];
   }
@@ -116,7 +127,7 @@ export class DashboardComponent implements OnInit{
     return new Date(now.setDate(diff));
   }
   processDayCounts(rawData: Vu[]): { labels: string[], data: number[] } {
-    const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    const days = ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'];
     const countMap = new Map<string, number>();
   
     const today = new Date();
