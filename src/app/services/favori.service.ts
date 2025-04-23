@@ -58,5 +58,10 @@ export class FavoriService {
       })
     );
   }
+
+
+  GetFavorisByUserId(userId: string): Observable<Favori[]> {
+    return this.http.get<Favori[]>(`http://localhost:3000/favoris?userid=${userId}`);
+  }
   
 }

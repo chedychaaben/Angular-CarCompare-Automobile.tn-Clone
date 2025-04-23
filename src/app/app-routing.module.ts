@@ -92,7 +92,7 @@ const routes: Routes = [
   },
   {
     path:'dashboard',
-    canActivate:  [() => authGuard('user')],
+    canActivate:  [() => authGuard('')], //user
     component: DashboardComponent
   }
 ];

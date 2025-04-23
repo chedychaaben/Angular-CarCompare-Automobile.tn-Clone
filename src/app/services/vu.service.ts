@@ -20,7 +20,7 @@ export class VuService {
   }
 
   GetVusByUserId(userId: string): Observable<Vu[]> {
-    return this.http.get<Vu[]>(`http://localhost:3000/vus?userId=${userId}`);
+    return this.http.get<Vu[]>(`http://localhost:3000/vus?userid=${userId}`);
   }
 
 }

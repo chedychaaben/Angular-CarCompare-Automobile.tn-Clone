@@ -1,16 +1,35 @@
 <app-navbar></app-navbar>
 
+<div>
+  <p><strong>Views</strong>: {{ vus?.length }}</p>
+  <p><strong>Favoris</strong>: {{ favoris?.length }}</p>
+  <p><strong>Comparisons</strong>: {{ comparisons?.length }}</p>
+</div>
 
 <div class="flex-grow p-6">
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
     <div class="bg-white p-4 rounded-lg shadow-lg">
-      <h2 class="text-xl font-semibold mb-4">X</h2>
       <div class="chart-container">
         <canvas baseChart
                 [type]="'line'"
-                [datasets]="chartData"
-                [labels]="chartLabels"
-                [options]="chartOptions">
+                [datasets]="viewingTrendsData"
+                [labels]="viewingTrendsLabels"
+                [options]="viewingTrendsOptions">
+        </canvas>
+      </div>
+    </div>
+  </div>
+
+
+  <br/>
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div class="bg-white p-4 rounded-lg shadow-lg">
+      <div class="chart-container">
+        <canvas baseChart
+                [type]="'doughnut'"
+                [datasets]="LikeRateData"
+                [labels]="LikeRateLabels"
+                [options]="LikeRateOptions">
         </canvas>
       </div>
     </div>

@@ -20,4 +20,9 @@ export class CompareService {
     return this.http.post<void>('http://localhost:3000/comparisons', comparison);
   }
 
+
+  GetComparisonsByUserId(userId: string): Observable<Comparison[]> {
+    return this.http.get<Comparison[]>(`http://localhost:3000/comparisons?userid=${userId}`);
+  }
+
 }
