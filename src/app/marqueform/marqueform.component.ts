@@ -4,6 +4,8 @@ import { HttpClient } from '@angular/common/http';
 import { MarqueService } from '../services/marque.service';
 import { Marque } from 'src/Models/Marque';
 import { Location } from '@angular/common';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-marqueform',
@@ -16,7 +18,8 @@ export class MarqueformComponent implements OnInit {
   constructor(private fb: FormBuilder, 
     private http: HttpClient,
     private marqueService: MarqueService,
-    private location: Location
+    private location: Location,
+    private router: Router,
   ) {}
 
   ngOnInit() {
@@ -64,8 +67,8 @@ export class MarqueformComponent implements OnInit {
           this.marqueService.AddMarque(marqueData).subscribe(() => {
             console.log('Marque added successfully');
             this.form.reset(); // Optionally reset the form
+            this.router.navigate(['/admin/list-marques']);
           });
-          
         });
 
       } else {

@@ -78,7 +78,6 @@ export class HomepageComponent implements OnInit {
       this.filteredModels = [];
       return;
     }
-
     // Filter voitures based on marque ID and carrosserie ID
     this.filteredModels = this.voitures
       .filter(voiture => voiture.marque === selectedMarqueId && voiture.carrosserie === selectedCarrosrieId)

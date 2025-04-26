@@ -3,60 +3,118 @@
 <section class="bg-gray-100 py-8">
   <div class="max-w-6xl mx-auto px-4 text-center">
     <h1 class="text-3xl font-bold text-gray-800 mb-4">Dashboard Overview</h1>
-    Welcom back EMAIL, Voici un tableau de bord pour vous :D
-    <div class="flex flex-col sm:flex-row justify-center gap-6 text-lg text-gray-600">
+    <p>Welcome back user.email ! Voici un tableau de bord pour vous :D</p>
+
+    <div class="flex flex-col sm:flex-row justify-center gap-6 text-lg text-gray-600 mt-6">
       <p><strong>Views</strong>: {{ vus?.length }}</p>
       <p><strong>Favoris</strong>: {{ favoris?.length }}</p>
       <p><strong>Comparisons</strong>: {{ comparisons?.length }}</p>
-      <div *ngIf="newestVoiture && newestVu">
-        <p>Voiture: {{ newestVoiture?.image }} {{ newestVoiture?.marque }} ({{ newestVoiture?.model }})</p>
-        <p>Viewed at: {{ newestVu?.datetime | date }}</p>
-      </div>
+    </div>
+
+    <div *ngIf="newestVoiture && newestVu" class="mt-8 flex flex-col items-center">
+      <img src="{{ newestVoiture?.image }}" alt="Newest Voiture" class="w-48 h-32 object-cover rounded-lg shadow-md">
+      <p class="mt-2 font-semibold text-gray-700">
+        Voiture: {{ newestVoiture?.marque }} ({{ newestVoiture?.model }})
+      </p>
+      <p class="text-gray-500">
+        Viewed at: {{ newestVu?.datetime | date }}
+      </p>
     </div>
   </div>
 </section>
 
 <main class="bg-white py-10">
-  <div class="max-w-6xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-8">
-    
-    <section class="bg-gray-50 p-6 rounded-xl shadow-md">
-      <h2 class="text-xl font-semibold text-gray-800 mb-4">Viewing Trends</h2>
-      <canvas baseChart
-              [type]="'line'"
-              [datasets]="viewingTrendsData"
-              [labels]="viewingTrendsLabels"
-              [options]="viewingTrendsOptions">
-      </canvas>
+  <div class="max-w-6xl mx-auto px-4 space-y-12">
+
+    <!-- Views Section -->
+    <section>
+      <h2 class="text-2xl font-bold text-gray-800 mb-6">Views</h2>
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div class="bg-gray-50 p-6 rounded-xl shadow-md">
+          <h3 class="text-xl font-semibold text-gray-800 mb-4">Viewing Trends</h3>
+          <canvas baseChart
+                  [type]="'line'"
+                  [datasets]="viewingTrendsData"
+                  [labels]="viewingTrendsLabels"
+                  [options]="viewingTrendsOptions">
+          </canvas>
+        </div>
+
+        <div class="bg-gray-50 p-6 rounded-xl shadow-md">
+          <h3 class="text-xl font-semibold text-gray-800 mb-4">Viewed Marques</h3>
+          <canvas baseChart
+                  [type]="'bar'"
+                  [datasets]="ViewedMarquesData"
+                  [labels]="ViewedMarquesLabels"
+                  [options]="ViewedMarquesOptions">
+          </canvas>
+        </div>
+      </div>
     </section>
 
-    <section class="bg-gray-50 p-6 rounded-xl shadow-md">
-      <h2 class="text-xl font-semibold text-gray-800 mb-4">Like Rate VOUS AVEZ AIMER 40% DE VOITURES VUS</h2>
-      <canvas baseChart
-              [type]="'doughnut'"
-              [datasets]="LikeRateData"
-              [labels]="LikeRateLabels"
-              [options]="LikeRateOptions">
-      </canvas>
+    <!-- Likes/Favorites Section -->
+    <section>
+      <h2 class="text-2xl font-bold text-gray-800 mb-6">Liked/Favoris</h2>
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div class="bg-gray-50 p-6 rounded-xl shadow-md">
+          <h3 class="text-xl font-semibold text-gray-800 mb-4">Like Rate</h3>
+          <p class="text-gray-500 mb-4">Vous avez aimé 40% des voitures vues</p>
+          <canvas baseChart
+                  [type]="'doughnut'"
+                  [datasets]="LikeRateData"
+                  [labels]="LikeRateLabels"
+                  [options]="LikeRateOptions">
+          </canvas>
+        </div>
+
+        <div class="bg-gray-50 p-6 rounded-xl shadow-md">
+          <h3 class="text-xl font-semibold text-gray-800 mb-4 text-center">Liked Marques</h3>
+          <canvas baseChart
+                  [data]="{ labels: LikedMarquesLabels, datasets: LikedMarquesData }"
+                  [options]="LikedMarquesOptions"
+                  chartType="doughnut">
+          </canvas>
+        </div>
+      </div>
     </section>
 
-    <section class="bg-gray-50 p-6 rounded-xl shadow-md">
-      <h2 class="text-xl font-semibold text-gray-800 mb-4">Viewed Marques</h2>
-      <canvas baseChart
-              [type]="'bar'"
-              [datasets]="ViewedMarquesData"
-              [labels]="ViewedMarquesLabels"
-              [options]="ViewedMarquesOptions">
-      </canvas>
+    <!-- Comparisons Section -->
+    <section>
+      <h2 class="text-2xl font-bold text-gray-800 mb-6">Comparisons</h2>
+      <div class="grid grid-cols-1 gap-8">
+        <div class="bg-gray-50 p-6 rounded-xl shadow-md">
+          <h3 class="text-xl font-semibold text-gray-800 mb-4 text-center">Résumé sur les voitures comparées</h3>
+          <canvas baseChart
+                  [data]="{ labels: StackedComparedChartLabels, datasets: StackedComparedChartData }"
+                  [options]="StackedComparedChartOptions"
+                  chartType="bar">
+          </canvas>
+        </div>
+
+        <div class="overflow-x-auto bg-gray-50 p-6 rounded-xl shadow-md">
+          <h3 class="text-xl font-semibold text-gray-800 mb-4">Historique des Comparaisons</h3>
+          <table class="min-w-full border-collapse border border-gray-300">
+            <thead>
+              <tr class="bg-gray-200">
+                <th class="py-2 px-4 border">#</th>
+                <th class="py-2 px-4 border">Voiture 1</th>
+                <th class="py-2 px-4 border">Voiture 2</th>
+                <th class="py-2 px-4 border">Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let comparison of comparisons; let i = index" class="text-center">
+                <td class="py-2 px-4 border">{{ i + 1 }}</td>
+                <td class="py-2 px-4 border"><img src="{{ comparison.voitureUne?.image }}" alt="voitureUne" class="w-48 h-32 object-cover rounded-lg shadow-md">{{ comparison.voitureUne?.carrosserie }} {{ comparison.voitureUne?.marque }} {{ comparison.voitureUne?.marque }}</td>
+                <td class="py-2 px-4 border"><img src="{{ comparison.voitureDeux?.image }}" alt="voitureDeux" class="w-48 h-32 object-cover rounded-lg shadow-md">{{ comparison.voitureDeux?.carrosserie }} {{ comparison.voitureDeux?.marque }} {{ comparison.voitureDeux?.marque }}</td>
+                <td class="py-2 px-4 border">{{ comparison.datetime | date:'medium' }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </section>
 
-    <section class="bg-gray-50 p-6 rounded-xl shadow-md">
-      <h2 class="text-xl font-semibold text-gray-800 mb-4 text-center">Liked Marques</h2>
-      <canvas baseChart
-              [data]="{ labels: LikedMarquesLabels, datasets: LikedMarquesData }"
-              [options]="LikedMarquesOptions"
-              chartType="doughnut">
-      </canvas>
-    </section>
   </div>
 </main>
 

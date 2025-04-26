@@ -7,14 +7,13 @@
         <h3 class="text-2xl font-semibold">
             {{ voiture.marque_nom }} <span class="text-xl font-normal">{{ voiture.model }}</span>
         </h3>
-        <img class="brand-badge lazyloaded mt-2 w-12 h-auto" src="https://catalogue.automobile.tn/marques/3_resized.png" alt="BMW" />
     </div>
     
     
   
     <div id="detail_content" class="mt-8">
         <div class="version-details">
-            <div class="version-img relative">
+            <div class="version-img relative flex justify-center items-center">
                 <picture>
                     <img class="img-fluid rounded-md" [src]="voiture.image" alt="image">
                 </picture>

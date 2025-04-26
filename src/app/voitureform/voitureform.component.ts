@@ -7,6 +7,7 @@ import { CarrosserieService } from '../services/carrosserie.service';
 import { Marque } from 'src/Models/Marque';
 import { Voiture } from 'src/Models/Voiture';
 import { Carrosserie } from 'src/Models/Carrosserie';
+import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 
 @Component({
@@ -25,7 +26,8 @@ export class VoitureformComponent implements OnInit {
     private marqueService: MarqueService,
     private voitureService: VoitureService,
     private carrosserieService: CarrosserieService,
-    private location: Location
+    private location: Location,
+    private router: Router,
   ) {}
 
   ngOnInit() {
@@ -110,6 +112,7 @@ export class VoitureformComponent implements OnInit {
           this.voitureService.AddVoiture(voitureData).subscribe(() => {
             console.log('Voiture added successfully');
             this.form.reset();
+            this.router.navigate(['/admin/list-voitures']);
           });
         });
       } else {

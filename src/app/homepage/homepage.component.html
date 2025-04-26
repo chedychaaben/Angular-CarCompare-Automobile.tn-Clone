@@ -55,43 +55,23 @@
   </div>
 </div>
 <div class="relative container mx-auto px-4 py-10">
-  <!-- Section Title -->
   <div class="mb-8 ml-8">
     <h3 class="text-3xl font-bold text-gray-800">
       Derniers modèles
     </h3>
   </div>
 
-  <!-- Left Scroll Button -->
-  <button (click)="scrollLeft()"
-          class="absolute left-2 top-1/2 -translate-y-1/2 z-10 hidden md:flex items-center justify-center w-10 h-10 bg-white shadow rounded-full hover:bg-gray-100 transition">
-    ◀
-  </button>
-
-  <!-- Right Scroll Button -->
-  <button (click)="scrollRight()"
-          class="absolute right-2 top-1/2 -translate-y-1/2 z-10 hidden md:flex items-center justify-center w-10 h-10 bg-white shadow rounded-full hover:bg-gray-100 transition">
-    ▶
-  </button>
-
-  <!-- Gradient Fade Left -->
-  <div class="pointer-events-none absolute left-0 top-0 h-full w-16 bg-gradient-to-r from-white to-transparent z-5 hidden md:block"></div>
-
-  <!-- Gradient Fade Right -->
-  <div class="pointer-events-none absolute right-0 top-0 h-full w-16 bg-gradient-to-l from-white to-transparent z-5 hidden md:block"></div>
-
-  <!-- Carousel Wrapper -->
-   <div #carousel class="flex gap-6 overflow-x-auto scroll-smooth px-2 md:px-10 hide-scrollbar">
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
     <div *ngFor="let voiture of latestVoitures" class="flex-shrink-0 w-72 relative">
       <a [routerLink]="['/voiture-details']"
-          [queryParams]="{ id: voiture.id }"
-          class="block bg-white rounded-2xl shadow-md hover:shadow-lg transition duration-300 overflow-hidden">
+         [queryParams]="{ id: voiture.id }"
+         class="block bg-white rounded-2xl shadow-md hover:shadow-lg transition duration-300 overflow-hidden">
         <!-- Badge -->
         <span *ngIf="voiture.promo"
               class="absolute top-3 left-3 bg-red-600 text-white text-xs uppercase font-semibold px-2 py-1 rounded">
           Promo
         </span>
-
+    
         <!-- Image -->
         <picture>
           <source type="image/webp" [srcset]="voiture.image?.replace('.png', '.webp')">
@@ -100,7 +80,7 @@
                [alt]="voiture.marque + ' ' + voiture.model"
                class="w-full h-48 object-cover rounded-t-2xl">
         </picture>
-
+    
         <!-- Info -->
         <div class="p-4">
           <h2 class="text-lg font-semibold text-gray-800 leading-snug truncate">
@@ -115,8 +95,10 @@
         </div>
       </a>
     </div>
-
+    
   </div>
+  
+  
 </div>
 
 <!-- Brand Showroom Section -->
@@ -125,23 +107,21 @@
 
     <!-- Section Header -->
     <div class="text-center mb-10">
-      <h3 class="text-3xl font-bold text-gray-800 mb-2">Showroom Automobile</h3>
-      <p class="text-gray-500 text-sm">Découvrez toutes les marques disponibles</p>
+      <h3 class="text-3xl font-bold text-gray-800 mb-2">Nos Marques d'Automobile</h3>
+      <p class="text-gray-500 text-sm">Voici toutes les marques disponibles</p>
     </div>
 
     <!-- Brand Logos Grid -->
-    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-6 gap-6 items-center justify-center">
+    <div class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-4 lg:grid-cols-4 gap-6 items-center justify-center">
       <a *ngFor="let marque of marques"
-         [routerLink]="['/searchbymarque']"
-         [queryParams]="{ marque: marque.nom }"
-         class="flex items-center justify-center hover:scale-105 transition-transform duration-300">
-
+        class="flex items-center justify-center hover:scale-105 transition-transform duration-300">
+        
         <picture>
           <source type="image/webp" [srcset]="marque.logo.replace('.png', '.webp')">
           <source type="image/png" [srcset]="marque.logo">
           <img [src]="marque.logo"
-               [alt]="marque.nom"
-               class="h-12 object-contain grayscale hover:grayscale-0 transition duration-300">
+              [alt]="marque.nom"
+              class="h-24 object-contain grayscale hover:grayscale-0 transition duration-300">
         </picture>
       </a>
     </div>

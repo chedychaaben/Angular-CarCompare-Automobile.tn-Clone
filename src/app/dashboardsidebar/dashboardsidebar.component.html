@@ -1,0 +1,38 @@
+<div class="w-full max-w-xs flex flex-col h-screen bg-white border border-stone-200 rounded-2xl shadow-md overflow-hidden">
+
+  <div class="px-6 pt-6">
+    <div class="flex flex-col gap-4 border-b border-stone-200 pb-6">
+      <button routerLink="/" class="hidden lg:inline-flex items-center justify-center text-sm font-semibold text-stone-600 border border-stone-400 rounded-lg px-4 py-2 hover:border-stone-600 hover:bg-stone-100 transition">
+        🚀 Revenir sur le site principal
+      </button>
+      <p class="text-lg font-bold text-stone-800">Car Compare Dashboard</p>
+    </div>
+  </div>
+
+  <div class="flex-1 overflow-auto px-6 pt-4">
+    <ul class="flex flex-col gap-2">
+      <li>
+        <a routerLink="/dashboard/vus" class="block px-4 py-2 rounded-md text-sm text-stone-700 hover:bg-stone-100 hover:text-stone-900 transition">
+          Vus
+        </a>
+      </li>
+      <li>
+        <a routerLink="/dashboard/favoris" class="block px-4 py-2 rounded-md text-sm text-stone-700 hover:bg-stone-100 hover:text-stone-900 transition">
+          Favoris
+        </a>
+      </li>
+      <li>
+        <a routerLink="/dashboard/comparisons" class="block px-4 py-2 rounded-md text-sm text-stone-700 hover:bg-stone-100 hover:text-stone-900 transition">
+          Comparisons
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <div class="px-6 py-4 border-t border-stone-200">
+    <button (click)="logout()" class="w-full flex items-center justify-center text-sm font-semibold text-red-600 border border-red-300 rounded-lg px-4 py-2 hover:bg-red-50 transition">
+      Logout
+    </button>
+  </div>
+
+</div>

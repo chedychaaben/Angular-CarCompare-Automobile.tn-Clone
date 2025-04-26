@@ -1,0 +1,61 @@
+<div class="flex min-h-screen bg-gray-100">
+    <app-dashboardsidebar></app-dashboardsidebar>
+  
+    <main class="flex-1 bg-white py-10 overflow-y-auto">
+      <div class="max-w-6xl mx-auto px-4 space-y-12">
+        
+        <!-- Header Section -->
+        <section class="text-center space-y-4">
+          <div class="flex flex-col sm:flex-row justify-center gap-6 text-lg text-gray-600 mt-6">
+            <p><strong>Total Views</strong>: {{ vus?.length }}</p>
+          </div>
+  
+          <!-- Latest Voiture Section -->
+          <div *ngIf="newestVoiture && newestVu" class="mt-10 flex flex-col items-center">
+            <img 
+              [src]="newestVoiture?.image" 
+              alt="Newest Voiture" 
+              class="w-48 h-32 object-cover rounded-xl shadow-lg"
+            />
+            <p class="mt-4 font-semibold text-gray-700">
+              Voiture que vous avez vu recament : {{ newestVoiture?.marque }} ({{ newestVoiture?.model }})
+            </p>
+            <p class="text-gray-500 text-sm">
+              Viewed at: {{ newestVu?.datetime | date:'medium' }}
+            </p>
+          </div>
+        </section>
+  
+        <!-- Charts Section -->
+        <section class="space-y-8">
+          <h2 class="text-3xl font-bold text-gray-800 mb-4">Views</h2>
+  
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <!-- Viewing Trends Chart -->
+            <div class="bg-gray-50 p-6 rounded-2xl shadow-md">
+              <h3 class="text-2xl font-semibold text-gray-700 mb-6">Viewing Trends</h3>
+              <canvas baseChart
+                      [type]="'line'"
+                      [datasets]="viewingTrendsData"
+                      [labels]="viewingTrendsLabels"
+                      [options]="viewingTrendsOptions">
+              </canvas>
+            </div>
+  
+            <!-- Viewed Marques Chart -->
+            <div class="bg-gray-50 p-6 rounded-2xl shadow-md">
+              <h3 class="text-2xl font-semibold text-gray-700 mb-6">Viewed Marques</h3>
+              <canvas baseChart
+                      [type]="'bar'"
+                      [datasets]="ViewedMarquesData"
+                      [labels]="ViewedMarquesLabels"
+                      [options]="ViewedMarquesOptions">
+              </canvas>
+            </div>
+          </div>
+        </section>
+  
+      </div>
+    </main>
+  </div>
+  

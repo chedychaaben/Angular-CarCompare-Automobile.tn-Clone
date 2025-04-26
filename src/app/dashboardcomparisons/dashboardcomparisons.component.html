@@ -1,0 +1,97 @@
+<div class="flex min-h-screen bg-gray-100">
+    <app-dashboardsidebar></app-dashboardsidebar>
+  
+    <div class="flex-1 flex flex-col overflow-y-auto">
+  
+      <!-- Header Section -->
+      <section class="bg-gray-100 py-12">
+        <div class="max-w-6xl mx-auto px-4 text-center space-y-6">
+          <div class="flex flex-col sm:flex-row justify-center gap-6 text-lg text-gray-700 mt-8">
+            <p><strong>Comparisons</strong>: {{ comparisons?.length }}</p>
+          </div>
+        </div>
+      </section>
+  
+      <!-- Main Section -->
+      <main class="flex-1 bg-white py-12">
+        <div class="max-w-6xl mx-auto px-4 space-y-16">
+  
+          <!-- Comparisons Section -->
+          <section>
+            <h2 class="text-3xl font-bold text-gray-800 mb-8">Comparisons</h2>
+  
+            <div class="grid grid-cols-1 gap-10">
+  
+              <!-- Comparison Chart -->
+              <div class="bg-gray-50 p-8 rounded-2xl shadow-md">
+                <h3 class="text-2xl font-semibold text-gray-700 mb-6 text-center">
+                  Résumé sur les voitures comparées
+                </h3>
+  
+                <canvas baseChart
+                        [data]="{ labels: StackedComparedChartLabels, datasets: StackedComparedChartData }"
+                        [options]="StackedComparedChartOptions"
+                        chartType="bar">
+                </canvas>
+              </div>
+  
+              <!-- Comparison History Table -->
+              <div class="overflow-x-auto bg-gray-50 p-8 rounded-2xl shadow-md">
+                <h3 class="text-2xl font-semibold text-gray-700 mb-6">
+                  Historique des 5 derniers Comparaisons
+                </h3>
+  
+                <table class="min-w-full border-collapse border border-gray-300 text-gray-700">
+                  <thead>
+                    <tr class="bg-gray-200 text-gray-800">
+                      <th class="py-3 px-4 border">#</th>
+                      <th class="py-3 px-4 border">Voiture 1</th>
+                      <th class="py-3 px-4 border">Voiture 2</th>
+                      <th class="py-3 px-4 border">Date</th>
+                    </tr>
+                  </thead>
+  
+                  <tbody>
+                    <tr *ngFor="let comparison of lastFiveComparisons; let i = index" class="text-center hover:bg-gray-100">
+                      <td class="py-3 px-4 border">{{ i + 1 }}</td>
+                      
+                      <td class="py-3 px-4 border flex flex-col items-center space-y-2">
+                        <img 
+                          [src]="comparison.voitureUne?.image" 
+                          alt="Voiture 1" 
+                          class="w-32 h-20 object-cover rounded-lg shadow-md" 
+                        />
+                        <span class="text-sm font-medium">
+                          {{ comparison.voitureUne?.carrosserie }} {{ comparison.voitureUne?.marque }}
+                        </span>
+                      </td>
+                      
+                      <td class="py-3 px-4 border flex flex-col items-center space-y-2">
+                        <img 
+                          [src]="comparison.voitureDeux?.image" 
+                          alt="Voiture 2" 
+                          class="w-32 h-20 object-cover rounded-lg shadow-md" 
+                        />
+                        <span class="text-sm font-medium">
+                          {{ comparison.voitureDeux?.carrosserie }} {{ comparison.voitureDeux?.marque }}
+                        </span>
+                      </td>
+  
+                      <td class="py-3 px-4 border">
+                        {{ comparison.datetime | date:'medium' }}
+                      </td>
+                    </tr>
+                  </tbody>
+  
+                </table>
+              </div>
+  
+            </div>
+          </section>
+  
+        </div>
+      </main>
+  
+    </div>
+  </div>
+  

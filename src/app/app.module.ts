@@ -39,6 +39,10 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 
 import { provideCharts } from 'ng2-charts';
 import { BaseChartDirective } from 'ng2-charts';
+import { DashboardsidebarComponent } from './dashboardsidebar/dashboardsidebar.component';
+import { DashboardvusComponent } from './dashboardvus/dashboardvus.component';
+import { DashboardfavorisComponent } from './dashboardfavoris/dashboardfavoris.component';
+import { DashboardcomparisonsComponent } from './dashboardcomparisons/dashboardcomparisons.component';
 
 
 
@@ -61,6 +65,10 @@ import { BaseChartDirective } from 'ng2-charts';
     FooterComponent,
     AdminsidebarComponent,
     DashboardComponent,
+    DashboardsidebarComponent,
+    DashboardvusComponent,
+    DashboardfavorisComponent,
+    DashboardcomparisonsComponent,
 
   ],
   imports: [

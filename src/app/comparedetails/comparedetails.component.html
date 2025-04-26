@@ -1,36 +1,96 @@
 <app-navbar></app-navbar>
-<div *ngIf="isLoading">Loading...</div>
 
-<div *ngIf="!isLoading" class="flex justify-center items-center min-h-screen">
-  <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-2 max-w-6xl w-full text-xl p-6">
+<div *ngIf="isLoading" class="flex justify-center items-center min-h-screen">
+  Loading...
+</div>
 
-    <!-- Car Card -->
-    <div class="w-full rounded-lg border shadow-sm overflow-hidden bg-white border-stone-200 shadow-stone-950/5 p-6">
-      <h2>{{ carOne?.marque_nom }} {{ carOne?.model }}</h2>
-      <img [src]="carOne?.image" alt="{{ carOne?.model }}">
-      <ul>
-        <li><strong>Prix:</strong> {{ carOne?.prix }} TND</li>
-        <li><strong>Carrosserie:</strong> {{ carOne?.carrosserie_nom }}</li>
-        <li><strong>Transmission:</strong> {{ carOne?.transmission }}</li>
-        <li><strong>Horsepower:</strong> {{ carOne?.horsepower }} HP</li>
-        <li><strong>Top Speed:</strong> {{ carOne?.topspeed }} km/h</li>
-        <li><strong>Acceleration:</strong> {{ carOne?.acceleration }} s (0-100 km/h)</li>
-      </ul>
+<ng-container *ngIf="!isLoading">
+  <div class="container mx-auto px-4" id="content_container">
+
+    <div class="bloc-title mt-8 flex items-center justify-center space-x-8">
+      <h2 class="text-3xl font-bold">Resultat de votre comparaison</h2>
     </div>
 
-    <!-- Car Card -->
-    <div class="w-full rounded-lg border shadow-sm overflow-hidden bg-white border-stone-200 shadow-stone-950/5 p-6">
-      <h2>{{ carTwo?.marque_nom }} {{ carTwo?.model }}</h2>
-      <img [src]="carTwo?.image" alt="{{ carTwo?.model }}">
-      <ul>
-        <li><strong>Prix:</strong> {{ carTwo?.prix }} TND</li>
-        <li><strong>Carrosserie:</strong> {{ carTwo?.carrosserie_nom }}</li>
-        <li><strong>Transmission:</strong> {{ carTwo?.transmission }}</li>
-        <li><strong>Horsepower:</strong> {{ carTwo?.horsepower }} HP</li>
-        <li><strong>Top Speed:</strong> {{ carTwo?.topspeed }} km/h</li>
-        <li><strong>Acceleration:</strong> {{ carTwo?.acceleration }} s (0-100 km/h)</li>
-      </ul>
+    <div class="grid gap-8 md:grid-cols-2 mt-8">
+
+      <!-- First Car -->
+      <div class="border rounded-lg shadow-md p-6 bg-white">
+        <div class="flex flex-col items-center">
+          <div class="bloc-title flex items-center space-x-4">
+            <h3 class="text-2xl font-semibold">
+              {{ carOne?.marque_nom }} <span class="text-xl font-normal">{{ carOne?.model }}</span>
+            </h3>
+          </div>
+
+          <picture class="mt-4">
+            <img class="rounded-md w-full h-auto object-cover" [src]="carOne?.image" alt="{{ carOne?.model }}">
+          </picture>
+
+          <div class="text-center mt-4">
+            <div class="text-xl font-bold">À partir de
+              <span class="text-2xl">{{ carOne?.prix }}<span class="suffix">DT</span> <sup>TTC</sup></span>
+            </div>
+            <p class="text-lg text-gray-500">{{ carOne?.year }} · {{ carOne?.carrosserie_nom }}</p>
+          </div>
+
+          <div class="technical-details mt-6 w-full">
+            <table class="table-auto w-full">
+              <tbody>
+                <tr><th class="p-2 text-left">Moteur</th><td class="p-2">{{ carOne?.moteur }}</td></tr>
+                <tr><th class="p-2 text-left">Transmission</th><td class="p-2">{{ carOne?.transmission }}</td></tr>
+                <tr><th class="p-2 text-left">Fuel</th><td class="p-2">{{ carOne?.fuel }}</td></tr>
+                <tr><th class="p-2 text-left">Drivetrain</th><td class="p-2">{{ carOne?.drivetrain }}</td></tr>
+                <tr><th class="p-2 text-left">Ports</th><td class="p-2">{{ carOne?.nbports }}</td></tr>
+                <tr><th class="p-2 text-left">Chaises</th><td class="p-2">{{ carOne?.nbchaises }}</td></tr>
+                <tr><th class="p-2 text-left">Horsepower</th><td class="p-2">{{ carOne?.horsepower }} hp</td></tr>
+                <tr><th class="p-2 text-left">Top Speed</th><td class="p-2">{{ carOne?.topspeed }} km/h</td></tr>
+                <tr><th class="p-2 text-left">0-100 km/h</th><td class="p-2">{{ carOne?.acceleration }} s</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Second Car -->
+      <div class="border rounded-lg shadow-md p-6 bg-white">
+        <div class="flex flex-col items-center">
+          <div class="bloc-title flex items-center space-x-4">
+            <h3 class="text-2xl font-semibold">
+              {{ carTwo?.marque_nom }} <span class="text-xl font-normal">{{ carTwo?.model }}</span>
+            </h3>
+          </div>
+
+          <picture class="mt-4">
+            <img class="rounded-md w-full h-auto object-cover" [src]="carTwo?.image" alt="{{ carTwo?.model }}">
+          </picture>
+
+          <div class="text-center mt-4">
+            <div class="text-xl font-bold">À partir de
+              <span class="text-2xl">{{ carTwo?.prix }}<span class="suffix">DT</span> <sup>TTC</sup></span>
+            </div>
+            <p class="text-lg text-gray-500">{{ carTwo?.year }} · {{ carTwo?.carrosserie_nom }}</p>
+          </div>
+
+          <div class="technical-details mt-6 w-full">
+            <table class="table-auto w-full">
+              <tbody>
+                <tr><th class="p-2 text-left">Moteur</th><td class="p-2">{{ carTwo?.moteur }}</td></tr>
+                <tr><th class="p-2 text-left">Transmission</th><td class="p-2">{{ carTwo?.transmission }}</td></tr>
+                <tr><th class="p-2 text-left">Fuel</th><td class="p-2">{{ carTwo?.fuel }}</td></tr>
+                <tr><th class="p-2 text-left">Drivetrain</th><td class="p-2">{{ carTwo?.drivetrain }}</td></tr>
+                <tr><th class="p-2 text-left">Ports</th><td class="p-2">{{ carTwo?.nbports }}</td></tr>
+                <tr><th class="p-2 text-left">Chaises</th><td class="p-2">{{ carTwo?.nbchaises }}</td></tr>
+                <tr><th class="p-2 text-left">Horsepower</th><td class="p-2">{{ carTwo?.horsepower }} hp</td></tr>
+                <tr><th class="p-2 text-left">Top Speed</th><td class="p-2">{{ carTwo?.topspeed }} km/h</td></tr>
+                <tr><th class="p-2 text-left">0-100 km/h</th><td class="p-2">{{ carTwo?.acceleration }} s</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
-</div>
+</ng-container>
+
 <app-footer></app-footer>

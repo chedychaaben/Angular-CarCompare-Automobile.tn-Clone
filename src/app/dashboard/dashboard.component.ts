@@ -12,6 +12,10 @@ import { FavoriService } from '../services/favori.service';
 import { CompareService } from '../services/compare.service';
 import { VoitureService } from '../services/voiture.service';
 
+export interface ComparisonWithCars extends Comparison {
+  voitureUne?: Voiture;
+  voitureDeux?: Voiture;
+}
 
 Chart.register(...registerables);
 
@@ -24,7 +28,7 @@ export class DashboardComponent implements OnInit{
   today: Date = new Date();
   vus : Vu[] = [];
   favoris : Favori[] = [];
-  comparisons : Comparison[] = [];
+  comparisons : ComparisonWithCars[] = [];
   voitures : Voiture[] = [];
   newestVu: Vu | null = null;
   newestVoiture: Voiture | null = null;
@@ -37,7 +41,6 @@ export class DashboardComponent implements OnInit{
     private compareService: CompareService,
     private voitureService: VoitureService,
   ) {}
-
   ngOnInit() {
     this.afAuth.authState.subscribe(user => {
       if (user) {
@@ -46,8 +49,8 @@ export class DashboardComponent implements OnInit{
           this.voitures = data;
   
           // Now get the VUs by UserId
-          this.vuService.GetVusByUserId(user.uid).subscribe((data) => {
-            this.vus = data;
+          this.vuService.GetVusByUserId(user.uid).subscribe((vusData) => {
+            this.vus = vusData;
   
             // Get the newest vu
             const newestVu = this.vus.sort((a, b) => new Date(b.datetime).getTime() - new Date(a.datetime).getTime())[0];
@@ -57,18 +60,31 @@ export class DashboardComponent implements OnInit{
             this.newestVoiture = this.voitures.find(voiture => voiture.id === newestVu.voitureid) || null;
   
             // After the VUs and voitures are loaded, now load favoris
-            this.favoriService.GetFavorisByUserId(user.uid).subscribe((data) => {
-              this.favoris = data;
+            this.favoriService.GetFavorisByUserId(user.uid).subscribe((favorisData) => {
+              this.favoris = favorisData;
   
               // After favoris are loaded, now load comparisons
-              this.compareService.GetComparisonsByUserId(user.uid).subscribe((data) => {
-                this.comparisons = data;
+              this.compareService.GetComparisonsByUserId(user.uid).subscribe((comparisonsData) => {
+                this.comparisons = comparisonsData
+                .map(comp => {
+                  const voitureUne = this.voitures.find(voiture => voiture.id === comp.voitureuneid);
+                  const voitureDeux = this.voitures.find(voiture => voiture.id === comp.voituredeuxid);
+
+                  return {
+                    ...comp,
+                    voitureUne,
+                    voitureDeux
+                  };
+                })
+                .filter(comp => comp.voitureUne && comp.voitureDeux) // ✅ Keep only if both exist
+                .slice(0, 5);
   
-                // After all data is loaded, update the charts
+                // 
                 this.updateLikeRateChart();
                 this.updateLikedMarquesChart();
                 this.updateViewedMarquesChart();
                 this.updateViewingChart();
+                this.updateStackedComparedChart();
               });
             });
           });
@@ -76,7 +92,7 @@ export class DashboardComponent implements OnInit{
       }
     });
   }
-
+  
   getLastNDaysLabels(n: number): string[] {
     const days = ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'];
 
@@ -155,6 +171,33 @@ export class DashboardComponent implements OnInit{
     plugins: {
       legend: { position: 'top' },
       title: { display: true, text: 'Top Liked Marques' }
+    }
+  };
+
+  // INIT
+  StackedComparedChartData: ChartDataset[] = [];
+  StackedComparedChartLabels: string[] = [];
+  StackedComparedChartOptions: ChartOptions = {
+    responsive: true,
+    plugins: {
+      legend: {
+        position: 'top'
+      },
+      tooltip: {
+        callbacks: {
+          label: (tooltipItem) => {
+            return `Value: ${tooltipItem.raw}`;
+          }
+        }
+      }
+    },
+    scales: {
+      x: {
+        stacked: true,
+      },
+      y: {
+        stacked: true,
+      }
     }
   };
 
@@ -269,5 +312,74 @@ export class DashboardComponent implements OnInit{
       data: data,
       backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF']
     }];
+  }
+
+  // Treat
+
+  updateStackedComparedChart() {
+    // Initialize counters
+    let totalEssenceAutomatique = 0;
+    let totalDieselAutomatique = 0;
+    let totalElectriqueAutomatique = 0;
+    let totalHybrideAutomatique = 0;
+
+    let totalEssenceManuelle = 0;
+    let totalDieselManuelle = 0;
+    let totalElectriqueManuelle = 0;
+    let totalHybrideManuelle = 0;
+
+    // Loop over comparisons
+    this.comparisons.forEach(comparison => {
+      const voitures = [comparison.voitureUne, comparison.voitureDeux];
+      
+      voitures.forEach(voiture => {
+        const transmission = voiture?.transmission?.toLowerCase();
+        const fuel = voiture?.fuel?.toLowerCase();
+
+        if (transmission === 'automatique') {
+          if (fuel === 'essence') totalEssenceAutomatique++;
+          else if (fuel === 'diesel') totalDieselAutomatique++;
+          else if (fuel === 'electrique') totalElectriqueAutomatique++;
+          else if (fuel === 'hybride') totalHybrideAutomatique++;
+        } else if (transmission === 'manuelle') {
+          if (fuel === 'essence') totalEssenceManuelle++;
+          else if (fuel === 'diesel') totalDieselManuelle++;
+          else if (fuel === 'electrique') totalElectriqueManuelle++;
+          else if (fuel === 'hybride') totalHybrideManuelle++;
+        }
+      });
+    });
+    
+    // Prepare final datasets
+    const automatiqueData = [
+      totalEssenceAutomatique,
+      totalDieselAutomatique,
+      totalElectriqueAutomatique,
+      totalHybrideAutomatique
+    ];
+
+    const manuelleData = [
+      totalEssenceManuelle,
+      totalDieselManuelle,
+      totalElectriqueManuelle,
+      totalHybrideManuelle
+    ];
+
+    // Update the full dataset array (not just data inside)
+    this.StackedComparedChartData = [
+      {
+        label: 'Automatique',
+        data: automatiqueData,
+        backgroundColor: '#FF6384'
+      },
+      {
+        label: 'Manuelle',
+        data: manuelleData,
+        backgroundColor: '#36A2EB'
+      }
+    ];
+  
+    // If you also want to update labels (optional)
+    this.StackedComparedChartLabels = ['Essence', 'Diesel', 'Électrique', 'Hybride'];
   }
 }
