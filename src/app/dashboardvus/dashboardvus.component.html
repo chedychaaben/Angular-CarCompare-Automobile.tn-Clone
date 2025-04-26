@@ -1,39 +1,60 @@
-<div class="flex min-h-screen bg-gray-100">
-    <app-dashboardsidebar></app-dashboardsidebar>
-  
-    <main class="flex-1 bg-white py-10 overflow-y-auto">
-      <div class="max-w-6xl mx-auto px-4 space-y-12">
+<div class="flex min-h-screen bg-gray-50">
+  <app-dashboardsidebar></app-dashboardsidebar>
+
+  <main class="flex-1 overflow-y-auto">
+    <!-- Section d'en-tête -->
+    <header class="bg-white shadow-sm">
+      <div class="max-w-6xl mx-auto px-4 py-6 sm:px-6 lg:px-8">
+        <div class="flex flex-col md:flex-row justify-between items-center">
+          <h1 class="text-2xl font-bold text-gray-900">Tableau de bord des vues</h1>
+          <div class="mt-4 md:mt-0 bg-blue-50 px-4 py-2 rounded-lg">
+            <p class="text-blue-800 font-medium">
+              <span class="text-blue-600">Vues totales :</span> {{ vus?.length }}
+            </p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Contenu principal -->
+    <div class="max-w-6xl mx-auto px-4 py-6 sm:px-6 lg:px-8">
+      <!-- Section des vues récentes -->
+      <section class="mb-12">
+        <div class="bg-white rounded-xl shadow-md overflow-hidden p-6">
+          <h2 class="text-xl font-semibold text-gray-800 mb-4">Vues récentes</h2>
+          <div *ngIf="newestVoiture && newestVu" class="flex flex-col items-center text-center">
+            <div class="relative w-64 h-40 overflow-hidden rounded-lg shadow-lg mb-4">
+              <img 
+                [src]="newestVoiture?.image" 
+                alt="Dernière Voiture vue" 
+                class="w-full h-full object-cover"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+            </div>
+            <div>
+              <h3 class="text-lg font-medium text-gray-900">
+                {{ newestVoiture?.marque_nom }} {{ newestVoiture?.model }}
+              </h3>
+              <p class="text-sm text-gray-500">
+                Vu le {{ newestVu?.datetime | date:'mediumDate' }} à {{ newestVu?.datetime | date:'shortTime' }}
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section analytique -->
+      <section>
+        <h2 class="text-xl font-semibold text-gray-800 mb-6">Analyse des vues</h2>
         
-        <!-- Header Section -->
-        <section class="text-center space-y-4">
-          <div class="flex flex-col sm:flex-row justify-center gap-6 text-lg text-gray-600 mt-6">
-            <p><strong>Total Views</strong>: {{ vus?.length }}</p>
-          </div>
-  
-          <!-- Latest Voiture Section -->
-          <div *ngIf="newestVoiture && newestVu" class="mt-10 flex flex-col items-center">
-            <img 
-              [src]="newestVoiture?.image" 
-              alt="Newest Voiture" 
-              class="w-48 h-32 object-cover rounded-xl shadow-lg"
-            />
-            <p class="mt-4 font-semibold text-gray-700">
-              Voiture que vous avez vu recament : {{ newestVoiture?.marque }} ({{ newestVoiture?.model }})
-            </p>
-            <p class="text-gray-500 text-sm">
-              Viewed at: {{ newestVu?.datetime | date:'medium' }}
-            </p>
-          </div>
-        </section>
-  
-        <!-- Charts Section -->
-        <section class="space-y-8">
-          <h2 class="text-3xl font-bold text-gray-800 mb-4">Views</h2>
-  
-          <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            <!-- Viewing Trends Chart -->
-            <div class="bg-gray-50 p-6 rounded-2xl shadow-md">
-              <h3 class="text-2xl font-semibold text-gray-700 mb-6">Viewing Trends</h3>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <!-- Graphique des tendances de visionnage -->
+          <div class="bg-white p-6 rounded-xl shadow-md">
+            <div class="flex items-center justify-between mb-4">
+              <h3 class="text-lg font-medium text-gray-800">Tendances de visionnage</h3>
+              <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">Derniers 30 jours</span>
+            </div>
+            <div class="h-64">
               <canvas baseChart
                       [type]="'line'"
                       [datasets]="viewingTrendsData"
@@ -41,10 +62,15 @@
                       [options]="viewingTrendsOptions">
               </canvas>
             </div>
-  
-            <!-- Viewed Marques Chart -->
-            <div class="bg-gray-50 p-6 rounded-2xl shadow-md">
-              <h3 class="text-2xl font-semibold text-gray-700 mb-6">Viewed Marques</h3>
+          </div>
+
+          <!-- Graphique des marques vues -->
+          <div class="bg-white p-6 rounded-xl shadow-md">
+            <div class="flex items-center justify-between mb-4">
+              <h3 class="text-lg font-medium text-gray-800">Marques vues</h3>
+              <span class="text-xs bg-purple-100 text-purple-800 px-2 py-1 rounded">Top 5</span>
+            </div>
+            <div class="h-64">
               <canvas baseChart
                       [type]="'bar'"
                       [datasets]="ViewedMarquesData"
@@ -53,9 +79,8 @@
               </canvas>
             </div>
           </div>
-        </section>
-  
-      </div>
-    </main>
-  </div>
-  
+        </div>
+      </section>
+    </div>
+  </main>
+</div>

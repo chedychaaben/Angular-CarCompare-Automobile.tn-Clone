@@ -8,13 +8,18 @@ import { Comparison } from 'src/Models/Comparison';
 import { Voiture } from 'src/Models/Voiture';
 
 import { VuService } from '../services/vu.service';
-import { FavoriService } from '../services/favori.service';
-import { CompareService } from '../services/compare.service';
 import { VoitureService } from '../services/voiture.service';
 
+
+
+type VoitureWithExtras = Voiture & {
+  marque_nom?: string;
+  carrosserie_nom?: string;
+};
+
 export interface ComparisonWithCars extends Comparison {
-  voitureUne?: Voiture;
-  voitureDeux?: Voiture;
+  voitureUne?: VoitureWithExtras;
+  voitureDeux?: VoitureWithExtras;
 }
 
 Chart.register(...registerables);
@@ -29,9 +34,9 @@ export class DashboardvusComponent implements OnInit{
   vus : Vu[] = [];
   favoris : Favori[] = [];
   comparisons : ComparisonWithCars[] = [];
-  voitures : Voiture[] = [];
+  voitures : VoitureWithExtras[] = [];
   newestVu: Vu | null = null;
-  newestVoiture: Voiture | null = null;
+  newestVoiture: VoitureWithExtras | null = null;
 
   
   constructor(
@@ -57,8 +62,8 @@ export class DashboardvusComponent implements OnInit{
             // Get the voiture of the newest vu
             this.newestVoiture = this.voitures.find(voiture => voiture.id === newestVu.voitureid) || null;
             
-            this.updateViewedMarquesChart();
             this.updateViewingChart();
+            this.updateViewedMarquesChart();
           });
         });
       }
@@ -83,7 +88,7 @@ export class DashboardvusComponent implements OnInit{
   // INIT
   viewingTrendsData: ChartDataset[] = [
     {
-      label: 'Your viewing history per day (last 7 days)',
+      label: 'Votre historique de visualisation par jour (derniers 7 jours)',
       data: []
     }
   ];
@@ -105,7 +110,7 @@ export class DashboardvusComponent implements OnInit{
     responsive: true,
     plugins: {
       legend: { display: false },
-      title: { display: true, text: 'Car Marques Viewed' }
+      title: { display: true, text: 'Marques de voitures vues' }
     }
   };
 
@@ -146,7 +151,7 @@ export class DashboardvusComponent implements OnInit{
     this.viewingTrendsLabels = result.labels;
     this.viewingTrendsData = [
       {
-        label: 'Your viewing history per day (last 6 days)',
+        label: 'Votre historique de visualisation par jour (derniers 6 jours)',
         data: result.data,
         fill: false,
         borderColor: '#42A5F5',
@@ -157,12 +162,12 @@ export class DashboardvusComponent implements OnInit{
 
   // TREAT
   updateViewedMarquesChart() {
-    const marqueCounts: { [marque: string]: number } = {};
+    const marqueCounts: { [marque_nom: string]: number } = {};
   
     this.vus.forEach(vu => {
       const voiture = this.voitures.find(v => v.id === vu.voitureid);
-      if (voiture) {
-        marqueCounts[voiture.marque] = (marqueCounts[voiture.marque] || 0) + 1;
+      if (voiture) {const marque = voiture.marque_nom || 'Unknown';
+        marqueCounts[marque] = (marqueCounts[marque] || 0) + 1;
       }
     });
   
@@ -171,12 +176,12 @@ export class DashboardvusComponent implements OnInit{
     .sort((a, b) => b[1] - a[1])
     .slice(0, 5);
 
-    const labels = sortedMarques.map(([marque]) => marque);
+    const labels = sortedMarques.map(([marque_nom]) => marque_nom);
     const data = sortedMarques.map(([, count]) => count);
   
     this.ViewedMarquesLabels = labels;
     this.ViewedMarquesData = [{
-      label: 'Views by Marque',
+      label: 'Vues par marque',
       data: data,
       backgroundColor: '#36a2eb'
     }];

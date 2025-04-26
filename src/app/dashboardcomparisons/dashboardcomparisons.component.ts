@@ -7,14 +7,19 @@ import { Favori } from 'src/Models/Favori';
 import { Comparison } from 'src/Models/Comparison';
 import { Voiture } from 'src/Models/Voiture';
 
-import { VuService } from '../services/vu.service';
-import { FavoriService } from '../services/favori.service';
 import { CompareService } from '../services/compare.service';
 import { VoitureService } from '../services/voiture.service';
 
+
+
+type VoitureWithExtras = Voiture & {
+  marque_nom?: string;
+  carrosserie_nom?: string;
+};
+
 export interface ComparisonWithCars extends Comparison {
-  voitureUne?: Voiture;
-  voitureDeux?: Voiture;
+  voitureUne?: VoitureWithExtras;
+  voitureDeux?: VoitureWithExtras;
 }
 
 Chart.register(...registerables);
@@ -28,7 +33,7 @@ export class DashboardcomparisonsComponent implements OnInit{
   today: Date = new Date();
   comparisons : ComparisonWithCars[] = [];
   lastFiveComparisons : ComparisonWithCars[] = [];
-  voitures : Voiture[] = [];
+  voitures : VoitureWithExtras[] = [];
 
   
   constructor(
@@ -56,7 +61,7 @@ export class DashboardcomparisonsComponent implements OnInit{
               };
             })
             .filter(comp => comp.voitureUne && comp.voitureDeux)
-            .sort((a, b) => new Date(b.datetime).getTime() - new Date(a.datetime).getTime());
+            .reverse();
             
 
             this.lastFiveComparisons = this.comparisons.slice(0, 5);

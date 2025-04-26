@@ -4,17 +4,20 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 
 import { Vu } from 'src/Models/Vu';
 import { Favori } from 'src/Models/Favori';
-import { Comparison } from 'src/Models/Comparison';
 import { Voiture } from 'src/Models/Voiture';
 
 import { VuService } from '../services/vu.service';
 import { FavoriService } from '../services/favori.service';
-import { CompareService } from '../services/compare.service';
 import { VoitureService } from '../services/voiture.service';
 
-export interface ComparisonWithCars extends Comparison {
-  voitureUne?: Voiture;
-  voitureDeux?: Voiture;
+
+type VoitureWithExtras = Voiture & {
+  marque_nom?: string;
+  carrosserie_nom?: string;
+};
+
+export interface FavoriWithCar extends Favori {
+  voiture?: VoitureWithExtras;
 }
 
 Chart.register(...registerables);
@@ -27,9 +30,8 @@ Chart.register(...registerables);
 export class DashboardfavorisComponent implements OnInit{
   today: Date = new Date();
   vus : Vu[] = [];
-  favoris : Favori[] = [];
-  comparisons : ComparisonWithCars[] = [];
-  voitures : Voiture[] = [];
+  favoris : FavoriWithCar[] = [];
+  voitures : VoitureWithExtras[] = [];
 
   
   constructor(
@@ -51,8 +53,17 @@ export class DashboardfavorisComponent implements OnInit{
             this.vus = vusData;
   
             this.favoriService.GetFavorisByUserId(user.uid).subscribe((favorisData) => {
-              this.favoris = favorisData;
-  
+              this.favoris = favorisData.map(fav => {
+                  const voiture = this.voitures.find(voiture => voiture.id === fav.voitureid);
+                  console.log(voiture)
+                  return {
+                    ...fav,
+                    voiture,
+                  };
+                })
+                .filter(fav => fav.voiture)
+                .reverse();
+
                 this.updateLikeRateChart();
                 this.updateLikedMarquesChart();
               });
@@ -71,7 +82,7 @@ export class DashboardfavorisComponent implements OnInit{
       data: []
     }
   ];
-  LikeRateLabels: string[] = ["Likes","Viewes"];
+  LikeRateLabels: string[] = ["J'aimes","Vus"];
   LikeRateOptions: ChartOptions = {
     responsive: true,
     plugins: {
@@ -97,7 +108,7 @@ export class DashboardfavorisComponent implements OnInit{
     responsive: true,
     plugins: {
       legend: { display: false },
-      title: { display: true, text: 'Car Marques Viewed' }
+      title: { display: true, text: 'Marques de voitures vues' }
     }
   };
   // INIT
@@ -107,26 +118,27 @@ export class DashboardfavorisComponent implements OnInit{
     responsive: true,
     plugins: {
       legend: { position: 'top' },
-      title: { display: true, text: 'Top Liked Marques' }
+      title: { display: true, text: 'Top des marques les plus appréciées' }
     }
   };
   // Treat
   updateLikeRateChart() {
     this.LikeRateData = [
       {
-        label: 'Liked vs Viewed',
+        label: 'Aimer vs Vue',
         data: [this.favoris?.length || 0, this.vus?.length || 0]
       }
     ];
   }
   // Treat
   updateLikedMarquesChart() {
-    const marqueCounts: { [marque: string]: number } = {};
+    const marqueCounts: { [marque_nom: string]: number } = {};
   
     this.favoris.forEach(fav => {
       const voiture = this.voitures.find(v => v.id === fav.voitureid);
       if (voiture) {
-        marqueCounts[voiture.marque] = (marqueCounts[voiture.marque] || 0) + 1;
+        const marque = voiture.marque_nom || 'Unknown';
+        marqueCounts[marque] = (marqueCounts[marque] || 0) + 1;
       }
     });
   
@@ -135,12 +147,12 @@ export class DashboardfavorisComponent implements OnInit{
       .sort((a, b) => b[1] - a[1])
       .slice(0, 5);
   
-    const labels = sorted.map(([marque]) => marque);
+    const labels = sorted.map(([marque_nom]) => marque_nom);
     const data = sorted.map(([, count]) => count);
   
     this.LikedMarquesLabels = labels;
     this.LikedMarquesData = [{
-      label: 'Top Liked Marques',
+      label: 'Top des marques les plus aimées',
       data: data,
       backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF']
     }];
