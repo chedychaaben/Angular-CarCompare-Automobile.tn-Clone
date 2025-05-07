@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Carrosserie } from 'src/Models/Carrosserie';
 import { CarrosserieService } from '../services/carrosserie.service';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { CarrosserieEditModalComponent } from "src/app/carrosserie-edit-modal/carrosserie-edit-modal.component";
 
 @Component({
   selector: 'app-carrosserie',
@@ -11,11 +13,10 @@ export class CarrosserieComponent implements OnInit {
   displayedColumns: string[] = ['nom', 'image', 'actions'];
   dataSource: Carrosserie[] = [];
 
-  constructor(private carrosserieService: CarrosserieService) {}
+  constructor(private carrosserieService: CarrosserieService, private dialog:MatDialog) {}
 
   ngOnInit() {
     this.carrosserieService.GetAllCarrosseries().subscribe((data) => {
-      console.log(data);
       this.dataSource = data;
     });
   }
@@ -33,4 +34,28 @@ export class CarrosserieComponent implements OnInit {
       this.dataSource = data;
     });
   }
+
+
+  openedit(id: string) {
+    const dialogConfig = new MatDialogConfig();
+  
+    // Fetch the Carrosserie data based on the id
+    this.carrosserieService.getCarrosserieById(id).subscribe((carrosserieRecupere) => {
+  
+      dialogConfig.data = {
+        id: id,
+        carrosserie: carrosserieRecupere
+      };
+  
+      const dialogRef = this.dialog.open(CarrosserieEditModalComponent, dialogConfig);
+  
+      dialogRef.afterClosed().subscribe((data) => {
+        if (data) {
+          console.log("Editing completed.");
+          this.getCarrosseries();
+        }
+      });
+    });
+  }
+
 }

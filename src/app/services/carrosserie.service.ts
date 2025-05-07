@@ -25,10 +25,18 @@ export class CarrosserieService {
   getCarrosserieNomById(id: string): Observable<string> {
     return this.http.get<Carrosserie>(`http://localhost:3000/carrosseries/${id}`)
       .pipe(
-        map(carrosserie => carrosserie.nom) // Extract 'nom' from the response
+        map(carrosserie => carrosserie.nom)
       );
   }
 
+  getCarrosserieById(id: string): Observable<Carrosserie> {
+    return this.http.get<Carrosserie>(`http://localhost:3000/carrosseries/${id}`);
+  }
+  
+  updateCarrosserie(id: string, carrosserie: Carrosserie): Observable<void> {
+    return this.http.put<void>(`http://localhost:3000/carrosseries/${id}`, carrosserie);
+  }
+  
   deleteCarrosserie(id: string): Observable<void> {
     return this.http.delete<void>(`http://localhost:3000/carrosseries/${id}`);
   }

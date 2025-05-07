@@ -33,6 +33,7 @@ import { CarrosserieComponent } from './carrosserie/carrosserie.component';
 import { CarrosserieformComponent } from './carrosserieform/carrosserieform.component';
 import { VoituredetailsComponent } from './voituredetails/voituredetails.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import {MatDialogModule} from '@angular/material/dialog';
 import { FooterComponent } from './footer/footer.component';
 import { AdminsidebarComponent } from './adminsidebar/adminsidebar.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -43,6 +44,7 @@ import { DashboardsidebarComponent } from './dashboardsidebar/dashboardsidebar.c
 import { DashboardvusComponent } from './dashboardvus/dashboardvus.component';
 import { DashboardfavorisComponent } from './dashboardfavoris/dashboardfavoris.component';
 import { DashboardcomparisonsComponent } from './dashboardcomparisons/dashboardcomparisons.component';
+import { CarrosserieEditModalComponent } from './carrosserie-edit-modal/carrosserie-edit-modal.component';
 
 
 
@@ -69,6 +71,7 @@ import { DashboardcomparisonsComponent } from './dashboardcomparisons/dashboardc
     DashboardvusComponent,
     DashboardfavorisComponent,
     DashboardcomparisonsComponent,
+    CarrosserieEditModalComponent,
 
   ],
   imports: [
@@ -77,6 +80,7 @@ import { DashboardcomparisonsComponent } from './dashboardcomparisons/dashboardc
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    MatDialogModule,
 
     // ✅ Firebase setup
     AngularFireModule.initializeApp(firebaseConfig), // compat
