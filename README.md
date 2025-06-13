@@ -1,4 +1,4 @@
-# 🚗 CarCompare - Automobile Tunisia Clone
+# 🚗 CarCompare - Automobile Tunisia Clone 
 
 Welcome to **CarCompare**, a feature-rich Angular application inspired by [automobile.tn](https://www.automobile.tn)! This project allows users to browse, compare, and manage car details with a modern web dashboard for admins. Built with ❤️ using **Angular** **TypeScript**, **Firebase**, **Cloudinary**, and **NgCharts**, it’s a full-stack clone showcasing modern web technologies.
 
