@@ -32,13 +32,22 @@ The project follows a modular Angular architecture. Below is the class diagram i
 
 Here are some glimpses of the application:
 
-| Homepage | Car Details | Compare Cars | Admin Dashboard |
-|----------|-------------|--------------|-----------------|
-| ![Homepage](images/screenshots/homepage.png) | ![Car Details](images/screenshots/car_view_details.png) | ![Compare Cars](images/screenshots/compareCarOnewithTwo.png) | ![Dashboard](images/screenshots/dashboard_comparisons.png) |
+| Homepage | Car Details |
+|----------|-------------|
+| ![Homepage](images/screenshots/homepage.png) | ![Car Details](images/screenshots/car_view_details.png) |
 
-| Add Car | Login | Signup | Marques List |
-|---------|-------|--------|--------------|
-| ![Add Car](images/screenshots/add_car_form.png) | ![Login](images/screenshots/login.png) | ![Signup](images/screenshots/signup.png) | ![Marques List](images/screenshots/marques_list_admin.png) |
+| Compare Cars | Admin Dashboard |
+|--------------|-----------------|
+| ![Compare Cars](images/screenshots/compareCarOnewithTwo.png) | ![Dashboard](images/screenshots/dashboard_comparisons.png) |
+
+| Add Car | Login |
+|---------|-------|
+| ![Add Car](images/screenshots/add_car_form.png) | ![Login](images/screenshots/login.png) |
+
+| Signup | Marques List |
+|--------|--------------|
+| ![Signup](images/screenshots/signup.png) | ![Marques List](images/screenshots/marques_list_admin.png) |
+
 
 Explore more in the [screenshots folder](images/screenshots/).
 
